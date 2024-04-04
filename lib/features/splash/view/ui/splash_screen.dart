@@ -1,6 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_report_app/configs/routes/route.dart';
 import 'package:flutter_report_app/constants/global_asset_constant.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -23,7 +27,7 @@ class MyStatefulWidget extends StatefulWidget {
 /// AnimationControllers can be created with `vsync: this` because of TickerProviderStateMixin.
 class _MyStatefulWidgetState extends State<MyStatefulWidget> with TickerProviderStateMixin {
   late final AnimationController _controller = AnimationController(
-    duration: const Duration(seconds: 1),
+    duration: const Duration(seconds: 3),
     vsync: this,
   )..repeat(reverse: true);
   late final Animation<double> _animation = CurvedAnimation(
@@ -35,13 +39,12 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> with TickerProvider
   void initState() {
     super.initState();
     repeatOnce();
-    // Timer(
-    //   const Duration(milliseconds: 2500),
-    //   () {
-    //     Navigator.pushNamedAndRemoveUntil(
-    //         context, '/onboarding', (route) => false);
-    //   },
-    // );
+    Timer(
+      const Duration(seconds: 4),
+      () {
+        Get.offAllNamed(Routes.signInRoute);
+      },
+    );
   }
 
   void repeatOnce() async {
