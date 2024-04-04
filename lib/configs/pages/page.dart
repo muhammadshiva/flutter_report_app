@@ -1,4 +1,6 @@
 import 'package:flutter_report_app/configs/routes/route.dart';
+import 'package:flutter_report_app/features/forgot_password/bindings/forgot_password_binding.dart';
+import 'package:flutter_report_app/features/forgot_password/view/ui/forgot_password_screen.dart';
 import 'package:flutter_report_app/features/sign_in/bindings/sign_in_binding.dart';
 import 'package:flutter_report_app/features/sign_in/view/ui/sign_in_screen.dart';
 import 'package:flutter_report_app/features/splash/bindings/splash_binding.dart';
@@ -18,6 +20,12 @@ abstract class Pages {
       name: Routes.signInRoute,
       page: () => const SignInScreen(),
       binding: SingInBinding(),
+    ),
+
+    GetPage(
+      name: Routes.forgotPasswordRoute,
+      page: () => const ForgotPasswordScreen(),
+      binding: ForgotPasswordBinding(),
     ),
   ];
 }

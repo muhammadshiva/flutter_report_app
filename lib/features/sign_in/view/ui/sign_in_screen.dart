@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_report_app/configs/routes/route.dart';
 import 'package:flutter_report_app/constants/global_asset_constant.dart';
 import 'package:flutter_report_app/features/sign_in/controllers/sign_in_controller.dart';
 import 'package:flutter_report_app/shared/styles/color_style.dart';
@@ -116,7 +117,9 @@ class SignInScreen extends StatelessWidget {
               ),
               SizedBox(height: 15.h),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  Get.toNamed(Routes.forgotPasswordRoute);
+                },
                 child: Text(
                   'Lupa Password ?',
                   style: blueTextStyle.copyWith(

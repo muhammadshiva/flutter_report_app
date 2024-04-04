@@ -8,7 +8,7 @@ final ThemeData themeLight = ThemeData(
   scaffoldBackgroundColor: const Color(0xffFFFFFF),
   appBarTheme: AppBarTheme(
     titleTextStyle: softBlackTextStyle.copyWith(fontWeight: semiBold),
-    iconTheme: const IconThemeData(color: ColorStyle.white),
+    iconTheme: const IconThemeData(color: ColorStyle.black2),
   ),
   dialogBackgroundColor: ColorStyle.white,
   elevatedButtonTheme: ElevatedButtonThemeData(
