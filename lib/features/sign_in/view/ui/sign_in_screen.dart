@@ -4,6 +4,7 @@ import 'package:flutter_report_app/constants/global_asset_constant.dart';
 import 'package:flutter_report_app/features/sign_in/controllers/sign_in_controller.dart';
 import 'package:flutter_report_app/shared/styles/color_style.dart';
 import 'package:flutter_report_app/shared/styles/google_text_style.dart';
+import 'package:flutter_report_app/shared/widgets/text_form_field_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -41,38 +42,63 @@ class SignInScreen extends StatelessWidget {
                 style: greyTextStyle,
               ),
               SizedBox(height: 30.h),
-              TextFormField(
-                decoration: InputDecoration(
-                  hintText: 'User ID',
-                  hintStyle: greyTextStyle,
-                  contentPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
-                  prefixIcon: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 14.h),
-                    child: SvgPicture.asset(
-                      clipBehavior: Clip.none,
-                      GlobalAssetConstant.icUser,
-                    ),
-                  ),
-                  border: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Color(0xffBBBDC7)),
-                    borderRadius: BorderRadius.circular(8.r),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Color(0xffBBBDC7)),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.blue),
-                    borderRadius: BorderRadius.circular(8),
+              TextFormFieldWidget(
+                hint: 'User ID',
+                contentPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
+                prefixIcon: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 14.h),
+                  child: SvgPicture.asset(
+                    clipBehavior: Clip.none,
+                    GlobalAssetConstant.icUser,
                   ),
                 ),
               ),
               SizedBox(height: 20.h),
-              TextFormField(
-                decoration: InputDecoration(
-                  hintText: 'Password',
+              // Obx(
+              //   () => TextFormFieldWidget(
+              //     keyboardType: TextInputType.visiblePassword,
+              //     // isPassword: controller.isShowPassword.isTrue ? false : true,
+              //     // isPassword: true,
+              //     hint: 'Password',
+              //     contentPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
+              //     prefixIcon: Padding(
+              //       padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 12.h),
+              //       child: SvgPicture.asset(
+              //         clipBehavior: Clip.none,
+              //         GlobalAssetConstant.icLock,
+              //       ),
+              //     ),
+              //     suffixIcon: Padding(
+              //       padding: EdgeInsets.symmetric(
+              //         horizontal: 8.w,
+              //         vertical: 12.h,
+              //       ),
+              //       child: InkWell(
+              //         onTap: () {
+              //           if (controller.isShowPassword.value == false) {
+              //             controller.isShowPassword.value = true;
+              //           } else {
+              //             controller.isShowPassword.value = false;
+              //           }
+              //         },
+              //         child: Obx(
+              //           () => SvgPicture.asset(
+              //             clipBehavior: Clip.none,
+              //             controller.isShowPassword.isTrue ? GlobalAssetConstant.icEye : GlobalAssetConstant.icEyeSlash,
+              //           ),
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              Obx(
+                () => TextFormFieldWidget(
+                  keyboardType: TextInputType.visiblePassword,
+                  isPassword: controller.isShowPassword.isTrue ? false : true,
+                  hint: 'Password',
                   hintStyle: greyTextStyle,
                   contentPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
+                  maxLines: 1,
                   prefixIcon: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 12.h),
                     child: SvgPicture.asset(
@@ -100,18 +126,6 @@ class SignInScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                  ),
-                  border: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Color(0xffBBBDC7)),
-                    borderRadius: BorderRadius.circular(8.r),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Color(0xffBBBDC7)),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.blue),
-                    borderRadius: BorderRadius.circular(8),
                   ),
                 ),
               ),
