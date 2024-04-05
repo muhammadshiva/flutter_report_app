@@ -4,6 +4,7 @@ import 'package:flutter_report_app/constants/global_asset_constant.dart';
 import 'package:flutter_report_app/features/sign_in/controllers/sign_in_controller.dart';
 import 'package:flutter_report_app/shared/styles/color_style.dart';
 import 'package:flutter_report_app/shared/styles/google_text_style.dart';
+import 'package:flutter_report_app/shared/widgets/elevated_button_widget.dart';
 import 'package:flutter_report_app/shared/widgets/text_form_field_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -107,20 +108,14 @@ class SignInScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 50.h),
-              SizedBox(
+              ElevatedButtonWidget(
                 height: 42.h,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: ColorStyle.primary, // Warna latar belakang
-                  ),
-                  onPressed: () {},
-                  child: Text(
-                    'Login',
-                    style: whiteTextStyle.copyWith(
-                      fontWeight: semiBold,
-                    ),
-                  ),
-                ),
+                text: 'Login',
+                color: ColorStyle.primary,
+                textStyle: whiteTextStyle,
+                onPressed: () {
+                  Get.offAllNamed(Routes.homeRoute);
+                },
               ),
             ],
           ),
