@@ -6,6 +6,7 @@ class ColorStyle {
   static const Color white = Color(0xffFFFFFF);
   static const Color black = Color(0xff000000);
   static const Color black2 = Color(0xff585859);
+  static const Color grey = Color(0xffC3C5CE);
 
   /// Green Color
   static const Color greenWa = Color(0xff60D669);
