@@ -54,43 +54,6 @@ class SignInScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 20.h),
-              // Obx(
-              //   () => TextFormFieldWidget(
-              //     keyboardType: TextInputType.visiblePassword,
-              //     // isPassword: controller.isShowPassword.isTrue ? false : true,
-              //     // isPassword: true,
-              //     hint: 'Password',
-              //     contentPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
-              //     prefixIcon: Padding(
-              //       padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 12.h),
-              //       child: SvgPicture.asset(
-              //         clipBehavior: Clip.none,
-              //         GlobalAssetConstant.icLock,
-              //       ),
-              //     ),
-              //     suffixIcon: Padding(
-              //       padding: EdgeInsets.symmetric(
-              //         horizontal: 8.w,
-              //         vertical: 12.h,
-              //       ),
-              //       child: InkWell(
-              //         onTap: () {
-              //           if (controller.isShowPassword.value == false) {
-              //             controller.isShowPassword.value = true;
-              //           } else {
-              //             controller.isShowPassword.value = false;
-              //           }
-              //         },
-              //         child: Obx(
-              //           () => SvgPicture.asset(
-              //             clipBehavior: Clip.none,
-              //             controller.isShowPassword.isTrue ? GlobalAssetConstant.icEye : GlobalAssetConstant.icEyeSlash,
-              //           ),
-              //         ),
-              //       ),
-              //     ),
-              //   ),
-              // ),
               Obx(
                 () => TextFormFieldWidget(
                   keyboardType: TextInputType.visiblePassword,
