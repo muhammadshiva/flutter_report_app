@@ -40,7 +40,7 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> with TickerProvider
     super.initState();
     repeatOnce();
     Timer(
-      const Duration(seconds: 4),
+      const Duration(seconds: 3),
       () {
         Get.offAllNamed(Routes.signInRoute);
       },
