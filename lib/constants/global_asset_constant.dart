@@ -5,6 +5,7 @@ class GlobalAssetConstant {
   static const String icEye = 'assets/icons/ic_eye.svg';
   static const String icEyeSlash = 'assets/icons/ic_eye_slash.svg';
   static const String icWhatsApp = 'assets/icons/ic_whatsapp.svg';
+  static const String icExportFile = 'assets/icons/ic_export_file.svg';
 
   /// Images
   static const String imgLogoBas = 'assets/images/img_logo_bas.png';
