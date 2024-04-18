@@ -112,7 +112,7 @@ class SignInScreen extends StatelessWidget {
                 height: 42.h,
                 text: 'Login',
                 color: ColorStyle.primary,
-                textStyle: whiteTextStyle,
+                textStyle: whiteTextStyle.copyWith(fontSize: 14.sp),
                 onPressed: () {
                   Get.offAllNamed(Routes.homeRoute);
                 },
