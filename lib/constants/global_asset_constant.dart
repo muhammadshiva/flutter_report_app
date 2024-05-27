@@ -1,5 +1,6 @@
 class GlobalAssetConstant {
   /// Icons
+  static const String icNoConnection = 'assets/icons/ic_no_connection.svg';
   static const String icUser = 'assets/icons/ic_user.svg';
   static const String icLock = 'assets/icons/ic_lock.svg';
   static const String icEye = 'assets/icons/ic_eye.svg';

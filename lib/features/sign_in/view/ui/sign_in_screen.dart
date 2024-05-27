@@ -20,104 +20,140 @@ class SignInScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 62.h),
-          child: ListView(
-            children: [
-              Center(
-                child: Image.asset(
-                  GlobalAssetConstant.imgLogoBas,
-                  width: 144.w,
-                ),
-              ),
-              SizedBox(height: 39.h),
-              Text(
-                'Login Akun',
-                style: blackTextStyle.copyWith(
-                  fontWeight: bold,
-                  fontSize: 24,
-                ),
-              ),
-              SizedBox(height: 5.h),
-              Text(
-                'Selamat datang, silahkan login ke kaun yang sudah didaftarkan',
-                style: greyTextStyle,
-              ),
-              SizedBox(height: 30.h),
-              TextFormFieldWidget(
-                hint: 'User ID',
-                contentPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
-                prefixIcon: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 14.h),
-                  child: SvgPicture.asset(
-                    clipBehavior: Clip.none,
-                    GlobalAssetConstant.icUser,
+          padding: EdgeInsets.fromLTRB(25.w, 60.w, 25.w, 0),
+          child: Form(
+            key: controller.formKey,
+            child: ListView(
+              children: [
+                Center(
+                  child: Image.asset(
+                    GlobalAssetConstant.imgLogoBas,
+                    width: 144.w,
                   ),
                 ),
-              ),
-              SizedBox(height: 20.h),
-              Obx(
-                () => TextFormFieldWidget(
-                  keyboardType: TextInputType.visiblePassword,
-                  isPassword: controller.isShowPassword.isTrue ? false : true,
-                  hint: 'Password',
-                  hintStyle: greyTextStyle,
-                  contentPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
-                  maxLines: 1,
+                SizedBox(height: 39.w),
+                Text(
+                  'Login Akun',
+                  style: blackTextStyle.copyWith(
+                    fontWeight: bold,
+                    fontSize: 24.sp,
+                  ),
+                ),
+                SizedBox(height: 5.h),
+                Text(
+                  'Selamat datang, silahkan login ke akun yang sudah didaftarkan',
+                  style: greyTextStyle,
+                ),
+                SizedBox(height: 30.h),
+                TextFormFieldWidget(
+                  controller: controller.emailCtrl,
+                  hint: 'Email',
+                  contentPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.w),
                   prefixIcon: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 12.h),
+                    padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 14.w),
                     child: SvgPicture.asset(
                       clipBehavior: Clip.none,
-                      GlobalAssetConstant.icLock,
+                      GlobalAssetConstant.icUser,
                     ),
                   ),
-                  suffixIcon: Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 8.w,
-                      vertical: 12.h,
-                    ),
-                    child: InkWell(
-                      onTap: () {
-                        if (controller.isShowPassword.value == false) {
-                          controller.isShowPassword.value = true;
-                        } else {
-                          controller.isShowPassword.value = false;
-                        }
-                      },
-                      child: Obx(
-                        () => SvgPicture.asset(
-                          clipBehavior: Clip.none,
-                          controller.isShowPassword.isTrue ? GlobalAssetConstant.icEye : GlobalAssetConstant.icEyeSlash,
+                ),
+                Obx(
+                  () => Visibility(
+                    visible: controller.emailErrorText.isEmpty ? false : true,
+                    child: Container(
+                      margin: EdgeInsets.only(top: 10.w),
+                      child: Text(
+                        controller.emailErrorText.value,
+                        style: redTextStyle.copyWith(
+                          fontSize: 12.sp,
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              SizedBox(height: 15.h),
-              InkWell(
-                onTap: () {
-                  Get.toNamed(Routes.forgotPasswordRoute);
-                },
-                child: Text(
-                  'Lupa Password ?',
-                  style: blueTextStyle.copyWith(
-                    fontWeight: semiBold,
-                    fontSize: 12,
+                SizedBox(height: 20.h),
+                Obx(
+                  () => TextFormFieldWidget(
+                    controller: controller.passwordCtrl,
+                    keyboardType: TextInputType.visiblePassword,
+                    isPassword: controller.isShowPassword.isTrue ? false : true,
+                    hint: 'Password',
+                    hintStyle: greyTextStyle,
+                    contentPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.w),
+                    maxLines: 1,
+                    prefixIcon: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 12.w),
+                      child: SvgPicture.asset(
+                        clipBehavior: Clip.none,
+                        GlobalAssetConstant.icLock,
+                      ),
+                    ),
+                    suffixIcon: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 8.w,
+                        vertical: 12.h,
+                      ),
+                      child: InkWell(
+                        onTap: () {
+                          if (controller.isShowPassword.value == false) {
+                            controller.isShowPassword.value = true;
+                          } else {
+                            controller.isShowPassword.value = false;
+                          }
+                        },
+                        child: Obx(
+                          () => SvgPicture.asset(
+                            clipBehavior: Clip.none,
+                            controller.isShowPassword.isTrue
+                                ? GlobalAssetConstant.icEye
+                                : GlobalAssetConstant.icEyeSlash,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
-                  textAlign: TextAlign.right,
                 ),
-              ),
-              SizedBox(height: 50.h),
-              ElevatedButtonWidget(
-                height: 42.h,
-                text: 'Login',
-                color: ColorStyle.primary,
-                textStyle: whiteTextStyle.copyWith(fontSize: 14.sp),
-                onPressed: () {
-                  Get.offAllNamed(Routes.homeRoute);
-                },
-              ),
-            ],
+                Obx(
+                  () => Visibility(
+                    visible: controller.passwordErrorText.isEmpty ? false : true,
+                    child: Container(
+                      margin: EdgeInsets.only(top: 10.w),
+                      child: Text(
+                        controller.passwordErrorText.value,
+                        style: redTextStyle.copyWith(
+                          fontSize: 12.sp,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 15.w),
+                InkWell(
+                  onTap: () {
+                    Get.toNamed(Routes.forgotPasswordRoute);
+                  },
+                  child: Text(
+                    'Lupa Password ?',
+                    style: blueTextStyle.copyWith(
+                      fontWeight: semiBold,
+                      fontSize: 12.sp,
+                    ),
+                    textAlign: TextAlign.right,
+                  ),
+                ),
+                SizedBox(height: 40.w),
+                Obx(
+                  () => ElevatedButtonWidget(
+                    height: 42.w,
+                    text: 'Login',
+                    color: controller.isDisable.isTrue ? Colors.grey.shade200 : ColorStyle.primary,
+                    textStyle: whiteTextStyle.copyWith(fontSize: 14.sp),
+                    onPressed: () =>
+                        controller.isDisable.isTrue ? null : controller.validateForm(context),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

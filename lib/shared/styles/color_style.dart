@@ -11,6 +11,7 @@ class ColorStyle {
 
   /// Green Color
   static const Color greenWa = Color(0xff60D669);
+  static const Color green = Color(0xff04B200);
 
   /// Blue Color
   static const Color b3 = Color(0xff747CFB);
