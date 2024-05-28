@@ -27,6 +27,7 @@ class BatokController extends GetxController {
   RxInt tabIndex = 1.obs;
   RxString titleMenu = ''.obs;
   RxInt homeTabIndex = 1.obs;
+  RxBool isLoading = false.obs;
 
   ListBatok batokData = ListBatok();
 
@@ -79,15 +80,18 @@ class BatokController extends GetxController {
       await GlobalController.to.checkConnection();
       if (GlobalController.to.isConnect.isTrue) {
         LoadingService.show();
+        isLoading.value = true;
 
         BatokResponseModel response = await BatokRepository.getBatok();
 
         if (response.status == 200) {
           listBatokData(response.data);
           LoadingService.dismiss();
+          isLoading.value = false;
         }
       } else {
         LoadingService.dismiss();
+        isLoading.value = false;
         Get.toNamed(Routes.noConnectionRoute);
       }
     } on DioException catch (e) {

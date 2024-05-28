@@ -26,7 +26,7 @@ class BatokList extends StatelessWidget {
           padding: EdgeInsets.symmetric(vertical: 10.h),
           child: Obx(
             () {
-              if (controller.listBatokData.isEmpty) {
+              if (controller.isLoading.isFalse && controller.listBatokData.isEmpty) {
                 return Center(
                   child: Text(
                     'Data kosong',
