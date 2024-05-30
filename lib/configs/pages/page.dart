@@ -1,6 +1,8 @@
 import 'package:flutter_report_app/configs/routes/route.dart';
 import 'package:flutter_report_app/features/ayak_manual/bindings/ayak_manual_binding.dart';
 import 'package:flutter_report_app/features/ayak_manual/views/ui/ayak_mannual_screen.dart';
+import 'package:flutter_report_app/features/ayak_manual/views/ui/ayak_manual_detail_screen.dart';
+import 'package:flutter_report_app/features/ayak_manual/views/ui/ayak_manual_query_screen.dart';
 import 'package:flutter_report_app/features/ayak_rotari/bindings/ayak_rotari_binding.dart';
 import 'package:flutter_report_app/features/ayak_rotari/views/ui/ayak_mannual_screen.dart';
 import 'package:flutter_report_app/features/bahan_baku/bindings/bahan_baku_binding.dart';
@@ -80,6 +82,16 @@ abstract class Pages {
       name: Routes.ayakManualRoute,
       page: () => const AyakManualScreen(),
       binding: AyakManualBinding(),
+    ),
+
+    GetPage(
+      name: Routes.ayakManualDetailRoute,
+      page: () => const AyakManualDetailScreen(),
+    ),
+
+    GetPage(
+      name: Routes.ayakManualQueryRoute,
+      page: () => const AyakManualQueryScreen(),
     ),
 
     //* AYAK ROTARI

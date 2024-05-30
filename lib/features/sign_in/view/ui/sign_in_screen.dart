@@ -4,8 +4,8 @@ import 'package:flutter_report_app/constants/global_asset_constant.dart';
 import 'package:flutter_report_app/features/sign_in/controllers/sign_in_controller.dart';
 import 'package:flutter_report_app/shared/styles/color_style.dart';
 import 'package:flutter_report_app/shared/styles/google_text_style.dart';
-import 'package:flutter_report_app/shared/widgets/elevated_button_widget.dart';
-import 'package:flutter_report_app/shared/widgets/text_form_field_widget.dart';
+import 'package:flutter_report_app/shared/widgets/button/button_widget_custom.dart';
+import 'package:flutter_report_app/shared/widgets/text_field/text_field_widget_custom.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -45,7 +45,7 @@ class SignInScreen extends StatelessWidget {
                   style: greyTextStyle,
                 ),
                 SizedBox(height: 30.h),
-                TextFormFieldWidget(
+                TextFieldWidgetCustom(
                   controller: controller.emailCtrl,
                   hint: 'Email',
                   contentPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.w),
@@ -73,7 +73,7 @@ class SignInScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 20.h),
                 Obx(
-                  () => TextFormFieldWidget(
+                  () => TextFieldWidgetCustom(
                     controller: controller.passwordCtrl,
                     keyboardType: TextInputType.visiblePassword,
                     isPassword: controller.isShowPassword.isTrue ? false : true,
@@ -143,7 +143,7 @@ class SignInScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 40.w),
                 Obx(
-                  () => ElevatedButtonWidget(
+                  () => ButtonWidgetCustom(
                     height: 42.w,
                     text: 'Login',
                     color: controller.isDisable.isTrue ? Colors.grey.shade200 : ColorStyle.primary,

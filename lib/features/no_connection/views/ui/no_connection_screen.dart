@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_report_app/constants/global_asset_constant.dart';
 import 'package:flutter_report_app/features/no_connection/controllers/no_connection_controller.dart';
 import 'package:flutter_report_app/shared/styles/color_style.dart';
-import 'package:flutter_report_app/shared/widgets/elevated_button_widget.dart';
+import 'package:flutter_report_app/shared/widgets/button/button_widget_custom.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -31,7 +31,7 @@ class NoConnectionScreen extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             SizedBox(height: 25.w),
-            ElevatedButtonWidget(
+            ButtonWidgetCustom(
               text: 'Check Connection',
               color: ColorStyle.primary,
               textStyle: GoogleFonts.poppins().copyWith(

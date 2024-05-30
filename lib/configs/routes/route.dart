@@ -13,6 +13,8 @@ abstract class Routes {
 
   //* AYAK MANUAL
   static const String ayakManualRoute = '/ayak_manual';
+  static const String ayakManualDetailRoute = '/ayak_manual_detail';
+  static const String ayakManualQueryRoute = '/ayak_manual_query';
 
   //* AYAK ROTARI
   static const String ayakRotariRoute = '/ayak_rotari';

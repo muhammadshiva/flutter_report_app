@@ -10,7 +10,7 @@ import 'package:flutter_report_app/features/bahan_baku/repository/bahan_baku_rep
 import 'package:flutter_report_app/shared/controllers/global_controller.dart';
 import 'package:flutter_report_app/shared/styles/color_style.dart';
 import 'package:flutter_report_app/shared/styles/google_text_style.dart';
-import 'package:flutter_report_app/shared/widgets/elevated_button_timer_widget.dart';
+import 'package:flutter_report_app/shared/widgets/button/button_timer_widget_custom.dart';
 import 'package:flutter_report_app/utils/services/loading_service.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -162,7 +162,7 @@ class BahanBakuController extends GetxController {
                   ],
                 ),
                 actions: [
-                  ElevatedButtonTimerWidget(
+                  ButtonTimerWidgetCustom(
                     width: double.infinity,
                     text: 'OK',
                     color: Colors.green,
@@ -249,7 +249,7 @@ class BahanBakuController extends GetxController {
                   ],
                 ),
                 actions: [
-                  ElevatedButtonTimerWidget(
+                  ButtonTimerWidgetCustom(
                     width: double.infinity,
                     text: 'OK',
                     color: Colors.green,
@@ -293,7 +293,7 @@ class BahanBakuController extends GetxController {
           ),
           textButtonTheme: TextButtonThemeData(
             style: TextButton.styleFrom(
-              primary: Colors.black,
+              backgroundColor: Colors.black,
             ),
           ),
         ),

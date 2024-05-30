@@ -32,7 +32,11 @@ class HomeDataListWidget extends StatelessWidget {
                   (e) => HomeCardItemWidget(
                     onTap: () {
                       Get.toNamed(
-                        e['id'] == 1 ? Routes.batokRoute : Routes.bahanBakuRoute,
+                        e['id'] == 1
+                            ? Routes.batokRoute
+                            : e['id'] == 2
+                                ? Routes.bahanBakuRoute
+                                : Routes.ayakManualRoute,
                         arguments: {
                           'id': e['id'],
                           'title': e['title'],

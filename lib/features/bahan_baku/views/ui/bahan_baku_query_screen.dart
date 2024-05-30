@@ -4,7 +4,7 @@ import 'package:flutter_report_app/features/bahan_baku/controllers/bahan_baku_co
 import 'package:flutter_report_app/features/bahan_baku/models/bahan_baku_model.dart';
 import 'package:flutter_report_app/shared/styles/color_style.dart';
 import 'package:flutter_report_app/shared/styles/google_text_style.dart';
-import 'package:flutter_report_app/shared/widgets/elevated_button_widget.dart';
+import 'package:flutter_report_app/shared/widgets/button/button_widget_custom.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -460,7 +460,7 @@ class BahanBakuQueryScreen extends StatelessWidget {
           ],
         ),
         padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 25.h),
-        child: ElevatedButtonWidget(
+        child: ButtonWidgetCustom(
           width: double.infinity,
           text: 'Simpan Data',
           color: ColorStyle.primary,

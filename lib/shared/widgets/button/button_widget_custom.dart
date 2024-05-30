@@ -29,7 +29,7 @@ class ButtonWidgetCustom extends StatelessWidget {
       width: width,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: color,
+          backgroundColor: color,
         ),
         onPressed: onPressed,
         child: Text(

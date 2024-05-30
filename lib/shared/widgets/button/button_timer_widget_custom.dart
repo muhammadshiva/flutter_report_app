@@ -71,7 +71,7 @@ class _ButtonTimerWidgetCustomState extends State<ButtonTimerWidgetCustom> {
       width: widget.width,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: widget.color,
+          backgroundColor: widget.color,
         ),
         onPressed: widget.onPressed,
         child: Row(

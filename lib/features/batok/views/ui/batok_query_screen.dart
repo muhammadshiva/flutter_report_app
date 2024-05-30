@@ -4,8 +4,8 @@ import 'package:flutter_report_app/features/batok/controllers/batok_controller.d
 import 'package:flutter_report_app/features/batok/models/batok_model.dart';
 import 'package:flutter_report_app/shared/styles/color_style.dart';
 import 'package:flutter_report_app/shared/styles/google_text_style.dart';
-import 'package:flutter_report_app/shared/widgets/elevated_button_widget.dart';
-import 'package:flutter_report_app/shared/widgets/text_form_field_widget.dart';
+import 'package:flutter_report_app/shared/widgets/button/button_widget_custom.dart';
+import 'package:flutter_report_app/shared/widgets/text_field/text_field_widget_custom.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -88,7 +88,7 @@ class BatokQueryScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TextFormFieldWidget(
+              TextFieldWidgetCustom(
                 key: const Key('tanggal'),
                 controller: controller.tanggal,
                 hint: 'Pilih Tanggal',
@@ -217,7 +217,7 @@ class BatokQueryScreen extends StatelessWidget {
                   const Spacer(),
                   SizedBox(
                     width: 90.w,
-                    child: TextFormFieldWidget(
+                    child: TextFieldWidgetCustom(
                       key: const Key('barangKeluar'),
                       inputFormatters: [
                         FilteringTextInputFormatter.digitsOnly,
@@ -257,7 +257,7 @@ class BatokQueryScreen extends StatelessWidget {
                   const Spacer(),
                   SizedBox(
                     width: 90.w,
-                    child: TextFormFieldWidget(
+                    child: TextFieldWidgetCustom(
                       key: const Key('barangMasuk'),
                       inputFormatters: [
                         FilteringTextInputFormatter.digitsOnly,
@@ -327,7 +327,7 @@ class BatokQueryScreen extends StatelessWidget {
                   const Spacer(),
                   SizedBox(
                     width: 90.w,
-                    child: TextFormFieldWidget(
+                    child: TextFieldWidgetCustom(
                       key: const Key('stokAwal'),
                       controller: controller.stokAwal,
                       keyboardType: TextInputType.number,
@@ -364,7 +364,7 @@ class BatokQueryScreen extends StatelessWidget {
                   const Spacer(),
                   SizedBox(
                     width: 90.w,
-                    child: TextFormFieldWidget(
+                    child: TextFieldWidgetCustom(
                       key: const Key('stokAkhir'),
                       inputFormatters: [
                         FilteringTextInputFormatter.digitsOnly,
@@ -488,7 +488,7 @@ class BatokQueryScreen extends StatelessWidget {
           ],
         ),
         padding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 25.h),
-        child: ElevatedButtonWidget(
+        child: ButtonWidgetCustom(
           width: double.infinity,
           text: 'Simpan Data',
           color: ColorStyle.primary,

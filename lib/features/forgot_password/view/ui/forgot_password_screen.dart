@@ -49,7 +49,7 @@ class ForgotPasswordScreen extends StatelessWidget {
             width: 100.w,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                primary: ColorStyle.greenWa, // Warna latar belakang
+                backgroundColor: ColorStyle.greenWa, // Warna latar belakang
               ),
               onPressed: () {},
               child: Row(
