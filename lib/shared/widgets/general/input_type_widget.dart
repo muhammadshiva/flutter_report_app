@@ -94,7 +94,7 @@ class _InputTypeWidgetState extends State<InputTypeWidget> {
                       },
                       child: Container(
                         padding: EdgeInsets.symmetric(
-                          horizontal: 36.w,
+                          horizontal: 32.w,
                           vertical: 12.w,
                         ),
                         decoration: BoxDecoration(

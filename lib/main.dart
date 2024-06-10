@@ -40,8 +40,8 @@ class MainApp extends StatelessWidget {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: const [
-            Locale('en'), // English
-            Locale('id_ID'), // Indoesia
+            Locale('en'), //* English
+            Locale('id_ID'), //* Indonesia
           ],
           debugShowCheckedModeBanner: false,
           initialRoute: AppRoute.splashRoute,

@@ -26,8 +26,8 @@ class ApiProductionConstant {
   }
 
   //* BAHAN BAKU
-  static String getBahanBaku() {
-    return 'bahan_baku';
+  static String getBahanBaku(String filter) {
+    return 'bahan_baku?filter=$filter';
   }
 
   static String postBahanBaku() {

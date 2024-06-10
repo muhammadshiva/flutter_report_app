@@ -1,6 +1,6 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:bas_app/features/batok/models/batok_fetch_model.dart';
+import 'package:bas_app/shared/model/list_persentase_model.dart';
 import 'package:bas_app/shared/styles/color_style.dart';
 import 'package:bas_app/shared/styles/google_text_style.dart';
 import 'package:flutter/material.dart';

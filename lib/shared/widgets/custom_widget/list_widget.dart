@@ -25,7 +25,7 @@ class _ListWidgetState extends State<ListWidget> {
       padding: EdgeInsets.symmetric(horizontal: 25.w),
       child: Scrollbar(
         child: Container(
-          height: MediaQuery.sizeOf(context).height * 0.5,
+          height: MediaQuery.sizeOf(context).height * 0.40,
           padding: EdgeInsets.symmetric(vertical: 10.h),
           child: RefreshIndicator(
             onRefresh: widget.onRefresh ?? () async {},

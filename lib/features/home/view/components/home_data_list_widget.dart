@@ -31,7 +31,9 @@ class HomeDataListWidget extends StatelessWidget {
                 .map(
                   (e) => HomeCardItemWidget(
                     onTap: () {
-                      Get.toNamed(AppRoute.batokRoute);
+                      Get.toNamed(
+                        e['id'] == 1 ? AppRoute.batokRoute : AppRoute.bahanBakuRoute,
+                      );
 
                       // Get.toNamed(
                       //   e['id'] == 1

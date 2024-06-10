@@ -1,4 +1,4 @@
-import 'package:bas_app/features/batok/controllers/batok_query_controller.dart';
+import 'package:bas_app/features/bahan_baku/controllers/bahan_baku_query_controller.dart';
 import 'package:bas_app/shared/styles/color_style.dart';
 import 'package:bas_app/shared/styles/google_text_style.dart';
 import 'package:bas_app/shared/widgets/custom_button/button_widget.dart';
@@ -12,12 +12,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class BatokQueryScreen extends StatelessWidget {
-  const BatokQueryScreen({super.key});
+class BahanBakuQueryScreen extends StatelessWidget {
+  const BahanBakuQueryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    var controller = BatokQueryController.to;
+    var controller = BahanBakuQueryController.to;
 
     return PopScope(
       onPopInvoked: (didPop) {
@@ -25,7 +25,7 @@ class BatokQueryScreen extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBarCustom(
-          title: '${controller.isEdit.isTrue ? 'Edit' : 'Input'} Data Batok',
+          title: '${controller.isEdit.isTrue ? 'Edit' : 'Input'} Data Bahan Baku',
           onBack: () {
             Get.back();
             controller.clearForm();
@@ -67,16 +67,34 @@ class BatokQueryScreen extends StatelessWidget {
                         errorText: controller.sumberBatokError,
                       ),
                       20.verticalSpace,
-                      TextFieldLabelWidget(
-                        title: 'Batok',
-                        unit: 'Kg',
-                        initialValue: controller.jumlahBatokTxt.value,
+                      DropdownWidget(
+                        hinText: 'Pilih Stok',
+                        initialValue: controller.stokBahanBakuTxt.value,
+                        listItem: controller.dropdownStokBahanBaku,
                         onChanged: (value) {
-                          controller.jumlahBatokTxt.value = value ?? '';
+                          controller.stokBahanBakuTxt.value = value ?? '';
                         },
-                        errorText: controller.jumlahBatokError,
+                        errorText: controller.stokBahanBakuError,
                       ),
                       20.verticalSpace,
+                      Obx(
+                        () => controller.stokBahanBakuTxt.isEmpty
+                            ? const SizedBox()
+                            : Container(
+                                margin: EdgeInsets.only(bottom: 20.w),
+                                child: TextFieldLabelWidget(
+                                  title: controller.stokBahanBakuTxt.value.replaceAll('Stok ', ''),
+                                  unit: controller.stokBahanBakuTxt.value == 'Stok Cairan'
+                                      ? 'L'
+                                      : 'Kg',
+                                  initialValue: controller.jumlahBahanBakuTxt.value,
+                                  onChanged: (value) {
+                                    controller.jumlahBahanBakuTxt.value = value ?? '';
+                                  },
+                                  errorText: controller.jumlahBahanBakuError,
+                                ),
+                              ),
+                      ),
                       TextFieldNoteWidget(
                         initialValue: controller.keteranganTxt.value,
                         onChanged: (value) {

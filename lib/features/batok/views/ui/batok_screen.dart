@@ -98,6 +98,7 @@ class BatokScreen extends StatelessWidget {
                       return CardWidget(
                         title: data.sumberBatok ?? '',
                         jenisMasukan: data.jenisMasukan ?? '',
+                        terakhirDitambahkan: data.tanggal ?? '',
                         data: data.listData ?? [],
                         onPressedEdit: (value) {
                           Get.toNamed(

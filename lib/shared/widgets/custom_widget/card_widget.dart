@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
-import 'package:bas_app/features/batok/models/batok_fetch_model.dart';
+import 'package:bas_app/shared/controllers/global_controller.dart';
+import 'package:bas_app/shared/model/list_data_model.dart';
 import 'package:bas_app/shared/styles/color_style.dart';
 import 'package:bas_app/shared/styles/google_text_style.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +14,7 @@ class CardWidget extends StatelessWidget {
     required this.title,
     required this.jenisMasukan,
     this.grade,
+    required this.terakhirDitambahkan,
     required this.data,
     required this.onPressedEdit,
     required this.onPressedDelete,
@@ -21,6 +23,7 @@ class CardWidget extends StatelessWidget {
   final String title;
   final String jenisMasukan;
   final String? grade;
+  final String terakhirDitambahkan;
   final List<ListData> data;
   void Function(BuildContext)? onPressedEdit;
   void Function(BuildContext)? onPressedDelete;
@@ -109,7 +112,7 @@ class CardWidget extends StatelessWidget {
                   ),
                   5.verticalSpace,
                   Text(
-                    'Terakhir ditambahkan pada ',
+                    'Terakhir ditambahkan pada ${GlobalController.to.formatDate(terakhirDitambahkan)}',
                     style: blackTextStyle.copyWith(
                       color: const Color(0xffA3A3A3),
                       fontSize: 10.sp,

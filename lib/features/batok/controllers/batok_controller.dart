@@ -73,7 +73,7 @@ class BatokController extends GetxController {
 
           var timer = Timer(const Duration(seconds: 3), () {
             Get.back();
-            BatokController.to.getBatok();
+            getBatok();
           });
 
           DialogSuccess.show(
@@ -82,7 +82,7 @@ class BatokController extends GetxController {
             onPressed: () {
               Get.back();
               timer.cancel();
-              BatokController.to.getBatok();
+              getBatok();
             },
           );
         }

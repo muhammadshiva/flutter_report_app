@@ -1,25 +1,22 @@
 import 'package:bas_app/shared/model/list_data_model.dart';
 import 'package:bas_app/shared/model/list_persentase_model.dart';
 
-class BatokFetchResponseModel {
+class BahanBakuFetchResponseModel {
   int? status;
   String? message;
-  BatokData? data;
+  BahanBakuData? data;
 
-  BatokFetchResponseModel({
+  BahanBakuFetchResponseModel({
     this.status,
     this.message,
     this.data,
   });
 
-  factory BatokFetchResponseModel.fromJson(Map<String, dynamic> json) => BatokFetchResponseModel(
+  factory BahanBakuFetchResponseModel.fromJson(Map<String, dynamic> json) =>
+      BahanBakuFetchResponseModel(
         status: json["status"],
         message: json["message"],
-        data: json["data"] == null
-            ? null
-            : (json["data"] is List && json["data"].isEmpty)
-                ? BatokData(listBatok: [], totalData: 0)
-                : BatokData.fromJson(json["data"]),
+        data: json["data"] == null ? null : BahanBakuData.fromJson(json["data"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -29,22 +26,22 @@ class BatokFetchResponseModel {
       };
 }
 
-class BatokData {
+class BahanBakuData {
   int? totalData;
   String? tanggalDitambahkan;
   List<ListPersentase>? listPersentase;
   List<String>? listSumberBatok;
-  List<ListBatok>? listBatok;
+  List<ListBahanBaku>? listBahanBaku;
 
-  BatokData({
+  BahanBakuData({
     this.totalData,
     this.tanggalDitambahkan,
     this.listPersentase,
     this.listSumberBatok,
-    this.listBatok,
+    this.listBahanBaku,
   });
 
-  factory BatokData.fromJson(Map<String, dynamic> json) => BatokData(
+  factory BahanBakuData.fromJson(Map<String, dynamic> json) => BahanBakuData(
         totalData: json["total_data"],
         tanggalDitambahkan: json["tanggal_ditambahkan"],
         listPersentase: json["list_persentase"] == null
@@ -54,9 +51,10 @@ class BatokData {
         listSumberBatok: json["list_sumber_batok"] == null
             ? []
             : List<String>.from(json["list_sumber_batok"]!.map((x) => x)),
-        listBatok: json["list_batok"] == null
+        listBahanBaku: json["list_bahan_baku"] == null
             ? []
-            : List<ListBatok>.from(json["list_batok"]!.map((x) => ListBatok.fromJson(x))),
+            : List<ListBahanBaku>.from(
+                json["list_bahan_baku"]!.map((x) => ListBahanBaku.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -67,40 +65,43 @@ class BatokData {
             : List<dynamic>.from(listPersentase!.map((x) => x.toJson())),
         "list_sumber_batok":
             listSumberBatok == null ? [] : List<dynamic>.from(listSumberBatok!.map((x) => x)),
-        "list_batok":
-            listBatok == null ? [] : List<dynamic>.from(listBatok!.map((x) => x.toJson())),
+        "list_bahan_baku":
+            listBahanBaku == null ? [] : List<dynamic>.from(listBahanBaku!.map((x) => x.toJson())),
       };
 }
 
-class ListBatok {
+class ListBahanBaku {
   int? id;
   String? jenisMasukan;
   String? tanggal;
   String? sumberBatok;
-  int? jumlahBatok;
+  String? bahanBaku;
+  int? jumlah;
   String? keterangan;
   String? createdAt;
   String? updatedAt;
   List<ListData>? listData;
 
-  ListBatok({
+  ListBahanBaku({
     this.id,
     this.jenisMasukan,
     this.tanggal,
     this.sumberBatok,
-    this.jumlahBatok,
+    this.bahanBaku,
+    this.jumlah,
     this.keterangan,
     this.createdAt,
     this.updatedAt,
     this.listData,
   });
 
-  factory ListBatok.fromJson(Map<String, dynamic> json) => ListBatok(
+  factory ListBahanBaku.fromJson(Map<String, dynamic> json) => ListBahanBaku(
         id: json["id"],
         jenisMasukan: json["jenis_masukan"],
         tanggal: json["tanggal"],
         sumberBatok: json["sumber_batok"],
-        jumlahBatok: json["jumlah_batok"],
+        bahanBaku: json["bahan_baku"],
+        jumlah: json["jumlah"],
         keterangan: json["keterangan"],
         createdAt: json["created_at"],
         updatedAt: json["updated_at"],
@@ -114,7 +115,8 @@ class ListBatok {
         "jenis_masukan": jenisMasukan,
         "tanggal": tanggal,
         "sumber_batok": sumberBatok,
-        "jumlah_batok": jumlahBatok,
+        "bahan_baku": bahanBaku,
+        "jumlah": jumlah,
         "keterangan": keterangan,
         "created_at": createdAt,
         "updated_at": updatedAt,

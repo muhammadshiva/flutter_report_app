@@ -9,5 +9,7 @@ abstract class AppRoute {
   static const String batokRoute = '/batok';
   static const String batokQueryRoute = '/batok_query';
 
+  //* BAHAN BAKU
   static const String bahanBakuRoute = '/bahan_baku';
+  static const String bahanBakuQueryRoute = '/bahan_baku_query';
 }

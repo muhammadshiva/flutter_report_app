@@ -11,12 +11,14 @@ class DropdownWidget extends StatefulWidget {
     required this.onChanged,
     required this.errorText,
     this.initialValue,
+    required this.hinText,
   });
 
   final List<String> listItem;
   final Function(String?) onChanged;
   final RxString errorText;
   final String? initialValue;
+  final String hinText;
 
   @override
   State<DropdownWidget> createState() => _DropdownWidgetState();
@@ -55,7 +57,7 @@ class _DropdownWidgetState extends State<DropdownWidget> {
             ),
           ),
           hint: Text(
-            'Pilih Sumber Batok',
+            widget.hinText,
             style: blackTextStyle.copyWith(
               color: ColorStyle.black2,
               fontSize: 14.sp,

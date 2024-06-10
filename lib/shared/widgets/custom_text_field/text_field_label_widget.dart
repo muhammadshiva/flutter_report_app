@@ -13,6 +13,7 @@ class TextFieldLabelWidget extends StatefulWidget {
     this.width,
     required this.errorText,
     this.initialValue,
+    required this.unit,
   });
 
   final String title;
@@ -20,6 +21,7 @@ class TextFieldLabelWidget extends StatefulWidget {
   final double? width;
   final RxString errorText;
   final String? initialValue;
+  final String unit;
 
   @override
   State<TextFieldLabelWidget> createState() => _TextFieldLabelWidgetState();
@@ -76,7 +78,7 @@ class _TextFieldLabelWidgetState extends State<TextFieldLabelWidget> {
                   suffixIcon: Padding(
                     padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 10.h),
                     child: Text(
-                      '.Kg',
+                      '.${widget.unit}',
                       style: blackTextStyle.copyWith(
                         color: const Color(0xffBBBDC7),
                         fontSize: 12.sp,
