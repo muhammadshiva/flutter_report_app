@@ -1,52 +1,57 @@
+import 'package:bas_app/constants/api_production_constant.dart';
+import 'package:bas_app/features/batok/models/batok_delete_model.dart';
+import 'package:bas_app/features/batok/models/batok_fetch_model.dart';
+import 'package:bas_app/features/batok/models/batok_post_model.dart';
+import 'package:bas_app/utils/services/dio_service.dart';
+import 'package:bas_app/utils/services/hive_service.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_report_app/constants/api_production_constant.dart';
-import 'package:flutter_report_app/features/batok/models/batok_model.dart';
-import 'package:flutter_report_app/features/batok/models/batok_post_model.dart';
-import 'package:flutter_report_app/utils/services/dio_service.dart';
-import 'package:flutter_report_app/utils/services/hive_service.dart';
 
 class BatokRepository {
   BatokRepository._();
 
   static final dio = DioService.dioCall(authorization: HiveService.box.get('token'));
 
-  static Future<BatokResponseModel> getBatok() async {
+  static Future<BatokFetchResponseModel> getBatok(String filter) async {
     try {
-      var response = await dio.get(ApiProductionConstant.getBatok());
-      return BatokResponseModel.fromJson(response.data);
-    } catch (e) {
-      if (e is DioException) {
-        var errorResponse = e.response?.data;
-        return BatokResponseModel(
-          status: errorResponse['status'],
-          message: errorResponse['message'],
-        );
-      } else {
-        return BatokResponseModel(message: e.toString());
-      }
+      var response = await dio.get(
+        ApiProductionConstant.getBatok(filter),
+      );
+      return BatokFetchResponseModel.fromJson(response.data);
+    } on DioException catch (e) {
+      var errorResponse = e.response?.data;
+      return BatokFetchResponseModel(
+        status: errorResponse['status'],
+        message: errorResponse['message'],
+      );
     }
   }
 
+  //* SAMPEL DATA BATOK
+//   {
+//     "jenis_masukan": "Penambahan",
+//     "tanggal": "2024-06-09",
+//     "sumber_batok": "Sumatera",
+//     "jumlah_batok": 700.0,
+//     "keterangan": "Stok tersedia"
+// }
   static Future<BatokPostResponseModel> postBatok({
     int? idBatok,
     required String tanggal,
+    required String jenisMasukan,
     required String sumberBatok,
-    required double barangMasuk,
-    required double barangKeluar,
-    required double stokAwal,
-    required double stokAkhir,
+    required double jumlahBatok,
     required String keterangan,
   }) async {
     try {
       var formData = FormData.fromMap({
+        "jenis_masukan": jenisMasukan,
         "tanggal": tanggal,
         "sumber_batok": sumberBatok,
-        "barang_masuk": barangMasuk,
-        "barang_keluar": barangKeluar,
-        "stok_awal": stokAwal,
-        "stok_akhir": stokAkhir,
+        "jumlah_batok": jumlahBatok,
         "keterangan": keterangan,
       });
+
+      print('ID BATOK : $idBatok');
 
       var response = await dio.post(
         idBatok != null

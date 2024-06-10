@@ -1,12 +1,13 @@
 import 'dart:async';
 
+import 'package:bas_app/configs/routes/app_route.dart';
+import 'package:bas_app/features/sign_in/models/sign_in_model.dart';
+import 'package:bas_app/features/sign_in/repositories/sign_in_repository.dart';
+import 'package:bas_app/shared/controllers/global_controller.dart';
+import 'package:bas_app/utils/services/hive_service.dart';
+import 'package:bas_app/utils/services/loading_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_report_app/configs/routes/route.dart';
-import 'package:flutter_report_app/features/sign_in/models/sign_in_model.dart';
-import 'package:flutter_report_app/features/sign_in/repositories/sign_in_repository.dart';
-import 'package:flutter_report_app/shared/controllers/global_controller.dart';
-import 'package:flutter_report_app/utils/services/hive_service.dart';
-import 'package:flutter_report_app/utils/services/loading_service.dart';
+
 import 'package:get/get.dart';
 
 class SignInController extends GetxController {
@@ -57,7 +58,7 @@ class SignInController extends GetxController {
 
       if (response.status == 200) {
         await HiveService.setAuth(response.data!, isLogin: true);
-        Get.offAllNamed(Routes.homeRoute);
+        Get.offAllNamed(AppRoute.homeRoute);
       } else {
         LoadingService.dismiss();
         Get.snackbar(

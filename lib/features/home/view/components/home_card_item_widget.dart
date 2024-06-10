@@ -1,6 +1,6 @@
+import 'package:bas_app/shared/styles/color_style.dart';
+import 'package:bas_app/shared/styles/google_text_style.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_report_app/shared/styles/color_style.dart';
-import 'package:flutter_report_app/shared/styles/google_text_style.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 

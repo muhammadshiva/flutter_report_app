@@ -1,7 +1,7 @@
+import 'package:bas_app/constants/api_authentication_constant.dart';
+import 'package:bas_app/features/sign_in/models/sign_in_model.dart';
+import 'package:bas_app/utils/services/dio_service.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_report_app/constants/api_authentication_constant.dart';
-import 'package:flutter_report_app/features/sign_in/models/sign_in_model.dart';
-import 'package:flutter_report_app/utils/services/dio_service.dart';
 
 class SignInRepository {
   SignInRepository._();

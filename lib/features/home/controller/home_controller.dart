@@ -1,8 +1,8 @@
+import 'package:bas_app/configs/routes/app_route.dart';
+import 'package:bas_app/constants/global_asset_constant.dart';
+import 'package:bas_app/features/home/repositories/home_repository.dart';
+import 'package:bas_app/utils/services/hive_service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_report_app/configs/routes/route.dart';
-import 'package:flutter_report_app/constants/global_asset_constant.dart';
-import 'package:flutter_report_app/features/home/repositories/home_repository.dart';
-import 'package:flutter_report_app/utils/services/hive_service.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
@@ -105,6 +105,6 @@ class HomeController extends GetxController {
   void logout() async {
     HomeRepository.logout();
     await HiveService.deleteAuth();
-    Get.offAllNamed(Routes.signInRoute);
+    Get.offAllNamed(AppRoute.signInRoute);
   }
 }

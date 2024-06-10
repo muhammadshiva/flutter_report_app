@@ -1,7 +1,7 @@
+import 'package:bas_app/features/home/controller/home_controller.dart';
+import 'package:bas_app/shared/styles/color_style.dart';
+import 'package:bas_app/shared/styles/google_text_style.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_report_app/features/home/controller/home_controller.dart';
-import 'package:flutter_report_app/shared/styles/color_style.dart';
-import 'package:flutter_report_app/shared/styles/google_text_style.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -28,7 +28,9 @@ class HomeTabWidget extends StatelessWidget {
                       width: 100.w,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15.r),
-                        color: controller.tabIndex.value == e['id'] ? ColorStyle.primary : ColorStyle.white,
+                        color: controller.tabIndex.value == e['id']
+                            ? ColorStyle.primary
+                            : ColorStyle.white,
                         border: Border.all(
                           color: ColorStyle.primary,
                         ),
@@ -38,7 +40,9 @@ class HomeTabWidget extends StatelessWidget {
                         style: whiteTextStyle.copyWith(
                           fontSize: 10.sp,
                           fontWeight: semiBold,
-                          color: controller.tabIndex.value == e['id'] ? ColorStyle.white : ColorStyle.primary,
+                          color: controller.tabIndex.value == e['id']
+                              ? ColorStyle.white
+                              : ColorStyle.primary,
                         ),
                       ),
                     ),

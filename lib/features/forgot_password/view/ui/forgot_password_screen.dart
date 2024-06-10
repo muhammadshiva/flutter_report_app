@@ -1,7 +1,7 @@
+import 'package:bas_app/constants/global_asset_constant.dart';
+import 'package:bas_app/shared/styles/color_style.dart';
+import 'package:bas_app/shared/styles/google_text_style.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_report_app/constants/global_asset_constant.dart';
-import 'package:flutter_report_app/shared/styles/color_style.dart';
-import 'package:flutter_report_app/shared/styles/google_text_style.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

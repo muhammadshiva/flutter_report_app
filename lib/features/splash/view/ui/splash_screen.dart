@@ -1,5 +1,5 @@
+import 'package:bas_app/constants/global_asset_constant.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_report_app/constants/global_asset_constant.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SplashScreen extends StatelessWidget {

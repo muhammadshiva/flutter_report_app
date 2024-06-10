@@ -1,116 +1,157 @@
+import 'package:bas_app/configs/routes/app_route.dart';
+import 'package:bas_app/features/batok/argument/batok_argument.dart';
+import 'package:bas_app/features/batok/controllers/batok_controller.dart';
+import 'package:bas_app/shared/styles/color_style.dart';
+import 'package:bas_app/shared/styles/google_text_style.dart';
+import 'package:bas_app/shared/widgets/custom_button/button_floating_widget.dart';
+import 'package:bas_app/shared/widgets/custom_widget/card_widget.dart';
+import 'package:bas_app/shared/widgets/custom_widget/list_widget.dart';
+import 'package:bas_app/shared/widgets/custom_widget/persentase_widget.dart';
+import 'package:bas_app/shared/widgets/custom_widget/tab_widget.dart';
+import 'package:bas_app/shared/widgets/general/app_bar_custom.dart';
+import 'package:bas_app/shared/widgets/general/main_dropdown_widget.dart';
+import 'package:bas_app/shared/widgets/general/shimmer_list_widget.dart';
+import 'package:bas_app/shared/widgets/general/shimmer_persentase_widget.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_report_app/configs/routes/route.dart';
-import 'package:flutter_report_app/constants/global_asset_constant.dart';
-import 'package:flutter_report_app/features/batok/models/batok_model.dart';
-import 'package:flutter_report_app/features/batok/views/components/batok_filter_widget.dart';
-import 'package:flutter_report_app/features/batok/views/components/batok_list_widget.dart';
-import 'package:flutter_report_app/features/batok/views/components/batok_persentase_widget.dart';
-import 'package:flutter_report_app/features/batok/views/components/batok_tab_widget.dart';
-import 'package:flutter_report_app/features/batok/views/ui/batok_query_screen.dart';
-import 'package:flutter_report_app/shared/styles/color_style.dart';
-import 'package:flutter_report_app/shared/styles/google_text_style.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:get/get.dart';
+import 'package:panara_dialogs/panara_dialogs.dart';
 
 class BatokScreen extends StatelessWidget {
   const BatokScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var controller = BatokController.to;
+
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(
-          'Batok',
-          style: blackTextStyle.copyWith(
-            fontSize: 17.sp,
-            fontWeight: semiBold,
-          ),
-        ),
-        leading: InkWell(
-          onTap: () {
-            Get.offAllNamed(Routes.homeRoute);
-          },
-          child: const Icon(
-            Icons.arrow_back,
-          ),
-        ),
-        actions: [
-          PopupMenuButton<String>(
-            color: ColorStyle.white,
-            itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-              PopupMenuItem<String>(
-                value: 'export',
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5.w),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      SvgPicture.asset(
-                        GlobalAssetConstant.icExportFile,
-                      ),
-                      Text(
-                        'Export',
-                        style: blackTextStyle.copyWith(
-                          color: ColorStyle.black2,
-                          fontSize: 12.sp,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-            onSelected: (String value) {
-              if (value == 'export') {}
+      appBar: const AppBarCustom(title: 'Batok'),
+      body: ListView(
+        children: [
+          //* TAB
+          TabWidget(
+            onTabChanged: (index, value) {
+              controller.getBatok(filter: value);
             },
           ),
+
+          //* PERSENTASE
+          Obx(
+            () => controller.isLoading.isFalse
+                ? PersentaseWidget(
+                    data: controller.batokData.listPersentase ?? [],
+                  )
+                : const ShimmerPersentaseWidget(),
+          ),
+
+          //* FILTER
+          Obx(
+            () => controller.dropdownSumberBatok.isNotEmpty
+                ? MainDropdownFilter(
+                    onChanged: (value) {
+                      if (value != 'Semua') {
+                        controller.getBatok(filter: value);
+                      } else {
+                        controller.getBatok();
+                      }
+                    },
+                    items: controller.dropdownSumberBatok,
+                    dataLength: controller.batokData.totalData ?? 0,
+                  )
+                : const SizedBox(),
+          ),
+
+          //* LIST DATA
+          Obx(
+            () {
+              if (controller.isLoading.isFalse) {
+                if (controller.batokData.listBatok == null ||
+                    controller.batokData.listBatok!.isEmpty) {
+                  return Container(
+                    margin: EdgeInsets.only(top: 0.25.sh),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Data kosong',
+                          style: blackTextStyle.copyWith(
+                            fontWeight: semiBold,
+                            fontSize: 14.sp,
+                            color: ColorStyle.black2,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  );
+                } else {
+                  return ListWidget(
+                    onRefresh: () => controller.getBatok(),
+                    itemCount: controller.batokData.listBatok?.length ?? 0,
+                    itemBuilder: (value, index) {
+                      var data = controller.batokData.listBatok![index];
+
+                      //* CARD DATA
+                      return CardWidget(
+                        title: data.sumberBatok ?? '',
+                        jenisMasukan: data.jenisMasukan ?? '',
+                        data: data.listData ?? [],
+                        onPressedEdit: (value) {
+                          Get.toNamed(
+                            AppRoute.batokQueryRoute,
+                            arguments: BatokArgument(
+                              isEdit: true,
+                              batokData: controller.batokData,
+                              listBatokData: data,
+                            ),
+                          );
+                        },
+                        onPressedDelete: (value) {
+                          PanaraConfirmDialog.show(
+                            context,
+                            title: 'Hapus',
+                            message: 'Apakah anda yakin ingin menghapus data ini ?',
+                            confirmButtonText: 'Hapus',
+                            cancelButtonText: 'Tidak',
+                            onTapConfirm: () {
+                              Get.back();
+                              controller.deleteBatok(idBatok: data.id ?? 0);
+                            },
+                            onTapCancel: () => Get.back(),
+                            panaraDialogType: PanaraDialogType.error,
+                          );
+                        },
+                      );
+                    },
+                  );
+                }
+              } else {
+                return const ShimmerListWidget();
+              }
+            },
+          )
         ],
       ),
-      body: const SingleChildScrollView(
-        child: Column(
-          children: [
-            BatokTab(),
-            BatokPersentase(),
-            BatokFilter(totalData: 3),
-            BatokList(),
-          ],
-        ),
-      ),
-      floatingActionButton: InkWell(
-        onTap: () {
-          Get.to(
-            BatokQueryScreen(isEdit: false, data: ListBatok()),
-            fullscreenDialog: true,
-          );
-        },
-        child: Container(
-          height: 40.h,
-          width: 120.w,
-          decoration: BoxDecoration(
-            color: ColorStyle.b4,
-            borderRadius: BorderRadius.circular(23.r),
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(
-                Icons.add,
-                color: ColorStyle.white,
-                size: 20,
+      floatingActionButton: Obx(
+        () => controller.isLoading.isTrue
+            ? const SizedBox()
+            : ButtonFloatingWidget(
+                onPressedInputData: () {
+                  Get.toNamed(
+                    AppRoute.batokQueryRoute,
+                    arguments: BatokArgument(
+                      isEdit: false,
+                      batokData: controller.batokData,
+                    ),
+                  );
+                },
+                onPressedExportData: () {},
               ),
-              SizedBox(width: 5.w),
-              Text(
-                "Input Data",
-                style: whiteTextStyle.copyWith(
-                  fontWeight: medium,
-                ),
-              )
-            ],
-          ),
-        ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }

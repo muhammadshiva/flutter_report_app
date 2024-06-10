@@ -1,15 +1,23 @@
+import 'package:flutter/material.dart';
+
 class ApiProductionConstant {
   ApiProductionConstant._();
 
-  static String getBatok() {
-    return 'batok';
+  static String getSumberBatok() {
+    return 'sumber_batok';
+  }
+
+  static String getBatok(String filter) {
+    return 'batok?filter=$filter';
   }
 
   static String postBatok() {
+    debugPrint('STORE BATOK ENDPOINT');
     return 'store/batok';
   }
 
   static String updateBatok(int id) {
+    debugPrint('UPDATE BATOK ENDPOINT');
     return 'update/batok/$id';
   }
 

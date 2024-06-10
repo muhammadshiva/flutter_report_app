@@ -1,7 +1,7 @@
 import 'dart:developer';
 
+import 'package:bas_app/constants/api_base_url_constant.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_report_app/constants/api_base_url_constant.dart';
 
 class DioService {
   DioService._();

@@ -1,11 +1,11 @@
+import 'package:bas_app/configs/routes/app_route.dart';
+import 'package:bas_app/constants/global_asset_constant.dart';
+import 'package:bas_app/features/sign_in/controllers/sign_in_controller.dart';
+import 'package:bas_app/shared/styles/color_style.dart';
+import 'package:bas_app/shared/styles/google_text_style.dart';
+import 'package:bas_app/shared/widgets/custom_button/button_widget.dart';
+import 'package:bas_app/shared/widgets/custom_text_field/text_field_widget_custom.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_report_app/configs/routes/route.dart';
-import 'package:flutter_report_app/constants/global_asset_constant.dart';
-import 'package:flutter_report_app/features/sign_in/controllers/sign_in_controller.dart';
-import 'package:flutter_report_app/shared/styles/color_style.dart';
-import 'package:flutter_report_app/shared/styles/google_text_style.dart';
-import 'package:flutter_report_app/shared/widgets/button/button_widget_custom.dart';
-import 'package:flutter_report_app/shared/widgets/text_field/text_field_widget_custom.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -45,7 +45,7 @@ class SignInScreen extends StatelessWidget {
                   style: greyTextStyle,
                 ),
                 SizedBox(height: 30.h),
-                TextFieldWidgetCustom(
+                TextFieldWidget(
                   controller: controller.emailCtrl,
                   hint: 'Email',
                   contentPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.w),
@@ -73,7 +73,7 @@ class SignInScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 20.h),
                 Obx(
-                  () => TextFieldWidgetCustom(
+                  () => TextFieldWidget(
                     controller: controller.passwordCtrl,
                     keyboardType: TextInputType.visiblePassword,
                     isPassword: controller.isShowPassword.isTrue ? false : true,
@@ -130,7 +130,7 @@ class SignInScreen extends StatelessWidget {
                 SizedBox(height: 15.w),
                 InkWell(
                   onTap: () {
-                    Get.toNamed(Routes.forgotPasswordRoute);
+                    Get.toNamed(AppRoute.forgotPasswordRoute);
                   },
                   child: Text(
                     'Lupa Password ?',
@@ -143,7 +143,7 @@ class SignInScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 40.w),
                 Obx(
-                  () => ButtonWidgetCustom(
+                  () => ButtonWidget(
                     height: 42.w,
                     text: 'Login',
                     color: controller.isDisable.isTrue ? Colors.grey.shade200 : ColorStyle.primary,

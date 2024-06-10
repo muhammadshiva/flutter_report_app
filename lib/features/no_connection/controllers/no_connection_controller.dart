@@ -1,5 +1,5 @@
-import 'package:flutter_report_app/shared/controllers/global_controller.dart';
-import 'package:flutter_report_app/utils/services/loading_service.dart';
+import 'package:bas_app/shared/controllers/global_controller.dart';
+import 'package:bas_app/utils/services/loading_service.dart';
 import 'package:get/get.dart';
 
 class NoConnectionController extends GetxController {

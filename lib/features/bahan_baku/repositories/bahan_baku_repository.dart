@@ -1,0 +1,3 @@
+class BahanBakuRepository {
+  BahanBakuRepository._();
+}

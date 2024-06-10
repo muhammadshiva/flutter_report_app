@@ -1,7 +1,7 @@
+import 'package:bas_app/configs/routes/app_route.dart';
+import 'package:bas_app/features/home/controller/home_controller.dart';
+import 'package:bas_app/features/home/view/components/home_card_item_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_report_app/configs/routes/route.dart';
-import 'package:flutter_report_app/features/home/controller/home_controller.dart';
-import 'package:flutter_report_app/features/home/view/components/home_card_item_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -31,19 +31,21 @@ class HomeDataListWidget extends StatelessWidget {
                 .map(
                   (e) => HomeCardItemWidget(
                     onTap: () {
-                      Get.toNamed(
-                        e['id'] == 1
-                            ? Routes.batokRoute
-                            : e['id'] == 2
-                                ? Routes.bahanBakuRoute
-                                : Routes.ayakManualRoute,
-                        arguments: {
-                          'id': e['id'],
-                          'title': e['title'],
-                          'tabIndex': controller.tabIndex.value,
-                          'persentase': e['persentase'],
-                        },
-                      );
+                      Get.toNamed(AppRoute.batokRoute);
+
+                      // Get.toNamed(
+                      //   e['id'] == 1
+                      //       ? Routes.batokRoute
+                      //       : e['id'] == 2
+                      //           ? Routes.bahanBakuRoute
+                      //           : Routes.ayakManualRoute,
+                      //   arguments: {
+                      //     'id': e['id'],
+                      //     'title': e['title'],
+                      //     'tabIndex': controller.tabIndex.value,
+                      //     'persentase': e['persentase'],
+                      //   },
+                      // );
                     },
                     title: e['title'],
                     date: '28 Maret, 2023',

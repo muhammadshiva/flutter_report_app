@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:flutter_report_app/configs/routes/route.dart';
-import 'package:flutter_report_app/utils/services/hive_service.dart';
+import 'package:bas_app/configs/routes/app_route.dart';
+import 'package:bas_app/utils/services/hive_service.dart';
 import 'package:get/get.dart';
 
 class SplashController extends GetxController {
@@ -18,13 +18,13 @@ class SplashController extends GetxController {
 
     if (isLogin) {
       Timer(const Duration(seconds: 2), () {
-        Get.offAllNamed(Routes.homeRoute);
+        Get.offAllNamed(AppRoute.homeRoute);
       });
       return;
     }
 
     Timer(const Duration(seconds: 2), () {
-      Get.offNamed(Routes.signInRoute);
+      Get.offNamed(AppRoute.signInRoute);
     });
   }
 }

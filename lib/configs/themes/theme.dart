@@ -1,6 +1,6 @@
+import 'package:bas_app/shared/styles/color_style.dart';
+import 'package:bas_app/shared/styles/google_text_style.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_report_app/shared/styles/color_style.dart';
-import 'package:flutter_report_app/shared/styles/google_text_style.dart';
 
 final ThemeData themeLight = ThemeData(
   primaryColor: ColorStyle.primary,
