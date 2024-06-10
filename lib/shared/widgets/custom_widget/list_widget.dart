@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class ListWidget extends StatefulWidget {
   const ListWidget({
@@ -10,7 +11,7 @@ class ListWidget extends StatefulWidget {
   });
 
   final Future<void> Function()? onRefresh;
-  final int itemCount;
+  final RxInt itemCount;
   final Widget Function(BuildContext, int) itemBuilder;
 
   @override
@@ -25,13 +26,15 @@ class _ListWidgetState extends State<ListWidget> {
       padding: EdgeInsets.symmetric(horizontal: 25.w),
       child: Scrollbar(
         child: Container(
-          height: MediaQuery.sizeOf(context).height * 0.40,
+          height: MediaQuery.sizeOf(context).height * 0.5,
           padding: EdgeInsets.symmetric(vertical: 10.h),
           child: RefreshIndicator(
             onRefresh: widget.onRefresh ?? () async {},
-            child: ListView.builder(
-              itemCount: widget.itemCount,
-              itemBuilder: widget.itemBuilder,
+            child: Obx(
+              () => ListView.builder(
+                itemCount: widget.itemCount.value,
+                itemBuilder: widget.itemBuilder,
+              ),
             ),
           ),
         ),

@@ -2,6 +2,7 @@ import 'package:bas_app/shared/styles/color_style.dart';
 import 'package:bas_app/shared/styles/google_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class MainDropdownFilter extends StatefulWidget {
   const MainDropdownFilter({
@@ -15,7 +16,7 @@ class MainDropdownFilter extends StatefulWidget {
   final TextStyle? textStyle;
   final void Function(String?) onChanged;
   final List<String> items;
-  final int dataLength;
+  final RxInt dataLength;
 
   @override
   State<MainDropdownFilter> createState() => _MainDropdownFilterState();
@@ -40,12 +41,14 @@ class _MainDropdownFilterState extends State<MainDropdownFilter> {
             ),
           ),
           5.horizontalSpace,
-          Text(
-            '(${widget.dataLength} Baris)',
-            style: blackTextStyle.copyWith(
-              fontSize: 12.sp,
-              color: const Color(
-                0xffA3A3A3,
+          Obx(
+            () => Text(
+              '(${widget.dataLength.value} Baris)',
+              style: blackTextStyle.copyWith(
+                fontSize: 12.sp,
+                color: const Color(
+                  0xffA3A3A3,
+                ),
               ),
             ),
           ),

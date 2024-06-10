@@ -1,4 +1,8 @@
 import 'package:bas_app/configs/routes/app_route.dart';
+import 'package:bas_app/features/ayak_manual/bindings/ayak_manual_binding.dart';
+import 'package:bas_app/features/ayak_manual/bindings/ayak_manual_query_binding.dart';
+import 'package:bas_app/features/ayak_manual/view/ui/ayak_manual_query_screen.dart';
+import 'package:bas_app/features/ayak_manual/view/ui/ayak_manual_screen.dart';
 import 'package:bas_app/features/bahan_baku/bindings/bahan_baku_binding.dart';
 import 'package:bas_app/features/bahan_baku/bindings/bahan_baku_query_binding.dart';
 import 'package:bas_app/features/bahan_baku/view/ui/bahan_baku_query_screen.dart';
@@ -76,6 +80,19 @@ abstract class AppPage {
       name: AppRoute.bahanBakuQueryRoute,
       page: () => const BahanBakuQueryScreen(),
       binding: BahanBakuQueryBinding(),
+    ),
+
+    //* AYAK MANUAL
+    GetPage(
+      name: AppRoute.ayakManualRoute,
+      page: () => const AyakManualScreen(),
+      binding: AyakManualBinding(),
+    ),
+
+    GetPage(
+      name: AppRoute.ayakManualQueryRoute,
+      page: () => const AyakManualQueryScreen(),
+      binding: AyakManualQueryBinding(),
     ),
   ];
 }

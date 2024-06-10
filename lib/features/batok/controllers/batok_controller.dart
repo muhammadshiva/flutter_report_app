@@ -18,6 +18,7 @@ class BatokController extends GetxController {
   BatokData batokData = BatokData();
   RxList<String> dropdownSumberBatok = RxList([]);
   RxBool isLoading = false.obs;
+  RxInt totalData = 0.obs;
 
   @override
   void onInit() {
@@ -37,6 +38,7 @@ class BatokController extends GetxController {
 
         if (response.status == 200) {
           batokData = response.data ?? BatokData();
+          totalData.value = response.data?.listBatok?.length ?? 0;
 
           if (dropdownSumberBatok.isEmpty) {
             dropdownSumberBatok.addAll(

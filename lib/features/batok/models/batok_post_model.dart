@@ -27,7 +27,7 @@ class BatokPostData {
   String? jenisMasukan;
   DateTime? tanggal;
   String? sumberBatok;
-  int? jumlahBatok;
+  double? jumlahBatok;
   String? keterangan;
   String? updatedAt;
   String? createdAt;
@@ -49,7 +49,7 @@ class BatokPostData {
         tanggal: json["tanggal"] == null ? null : DateTime.parse(json["tanggal"]),
         sumberBatok: json["sumber_batok"],
         jumlahBatok:
-            json["jumlah_batok"] != null ? int.tryParse(json["jumlah_batok"].toString()) : null,
+            json["jumlah_batok"] != null ? double.tryParse(json["jumlah_batok"].toString()) : null,
         keterangan: json["keterangan"],
         updatedAt: json["updated_at"],
         createdAt: json["created_at"],

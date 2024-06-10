@@ -28,7 +28,7 @@ class Data {
   String? tanggal;
   String? sumberBatok;
   String? bahanBaku;
-  int? jumlah;
+  double? jumlah;
   String? keterangan;
   String? updatedAt;
   String? createdAt;
@@ -49,7 +49,7 @@ class Data {
         tanggal: json["tanggal"],
         sumberBatok: json["sumber_batok"],
         bahanBaku: json["bahan_baku"],
-        jumlah: json["jumlah"] != null ? int.tryParse(json["jumlah"].toString()) : null,
+        jumlah: json["jumlah"] != null ? double.tryParse(json["jumlah"].toString()) : null,
         keterangan: json["keterangan"],
         updatedAt: json["updated_at"],
         createdAt: json["created_at"],

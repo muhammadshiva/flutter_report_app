@@ -12,7 +12,7 @@ class CardWidget extends StatelessWidget {
   CardWidget({
     super.key,
     required this.title,
-    required this.jenisMasukan,
+    this.jenisMasukan = '',
     this.grade,
     required this.terakhirDitambahkan,
     required this.data,
@@ -86,25 +86,28 @@ class CardWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: data
                         .map(
-                          (e) => RichText(
-                            text: TextSpan(
-                              children: [
-                                TextSpan(
-                                  text: '${e.jenisData} ',
-                                  style: blackTextStyle.copyWith(
-                                    color: ColorStyle.black2,
-                                    fontSize: 10.sp,
+                          (e) => Container(
+                            margin: EdgeInsets.only(right: 10.w),
+                            child: RichText(
+                              text: TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: '${e.jenisData} ',
+                                    style: blackTextStyle.copyWith(
+                                      color: ColorStyle.black2,
+                                      fontSize: 10.sp,
+                                    ),
                                   ),
-                                ),
-                                TextSpan(
-                                  text: ' ${e.jumlah}',
-                                  style: TextStyle(
-                                    color: ColorStyle.bb3,
-                                    fontWeight: medium,
-                                    fontSize: 10.sp,
+                                  TextSpan(
+                                    text: ' ${e.jumlah}',
+                                    style: TextStyle(
+                                      color: ColorStyle.bb3,
+                                      fontWeight: medium,
+                                      fontSize: 10.sp,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         )
@@ -123,41 +126,44 @@ class CardWidget extends StatelessWidget {
               ),
 
               //* LABEL
-              Container(
-                height: 50.w,
-                margin: EdgeInsets.only(right: 7.w),
-                child: Column(
-                  children: [
-                    Container(
-                      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.w),
-                      decoration: BoxDecoration(
-                        color: jenisMasukan == 'Penambahan' ? ColorStyle.green : ColorStyle.r5,
-                        borderRadius: BorderRadius.circular(3.r),
-                      ),
-                      child: Text(
-                        jenisMasukan,
-                        style: whiteTextStyle.copyWith(
-                          fontWeight: semiBold,
-                          fontSize: 9.sp,
-                        ),
+              jenisMasukan.isEmpty
+                  ? const SizedBox()
+                  : Container(
+                      height: 50.w,
+                      margin: EdgeInsets.only(right: 7.w),
+                      child: Column(
+                        children: [
+                          Container(
+                            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.w),
+                            decoration: BoxDecoration(
+                              color:
+                                  jenisMasukan == 'Penambahan' ? ColorStyle.green : ColorStyle.r5,
+                              borderRadius: BorderRadius.circular(3.r),
+                            ),
+                            child: Text(
+                              jenisMasukan,
+                              style: whiteTextStyle.copyWith(
+                                fontWeight: semiBold,
+                                fontSize: 9.sp,
+                              ),
+                            ),
+                          ),
+                          if (grade != null) ...[
+                            Container(
+                              margin: EdgeInsets.only(top: 7.w),
+                              padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 4.w),
+                              decoration: BoxDecoration(
+                                border: Border.all(
+                                  color: const Color(0xff1924F2),
+                                ),
+                                borderRadius: BorderRadius.circular(5.r),
+                              ),
+                              child: Text('A', style: blueTextStyle),
+                            ),
+                          ]
+                        ],
                       ),
                     ),
-                    if (grade != null) ...[
-                      Container(
-                        margin: EdgeInsets.only(top: 7.w),
-                        padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 4.w),
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                            color: const Color(0xff1924F2),
-                          ),
-                          borderRadius: BorderRadius.circular(5.r),
-                        ),
-                        child: Text('A', style: blueTextStyle),
-                      ),
-                    ]
-                  ],
-                ),
-              ),
             ],
           ),
         ),
@@ -165,5 +171,3 @@ class CardWidget extends StatelessWidget {
     );
   }
 }
-
-void doNothing(BuildContext context) {}

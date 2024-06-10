@@ -32,22 +32,12 @@ class HomeDataListWidget extends StatelessWidget {
                   (e) => HomeCardItemWidget(
                     onTap: () {
                       Get.toNamed(
-                        e['id'] == 1 ? AppRoute.batokRoute : AppRoute.bahanBakuRoute,
+                        e['id'] == 1
+                            ? AppRoute.batokRoute
+                            : e['id'] == 2
+                                ? AppRoute.bahanBakuRoute
+                                : AppRoute.ayakManualRoute,
                       );
-
-                      // Get.toNamed(
-                      //   e['id'] == 1
-                      //       ? Routes.batokRoute
-                      //       : e['id'] == 2
-                      //           ? Routes.bahanBakuRoute
-                      //           : Routes.ayakManualRoute,
-                      //   arguments: {
-                      //     'id': e['id'],
-                      //     'title': e['title'],
-                      //     'tabIndex': controller.tabIndex.value,
-                      //     'persentase': e['persentase'],
-                      //   },
-                      // );
                     },
                     title: e['title'],
                     date: '28 Maret, 2023',

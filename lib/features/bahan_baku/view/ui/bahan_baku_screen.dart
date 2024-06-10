@@ -56,7 +56,7 @@ class BahanBakuScreen extends StatelessWidget {
                       }
                     },
                     items: controller.dropdownBahanBaku,
-                    dataLength: controller.bahanBakuData.totalData ?? 0,
+                    dataLength: controller.totalData,
                   )
                 : const SizedBox(),
           ),
@@ -88,7 +88,7 @@ class BahanBakuScreen extends StatelessWidget {
                 } else {
                   return ListWidget(
                     onRefresh: () => controller.getBahanBaku(),
-                    itemCount: controller.bahanBakuData.listBahanBaku?.length ?? 0,
+                    itemCount: controller.totalData,
                     itemBuilder: (value, index) {
                       var data = controller.bahanBakuData.listBahanBaku![index];
 
@@ -131,7 +131,7 @@ class BahanBakuScreen extends StatelessWidget {
                 return const ShimmerListWidget();
               }
             },
-          )
+          ),
         ],
       ),
       floatingActionButton: Obx(

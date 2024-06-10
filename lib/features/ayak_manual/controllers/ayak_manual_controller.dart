@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:bas_app/configs/routes/app_route.dart';
-import 'package:bas_app/features/bahan_baku/models/bahan_baku_delete_model.dart';
-import 'package:bas_app/features/bahan_baku/models/bahan_baku_fetch_model.dart';
-import 'package:bas_app/features/bahan_baku/repositories/bahan_baku_repository.dart';
+import 'package:bas_app/features/ayak_manual/models/ayak_manual_delete_model.dart';
+import 'package:bas_app/features/ayak_manual/models/ayak_manual_fetch_model.dart';
+import 'package:bas_app/features/ayak_manual/repositories/ayak_manual_repository.dart';
 import 'package:bas_app/shared/controllers/global_controller.dart';
 import 'package:bas_app/shared/widgets/general/dialog_success_widget.dart';
 import 'package:bas_app/utils/services/loading_service.dart';
@@ -11,35 +11,35 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class BahanBakuController extends GetxController {
-  static BahanBakuController get to => Get.find();
+class AyakManualController extends GetxController {
+  static AyakManualController get to => Get.find();
 
-  //* Main Value
-  BahanBakuData bahanBakuData = BahanBakuData();
+  AyakManualData ayakManualData = AyakManualData();
   RxList<String> dropdownSumberBatok = RxList([]);
-  RxList<String> dropdownBahanBaku = ['Semua', 'Stok Arang', 'Stok Aci', 'Stok Cairan'].obs;
   RxBool isLoading = false.obs;
   RxInt totalData = 0.obs;
 
   @override
   void onInit() {
-    getBahanBaku();
+    getAyakManual();
     super.onInit();
   }
 
-  Future<void> getBahanBaku({String? filter}) async {
+  Future<void> getAyakManual({String? filter}) async {
     try {
       await GlobalController.to.checkConnection();
       if (GlobalController.to.isConnect.isTrue) {
         isLoading.value = true;
 
-        BahanBakuFetchResponseModel response = await BahanBakuRepository.getBahanBaku(
+        AyakManualFetchResponseModel response = await AyakManualRepository.getAyakManual(
           filter ?? '',
         );
 
         if (response.status == 200) {
-          bahanBakuData = response.data ?? BahanBakuData();
-          totalData.value = response.data?.listBahanBaku?.length ?? 0;
+          ayakManualData = response.data ?? AyakManualData();
+          totalData.value = response.data?.listAyakManual?.length ?? 0;
+
+          print('TOTAL DATA : ${totalData.value}');
 
           if (dropdownSumberBatok.isEmpty) {
             dropdownSumberBatok.addAll(
@@ -61,14 +61,14 @@ class BahanBakuController extends GetxController {
     }
   }
 
-  Future<void> deleteBahanBaku({required int idBahanBaku}) async {
+  Future<void> deleteAyakManual({required int idAyakManual}) async {
     try {
       await GlobalController.to.checkConnection();
       LoadingService.show();
 
       if (GlobalController.to.isConnect.isTrue) {
-        BahanBakuDeleteResponseModel response = await BahanBakuRepository.deleteBahanBaku(
-          idBahanBaku: idBahanBaku,
+        AyakManualDeleteResponseModel response = await AyakManualRepository.deleteAyakManual(
+          idAyakManual: idAyakManual,
         );
 
         if (response.status == 200) {
@@ -76,7 +76,7 @@ class BahanBakuController extends GetxController {
 
           var timer = Timer(const Duration(seconds: 3), () {
             Get.back();
-            getBahanBaku();
+            getAyakManual();
           });
 
           DialogSuccess.show(
@@ -85,7 +85,7 @@ class BahanBakuController extends GetxController {
             onPressed: () {
               Get.back();
               timer.cancel();
-              getBahanBaku();
+              getAyakManual();
             },
           );
         }

@@ -12,4 +12,8 @@ abstract class AppRoute {
   //* BAHAN BAKU
   static const String bahanBakuRoute = '/bahan_baku';
   static const String bahanBakuQueryRoute = '/bahan_baku_query';
+
+  //* AYAK MANUAL
+  static const String ayakManualRoute = '/ayak_manual';
+  static const String ayakManualQueryRoute = '/ayak_manual_query';
 }
