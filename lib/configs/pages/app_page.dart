@@ -3,6 +3,10 @@ import 'package:bas_app/features/ayak_manual/bindings/ayak_manual_binding.dart';
 import 'package:bas_app/features/ayak_manual/bindings/ayak_manual_query_binding.dart';
 import 'package:bas_app/features/ayak_manual/view/ui/ayak_manual_query_screen.dart';
 import 'package:bas_app/features/ayak_manual/view/ui/ayak_manual_screen.dart';
+import 'package:bas_app/features/ayak_rotari/bindings/ayak_rotari_binding.dart';
+import 'package:bas_app/features/ayak_rotari/bindings/ayak_rotari_query_binding.dart';
+import 'package:bas_app/features/ayak_rotari/view/ui/ayak_rotari_query_screen.dart';
+import 'package:bas_app/features/ayak_rotari/view/ui/ayak_rotari_screen.dart';
 import 'package:bas_app/features/bahan_baku/bindings/bahan_baku_binding.dart';
 import 'package:bas_app/features/bahan_baku/bindings/bahan_baku_query_binding.dart';
 import 'package:bas_app/features/bahan_baku/view/ui/bahan_baku_query_screen.dart';
@@ -93,6 +97,19 @@ abstract class AppPage {
       name: AppRoute.ayakManualQueryRoute,
       page: () => const AyakManualQueryScreen(),
       binding: AyakManualQueryBinding(),
+    ),
+
+    //* AYAK ROTARI
+    GetPage(
+      name: AppRoute.ayakRotariRoute,
+      page: () => const AyakRotariScreen(),
+      binding: AyakRotariBinding(),
+    ),
+
+    GetPage(
+      name: AppRoute.ayakRotariQueryRoute,
+      page: () => const AyakRotariQueryScreen(),
+      binding: AyakRotariQueryBinding(),
     ),
   ];
 }

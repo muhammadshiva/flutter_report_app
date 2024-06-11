@@ -24,10 +24,10 @@ class AyakManualQueryScreen extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBarCustom(
-          title: '${controller.isEdit.isTrue ? 'Edit' : 'Input'} Data Ayak Manual',
+          title:
+              '${controller.isEdit.isTrue ? 'Edit' : 'Input'} Data Ayak Manual',
           onBack: () {
             Get.back();
-            // controller.clearForm();
           },
         ),
         body: SizedBox(

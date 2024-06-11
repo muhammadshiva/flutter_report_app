@@ -44,17 +44,18 @@ class _TextFieldLabelWidgetState extends State<TextFieldLabelWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
               widget.title,
               style: blackTextStyle.copyWith(
                 fontWeight: semiBold,
                 fontSize: 14.sp,
-                color: ColorStyle.black2,
+                color: ColorStyle.grey2,
               ),
             ),
-            20.horizontalSpace,
-            Expanded(
+            SizedBox(
+              width: 210.w,
               child: TextField(
                 controller: inputController,
                 inputFormatters: [
@@ -62,7 +63,8 @@ class _TextFieldLabelWidgetState extends State<TextFieldLabelWidget> {
                 ],
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 15.w),
+                  contentPadding:
+                      EdgeInsets.symmetric(vertical: 15.h, horizontal: 15.w),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(6.r),
                     borderSide: const BorderSide(
@@ -76,7 +78,8 @@ class _TextFieldLabelWidgetState extends State<TextFieldLabelWidget> {
                     ),
                   ),
                   suffixIcon: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 10.h),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 8.w, vertical: 10.h),
                     child: Text(
                       '.${widget.unit}',
                       style: blackTextStyle.copyWith(

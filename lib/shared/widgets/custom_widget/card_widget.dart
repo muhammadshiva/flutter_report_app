@@ -63,6 +63,7 @@ class CardWidget extends StatelessWidget {
           padding: EdgeInsets.symmetric(vertical: 10.w),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,14 +82,13 @@ class CardWidget extends StatelessWidget {
                     ],
                   ),
                   5.verticalSpace,
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: data
-                        .map(
-                          (e) => Container(
-                            margin: EdgeInsets.only(right: 10.w),
-                            child: RichText(
+                  SizedBox(
+                    width: jenisMasukan.isEmpty ? 300.w : 230.w,
+                    child: Wrap(
+                      spacing: 15.w,
+                      children: data
+                          .map(
+                            (e) => RichText(
                               text: TextSpan(
                                 children: [
                                   TextSpan(
@@ -109,9 +109,9 @@ class CardWidget extends StatelessWidget {
                                 ],
                               ),
                             ),
-                          ),
-                        )
-                        .toList(),
+                          )
+                          .toList(),
+                    ),
                   ),
                   5.verticalSpace,
                   Text(
@@ -134,10 +134,12 @@ class CardWidget extends StatelessWidget {
                       child: Column(
                         children: [
                           Container(
-                            padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 3.w),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 8.w, vertical: 3.w),
                             decoration: BoxDecoration(
-                              color:
-                                  jenisMasukan == 'Penambahan' ? ColorStyle.green : ColorStyle.r5,
+                              color: jenisMasukan == 'Penambahan'
+                                  ? ColorStyle.green
+                                  : ColorStyle.r5,
                               borderRadius: BorderRadius.circular(3.r),
                             ),
                             child: Text(
@@ -151,7 +153,8 @@ class CardWidget extends StatelessWidget {
                           if (grade != null) ...[
                             Container(
                               margin: EdgeInsets.only(top: 7.w),
-                              padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 4.w),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 15.w, vertical: 4.w),
                               decoration: BoxDecoration(
                                 border: Border.all(
                                   color: const Color(0xff1924F2),

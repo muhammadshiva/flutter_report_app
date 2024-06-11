@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:bas_app/configs/routes/app_route.dart';
-import 'package:bas_app/features/ayak_manual/argument/ayak_manual_argument.dart';
-import 'package:bas_app/features/ayak_manual/controllers/ayak_manual_controller.dart';
-import 'package:bas_app/features/ayak_manual/models/ayak_manual_post_model.dart';
-import 'package:bas_app/features/ayak_manual/repositories/ayak_manual_repository.dart';
+import 'package:bas_app/features/ayak_rotari/argument/ayak_rotari_argument.dart';
+import 'package:bas_app/features/ayak_rotari/controllers/ayak_rotari_controller.dart';
+import 'package:bas_app/features/ayak_rotari/models/ayak_rotari_post_model.dart';
+import 'package:bas_app/features/ayak_rotari/repositories/ayak_rotari_repository.dart';
 import 'package:bas_app/shared/controllers/global_controller.dart';
 import 'package:bas_app/shared/widgets/general/dialog_success_widget.dart';
 import 'package:bas_app/utils/services/loading_service.dart';
@@ -12,41 +12,43 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AyakManualQueryController extends GetxController {
-  static AyakManualQueryController get to => Get.find();
+class AyakRotariQueryController extends GetxController {
+  static AyakRotariQueryController get to => Get.find();
 
   //* Main Value
   RxString selectedDropdown = ''.obs;
   RxBool isLoading = false.obs;
   RxBool isEdit = false.obs;
   RxList<String> dropdownSumberBatok = RxList([]);
-  RxInt idAyakManual = 0.obs;
+  RxInt idAyakRotari = 0.obs;
 
   //* Input String
   RxString tanggalTxt = ''.obs;
   RxString tanggalTxtInit = ''.obs;
   RxString sumberBatokTxt = ''.obs;
-  RxString batokTxt = ''.obs;
-  RxString batokMentahTxt = ''.obs;
-  RxString granulTxt = ''.obs;
+  RxString batokMasukTxt = ''.obs;
+  RxString batokKotorTxt = ''.obs;
+  RxString hasilBatokTxt = ''.obs;
+  RxString hasilAbuTxt = ''.obs;
   RxString keteranganTxt = ''.obs;
 
   //* Error Input String
   RxString tanggalError = ''.obs;
   RxString sumberBatokError = ''.obs;
-  RxString batokError = ''.obs;
-  RxString batokMentahError = ''.obs;
-  RxString granulError = ''.obs;
+  RxString batokMasukError = ''.obs;
+  RxString batokKotorError = ''.obs;
+  RxString hasilBatokError = ''.obs;
+  RxString hasilAbuError = ''.obs;
   RxString keteranganError = ''.obs;
 
-  late AyakManualArgument argument;
+  late AyakRotariArgument argument;
 
   @override
   void onInit() {
     dropdownSumberBatok(GlobalController.to.listSumberBatok);
 
     if (Get.arguments != null) {
-      argument = Get.arguments as AyakManualArgument;
+      argument = Get.arguments as AyakRotariArgument;
       if (argument.isEdit == true) {
         initEdit();
       }
@@ -57,6 +59,7 @@ class AyakManualQueryController extends GetxController {
 
   void validateForm() {
     bool isValid = true;
+
     if (tanggalTxt.value.isEmpty) {
       tanggalError.value = 'Tanggal tidak boleh kosong';
       isValid = false;
@@ -71,25 +74,32 @@ class AyakManualQueryController extends GetxController {
       sumberBatokError.value = '';
     }
 
-    if (batokTxt.value.isEmpty) {
-      batokError.value = 'Batok tidak boleh kosong';
+    if (batokMasukTxt.value.isEmpty) {
+      batokMasukError.value = 'Batok masuk tidak boleh kosong';
       isValid = false;
     } else {
-      batokError.value = '';
+      batokMasukError.value = '';
     }
 
-    if (batokMentahTxt.value.isEmpty) {
-      batokMentahError.value = 'Batok Mentah tidak boleh kosong';
+    if (batokKotorTxt.value.isEmpty) {
+      batokKotorError.value = 'Batok kotor tidak boleh kosong';
       isValid = false;
     } else {
-      batokMentahError.value = '';
+      batokKotorError.value = '';
     }
 
-    if (granulTxt.value.isEmpty) {
-      granulError.value = 'Granul tidak boleh kosong';
+    if (hasilBatokTxt.value.isEmpty) {
+      hasilBatokError.value = 'Hasil batok tidak boleh kosong';
       isValid = false;
     } else {
-      granulError.value = '';
+      hasilBatokError.value = '';
+    }
+
+    if (hasilAbuTxt.value.isEmpty) {
+      hasilAbuError.value = 'Hasil abu tidak boleh kosong';
+      isValid = false;
+    } else {
+      hasilAbuError.value = '';
     }
 
     if (keteranganTxt.value.isEmpty) {
@@ -100,36 +110,37 @@ class AyakManualQueryController extends GetxController {
     }
 
     if (isValid) {
-      postAyakManual();
+      postAyakRotari();
     }
   }
 
-  Future<void> postAyakManual() async {
+  Future<void> postAyakRotari() async {
     try {
       await GlobalController.to.checkConnection();
 
       if (GlobalController.to.isConnect.isTrue) {
         LoadingService.show();
 
-        AyakManualPostResponseModel response =
-            await AyakManualRepository.postAyakManual(
-          idAyakManual: idAyakManual.value == 0 ? null : idAyakManual.value,
+        AyakRotariPostResponseModel response =
+            await AyakRotariRepository.postAyakRotari(
+          idAyakRotari: idAyakRotari.value == 0 ? null : idAyakRotari.value,
           tanggal: tanggalTxt.value,
           sumberBatok: sumberBatokTxt.value,
-          jumlahBatok: double.parse(batokTxt.value),
-          jumlahBatokMentah: double.parse(batokMentahTxt.value),
-          jumlahGranul: double.parse(granulTxt.value),
+          batokMasuk: double.parse(batokMasukTxt.value),
+          batokKotor: double.parse(batokKotorTxt.value),
+          hasilBatok: double.parse(hasilBatokTxt.value),
+          hasilAbu: double.parse(hasilAbuTxt.value),
           keterangan: keteranganTxt.value,
         );
 
         if (response.status == 200) {
           LoadingService.dismiss();
 
-          if (Get.isRegistered<AyakManualController>()) {
+          if (Get.isRegistered<AyakRotariController>()) {
             var timer = Timer(const Duration(seconds: 3), () {
               Get.until(
-                  (route) => Get.currentRoute == AppRoute.ayakManualRoute);
-              AyakManualController.to.getAyakManual();
+                  (route) => Get.currentRoute == AppRoute.ayakRotariRoute);
+              AyakRotariController.to.getAyakRotari();
             });
 
             DialogSuccess.show(
@@ -138,8 +149,8 @@ class AyakManualQueryController extends GetxController {
               onPressed: () {
                 timer.cancel();
                 Get.until(
-                    (route) => Get.currentRoute == AppRoute.ayakManualRoute);
-                AyakManualController.to.getAyakManual();
+                    (route) => Get.currentRoute == AppRoute.ayakRotariRoute);
+                AyakRotariController.to.getAyakRotari();
               },
             );
           }
@@ -166,17 +177,17 @@ class AyakManualQueryController extends GetxController {
   }
 
   void initEdit() {
-    idAyakManual.value = argument.listAyakManual?.id ?? 0;
+    idAyakRotari.value = argument.listAyakRotari?.id ?? 0;
     isEdit.value = argument.isEdit ?? false;
-    tanggalTxt.value = argument.listAyakManual?.tanggal ?? '2024-01-01';
+    tanggalTxt.value = argument.listAyakRotari?.tanggal ?? '2024-01-01';
     tanggalTxtInit.value = GlobalController.to.formatDate(
-      argument.listAyakManual?.tanggal ?? '2024-01-01',
+      argument.listAyakRotari?.tanggal ?? '2024-01-01',
     );
-    sumberBatokTxt.value = argument.listAyakManual?.sumberBatok ?? '';
-    batokTxt.value = argument.listAyakManual?.jumlahBatok.toString() ?? '';
-    batokMentahTxt.value =
-        argument.listAyakManual?.jumlahBatokMentah.toString() ?? '';
-    granulTxt.value = argument.listAyakManual?.jumlahGranul.toString() ?? '';
-    keteranganTxt.value = argument.listAyakManual?.keterangan ?? '';
+    sumberBatokTxt.value = argument.listAyakRotari?.sumberBatok ?? '';
+    batokMasukTxt.value = argument.listAyakRotari?.batokMasuk.toString() ?? '';
+    batokKotorTxt.value = argument.listAyakRotari?.batokKotor.toString() ?? '';
+    hasilBatokTxt.value = argument.listAyakRotari?.hasilBatok.toString() ?? '';
+    hasilAbuTxt.value = argument.listAyakRotari?.hasilAbu.toString() ?? '';
+    keteranganTxt.value = argument.listAyakRotari?.keterangan ?? '';
   }
 }
