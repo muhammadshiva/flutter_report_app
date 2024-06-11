@@ -9,7 +9,9 @@ class ListData {
 
   factory ListData.fromJson(Map<String, dynamic> json) => ListData(
         jenisData: json["jenis_data"],
-        jumlah: json["jumlah"],
+        jumlah: (json["jumlah"] is double)
+            ? (json["jumlah"] as double).toInt()
+            : json["jumlah"] as int?,
       );
 
   Map<String, dynamic> toJson() => {

@@ -24,4 +24,8 @@ abstract class AppRoute {
   //* DISKMILL
   static const String diskmillRoute = '/diskmill';
   static const String diskmillQueryRoute = '/diskmill_query';
+
+  //* MIXING
+  static const String mixingRoute = '/mixing';
+  static const String mixingQueryRoute = '/mixing_query';
 }

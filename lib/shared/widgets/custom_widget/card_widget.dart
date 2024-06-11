@@ -18,12 +18,14 @@ class CardWidget extends StatelessWidget {
     required this.data,
     required this.onPressedEdit,
     required this.onPressedDelete,
+    this.ukuranPisau = '',
   });
 
   final String title;
   final String jenisMasukan;
   final String? grade;
   final String terakhirDitambahkan;
+  final String ukuranPisau;
   final List<ListData> data;
   void Function(BuildContext)? onPressedEdit;
   void Function(BuildContext)? onPressedDelete;
@@ -83,7 +85,11 @@ class CardWidget extends StatelessWidget {
                   ),
                   5.verticalSpace,
                   SizedBox(
-                    width: jenisMasukan.isEmpty ? 300.w : 230.w,
+                    width: jenisMasukan.isEmpty && ukuranPisau.isEmpty
+                        ? 300.w
+                        : ukuranPisau.isNotEmpty
+                            ? 240.w
+                            : 230.w,
                     child: Wrap(
                       spacing: 15.w,
                       children: data
@@ -99,7 +105,7 @@ class CardWidget extends StatelessWidget {
                                     ),
                                   ),
                                   TextSpan(
-                                    text: ' ${e.jumlah}',
+                                    text: ' ${e.jumlah?.toDouble() ?? 0}',
                                     style: TextStyle(
                                       color: ColorStyle.bb3,
                                       fontWeight: medium,
@@ -124,6 +130,25 @@ class CardWidget extends StatelessWidget {
                   ),
                 ],
               ),
+
+              ukuranPisau.isEmpty
+                  ? const SizedBox()
+                  : Container(
+                      margin: EdgeInsets.only(right: 7.w),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.w),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(2.r),
+                        color: ColorStyle.primary,
+                      ),
+                      child: Text(
+                        'Pisau $ukuranPisau',
+                        style: whiteTextStyle.copyWith(
+                          fontWeight: semiBold,
+                          fontSize: 10.sp,
+                        ),
+                      ),
+                    ),
 
               //* LABEL
               jenisMasukan.isEmpty

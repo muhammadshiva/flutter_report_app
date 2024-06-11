@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:bas_app/configs/routes/app_route.dart';
-import 'package:bas_app/features/diskmill/argument/diskmill_argument.dart';
-import 'package:bas_app/features/diskmill/controllers/diskmill_controller.dart';
-import 'package:bas_app/features/diskmill/models/diskmill_post_model.dart';
-import 'package:bas_app/features/diskmill/repositories/diskmill_repository.dart';
+import 'package:bas_app/features/mixing/argument/mixing_argument.dart';
+import 'package:bas_app/features/mixing/controllers/mixing_controller.dart';
+import 'package:bas_app/features/mixing/models/mixing_post_model.dart';
+import 'package:bas_app/features/mixing/repositories/mixing_repository.dart';
 import 'package:bas_app/shared/controllers/global_controller.dart';
 import 'package:bas_app/shared/widgets/general/dialog_success_widget.dart';
 import 'package:bas_app/utils/services/loading_service.dart';
@@ -12,41 +12,54 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class DiskmillQueryController extends GetxController {
-  static DiskmillQueryController get to => Get.find();
+class MixingQueryController extends GetxController {
+  static MixingQueryController get to => Get.find();
 
   //* Main Value
   RxString selectedDropdown = ''.obs;
   RxBool isLoading = false.obs;
   RxBool isEdit = false.obs;
   RxList<String> dropdownSumberBatok = RxList([]);
-  RxInt idDiskmill = 0.obs;
+  RxList<String> dropdownUkuranPisau = ['0.2', '0.3'].obs;
+  RxInt idMixing = 0.obs;
 
+//* SAMPEL DATA
+// {
+//     "tanggal" : "2024-06-03",
+//     "sumber_batok": "Kalimantan",
+//     "ukuran_pisau" : 0.2,
+//     "jumlah_arang" :500.0,
+//     "jumlah_aci" : 300.0,
+//     "jumlah_cairan" : 220.0,
+//     "keterangan" : "Tidak ada"
+// }
   //* Input String
   RxString tanggalTxt = ''.obs;
   RxString tanggalTxtInit = ''.obs;
   RxString sumberBatokTxt = ''.obs;
-  RxString batokMasukTxt = ''.obs;
-  RxString hasilPisau02Txt = ''.obs;
-  RxString hasilPisau03Txt = ''.obs;
+  RxString ukuranPisauTxt = ''.obs;
+  RxString jumlahArangTxt = ''.obs;
+  RxString jumlahAciTxt = ''.obs;
+  RxString jumlahCairanTxt = ''.obs;
   RxString keteranganTxt = ''.obs;
 
   //* Error Input String
   RxString tanggalError = ''.obs;
   RxString sumberBatokError = ''.obs;
-  RxString batokMasukError = ''.obs;
-  RxString hasilPisau02Error = ''.obs;
-  RxString hasilPisau03Error = ''.obs;
+  RxString ukuranPisauError = ''.obs;
+  RxString jumlahArangError = ''.obs;
+  RxString jumlahAciError = ''.obs;
+  RxString jumlahCairanError = ''.obs;
   RxString keteranganError = ''.obs;
 
-  late DiskmillArgument argument;
+  late MixingArgument argument;
 
   @override
   void onInit() {
     dropdownSumberBatok(GlobalController.to.listSumberBatok);
 
     if (Get.arguments != null) {
-      argument = Get.arguments as DiskmillArgument;
+      argument = Get.arguments as MixingArgument;
       if (argument.isEdit == true) {
         initEdit();
       }
@@ -72,25 +85,32 @@ class DiskmillQueryController extends GetxController {
       sumberBatokError.value = '';
     }
 
-    if (batokMasukTxt.value.isEmpty) {
-      batokMasukError.value = 'Tidak boleh kosong';
+    if (ukuranPisauTxt.value.isEmpty) {
+      ukuranPisauError.value = 'Tidak boleh kosong';
       isValid = false;
     } else {
-      batokMasukError.value = '';
+      ukuranPisauError.value = '';
     }
 
-    if (hasilPisau02Txt.value.isEmpty) {
-      hasilPisau02Error.value = 'Tidak boleh kosong';
+    if (jumlahArangTxt.value.isEmpty) {
+      jumlahArangError.value = 'Tidak boleh kosong';
       isValid = false;
     } else {
-      hasilPisau02Error.value = '';
+      jumlahArangError.value = '';
     }
 
-    if (hasilPisau03Txt.value.isEmpty) {
-      hasilPisau03Error.value = 'Tidak boleh kosong';
+    if (jumlahAciTxt.value.isEmpty) {
+      jumlahAciError.value = 'Tidak boleh kosong';
       isValid = false;
     } else {
-      hasilPisau03Error.value = '';
+      jumlahAciError.value = '';
+    }
+
+    if (jumlahCairanTxt.value.isEmpty) {
+      jumlahCairanError.value = 'Tidak boleh kosong';
+      isValid = false;
+    } else {
+      jumlahCairanError.value = '';
     }
 
     if (keteranganTxt.value.isEmpty) {
@@ -101,35 +121,35 @@ class DiskmillQueryController extends GetxController {
     }
 
     if (isValid) {
-      postDiskmill();
+      postMixing();
     }
   }
 
-  Future<void> postDiskmill() async {
+  Future<void> postMixing() async {
     try {
       await GlobalController.to.checkConnection();
 
       if (GlobalController.to.isConnect.isTrue) {
         LoadingService.show();
 
-        DiskmillPostResponseModel response =
-            await DiskmillRepository.postDiskmill(
-          idDiskmill: idDiskmill.value == 0 ? null : idDiskmill.value,
+        MixingPostResponseModel response = await MixingRepository.postMixing(
+          idMixing: idMixing.value == 0 ? null : idMixing.value,
           tanggal: tanggalTxt.value,
           sumberBatok: sumberBatokTxt.value,
-          batokMasuk: double.parse(batokMasukTxt.value),
-          hasilPisau02: double.parse(hasilPisau02Txt.value),
-          hasilPisau03: double.parse(hasilPisau03Txt.value),
+          ukuranPisau: ukuranPisauTxt.value,
+          jumlahArang: double.parse(jumlahArangTxt.value),
+          jumlahAci: double.parse(jumlahAciTxt.value),
+          jumlahCairan: double.parse(jumlahCairanTxt.value),
           keterangan: keteranganTxt.value,
         );
 
         if (response.status == 200) {
           LoadingService.dismiss();
 
-          if (Get.isRegistered<DiskmillController>()) {
+          if (Get.isRegistered<MixingController>()) {
             var timer = Timer(const Duration(seconds: 3), () {
-              Get.until((route) => Get.currentRoute == AppRoute.diskmillRoute);
-              DiskmillController.to.getDiskmill();
+              Get.until((route) => Get.currentRoute == AppRoute.mixingRoute);
+              MixingController.to.getMixing();
             });
 
             DialogSuccess.show(
@@ -137,9 +157,8 @@ class DiskmillQueryController extends GetxController {
               timer: timer,
               onPressed: () {
                 timer.cancel();
-                Get.until(
-                    (route) => Get.currentRoute == AppRoute.diskmillRoute);
-                DiskmillController.to.getDiskmill();
+                Get.until((route) => Get.currentRoute == AppRoute.mixingRoute);
+                MixingController.to.getMixing();
               },
             );
           }
@@ -166,18 +185,17 @@ class DiskmillQueryController extends GetxController {
   }
 
   void initEdit() {
-    idDiskmill.value = argument.listDiskmill?.id ?? 0;
+    idMixing.value = argument.listMixing?.id ?? 0;
     isEdit.value = argument.isEdit ?? false;
-    tanggalTxt.value = argument.listDiskmill?.tanggal ?? '2024-01-01';
+    tanggalTxt.value = argument.listMixing?.tanggal ?? '2024-01-01';
     tanggalTxtInit.value = GlobalController.to.formatDate(
-      argument.listDiskmill?.tanggal ?? '2024-01-01',
+      argument.listMixing?.tanggal ?? '2024-01-01',
     );
-    sumberBatokTxt.value = argument.listDiskmill?.sumberBatok ?? '';
-    batokMasukTxt.value = argument.listDiskmill?.batokMasuk.toString() ?? '';
-    hasilPisau02Txt.value =
-        argument.listDiskmill?.hasilPisau02.toString() ?? '';
-    hasilPisau03Txt.value =
-        argument.listDiskmill?.hasilPisau03.toString() ?? '';
-    keteranganTxt.value = argument.listDiskmill?.keterangan ?? '';
+    sumberBatokTxt.value = argument.listMixing?.sumberBatok ?? '';
+    ukuranPisauTxt.value = argument.listMixing?.ukuranPisau.toString() ?? '';
+    jumlahArangTxt.value = argument.listMixing?.jumlahArang.toString() ?? '';
+    jumlahAciTxt.value = argument.listMixing?.jumlahAci.toString() ?? '';
+    jumlahCairanTxt.value = argument.listMixing?.jumlahCairan.toString() ?? '';
+    keteranganTxt.value = argument.listMixing?.keterangan ?? '';
   }
 }

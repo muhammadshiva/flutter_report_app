@@ -40,7 +40,9 @@ class HomeDataListWidget extends StatelessWidget {
                                     ? AppRoute.ayakManualRoute
                                     : e['id'] == 4
                                         ? AppRoute.ayakRotariRoute
-                                        : AppRoute.diskmillRoute,
+                                        : e['id'] == 5
+                                            ? AppRoute.diskmillRoute
+                                            : AppRoute.mixingRoute,
                       );
                     },
                     title: e['title'],

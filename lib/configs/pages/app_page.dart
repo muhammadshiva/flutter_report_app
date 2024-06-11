@@ -23,6 +23,10 @@ import 'package:bas_app/features/forgot_password/bindings/forgot_password_bindin
 import 'package:bas_app/features/forgot_password/view/ui/forgot_password_screen.dart';
 import 'package:bas_app/features/home/bindings/home_binding.dart';
 import 'package:bas_app/features/home/view/ui/home_screen.dart';
+import 'package:bas_app/features/mixing/bindings/mixing_binding.dart';
+import 'package:bas_app/features/mixing/bindings/mixing_query_binding.dart';
+import 'package:bas_app/features/mixing/view/ui/mixing_query_screen.dart';
+import 'package:bas_app/features/mixing/view/ui/mixing_screen.dart';
 import 'package:bas_app/features/no_connection/bindings/no_connection_binding.dart';
 import 'package:bas_app/features/no_connection/views/ui/no_connection_screen.dart';
 import 'package:bas_app/features/sign_in/bindings/sign_in_binding.dart';
@@ -127,6 +131,19 @@ abstract class AppPage {
       name: AppRoute.diskmillQueryRoute,
       page: () => const DiskmillQueryScreen(),
       binding: DiskmillQueryBinding(),
+    ),
+
+    //* MIXING
+    GetPage(
+      name: AppRoute.mixingRoute,
+      page: () => const MixingScreen(),
+      binding: MixingBinding(),
+    ),
+
+    GetPage(
+      name: AppRoute.mixingQueryRoute,
+      page: () => const MixingQueryScreen(),
+      binding: MixingQueryBinding(),
     ),
   ];
 }
