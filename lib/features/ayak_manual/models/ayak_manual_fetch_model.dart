@@ -15,7 +15,8 @@ class AyakManualFetchResponseModel {
       AyakManualFetchResponseModel(
         status: json["status"],
         message: json["message"],
-        data: json["data"] == null ? null : AyakManualData.fromJson(json["data"]),
+        data:
+            json["data"] == null ? null : AyakManualData.fromJson(json["data"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -41,8 +42,8 @@ class AyakManualData {
         tanggalDitambahkan: json["tanggal_ditambahkan"],
         listAyakManual: json["list_ayak_manual"] == null
             ? []
-            : List<ListAyakManual>.from(
-                json["list_ayak_manual"]!.map((x) => ListAyakManual.fromJson(x))),
+            : List<ListAyakManual>.from(json["list_ayak_manual"]!
+                .map((x) => ListAyakManual.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -57,9 +58,9 @@ class ListAyakManual {
   int? id;
   String? tanggal;
   String? sumberBatok;
-  int? jumlahBatok;
-  int? jumlahBatokMentah;
-  int? jumlahGranul;
+  double? jumlahBatok;
+  double? jumlahBatokMentah;
+  double? jumlahGranul;
   String? keterangan;
   String? createdAt;
   String? updatedAt;
@@ -82,15 +83,22 @@ class ListAyakManual {
         id: json["id"],
         tanggal: json["tanggal"],
         sumberBatok: json["sumber_batok"],
-        jumlahBatok: json["jumlah_batok"],
-        jumlahBatokMentah: json["jumlah_batok_mentah"],
-        jumlahGranul: json["jumlah_granul"],
+        jumlahBatok: (json["jumlah_batok"] is int)
+            ? (json["jumlah_batok"] as int).toDouble()
+            : json["jumlah_batok"] as double?,
+        jumlahBatokMentah: (json["jumlah_batok_mentah"] is int)
+            ? (json["jumlah_batok_mentah"] as int).toDouble()
+            : json["jumlah_batok_mentah"] as double?,
+        jumlahGranul: (json["jumlah_granul"] is int)
+            ? (json["jumlah_granul"] as int).toDouble()
+            : json["jumlah_granul"] as double?,
         keterangan: json["keterangan"],
         createdAt: json["created_at"],
         updatedAt: json["updated_at"],
         listData: json["list_data"] == null
             ? []
-            : List<ListData>.from(json["list_data"]!.map((x) => ListData.fromJson(x))),
+            : List<ListData>.from(
+                json["list_data"]!.map((x) => ListData.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -103,6 +111,8 @@ class ListAyakManual {
         "keterangan": keterangan,
         "created_at": createdAt,
         "updated_at": updatedAt,
-        "list_data": listData == null ? [] : List<dynamic>.from(listData!.map((x) => x.toJson())),
+        "list_data": listData == null
+            ? []
+            : List<dynamic>.from(listData!.map((x) => x.toJson())),
       };
 }

@@ -38,7 +38,9 @@ class HomeDataListWidget extends StatelessWidget {
                                 ? AppRoute.bahanBakuRoute
                                 : e['id'] == 3
                                     ? AppRoute.ayakManualRoute
-                                    : AppRoute.ayakRotariRoute,
+                                    : e['id'] == 4
+                                        ? AppRoute.ayakRotariRoute
+                                        : AppRoute.diskmillRoute,
                       );
                     },
                     title: e['title'],

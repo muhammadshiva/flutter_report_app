@@ -15,6 +15,10 @@ import 'package:bas_app/features/batok/bindings/batok_binding.dart';
 import 'package:bas_app/features/batok/bindings/batok_query_binding.dart';
 import 'package:bas_app/features/batok/views/ui/batok_query_screen.dart';
 import 'package:bas_app/features/batok/views/ui/batok_screen.dart';
+import 'package:bas_app/features/diskmill/bindings/diskmill_binding.dart';
+import 'package:bas_app/features/diskmill/bindings/diskmill_query_binding.dart';
+import 'package:bas_app/features/diskmill/view/ui/diskmill_query_screen.dart';
+import 'package:bas_app/features/diskmill/view/ui/diskmill_screen.dart';
 import 'package:bas_app/features/forgot_password/bindings/forgot_password_binding.dart';
 import 'package:bas_app/features/forgot_password/view/ui/forgot_password_screen.dart';
 import 'package:bas_app/features/home/bindings/home_binding.dart';
@@ -110,6 +114,19 @@ abstract class AppPage {
       name: AppRoute.ayakRotariQueryRoute,
       page: () => const AyakRotariQueryScreen(),
       binding: AyakRotariQueryBinding(),
+    ),
+
+    //* DISKMILL
+    GetPage(
+      name: AppRoute.diskmillRoute,
+      page: () => const DiskmillScreen(),
+      binding: DiskmillBinding(),
+    ),
+
+    GetPage(
+      name: AppRoute.diskmillQueryRoute,
+      page: () => const DiskmillQueryScreen(),
+      binding: DiskmillQueryBinding(),
     ),
   ];
 }

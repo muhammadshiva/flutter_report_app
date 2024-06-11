@@ -12,7 +12,8 @@ class BatokFetchResponseModel {
     this.data,
   });
 
-  factory BatokFetchResponseModel.fromJson(Map<String, dynamic> json) => BatokFetchResponseModel(
+  factory BatokFetchResponseModel.fromJson(Map<String, dynamic> json) =>
+      BatokFetchResponseModel(
         status: json["status"],
         message: json["message"],
         data: json["data"] == null
@@ -49,14 +50,15 @@ class BatokData {
         tanggalDitambahkan: json["tanggal_ditambahkan"],
         listPersentase: json["list_persentase"] == null
             ? []
-            : List<ListPersentase>.from(
-                json["list_persentase"]!.map((x) => ListPersentase.fromJson(x))),
+            : List<ListPersentase>.from(json["list_persentase"]!
+                .map((x) => ListPersentase.fromJson(x))),
         listSumberBatok: json["list_sumber_batok"] == null
             ? []
             : List<String>.from(json["list_sumber_batok"]!.map((x) => x)),
         listBatok: json["list_batok"] == null
             ? []
-            : List<ListBatok>.from(json["list_batok"]!.map((x) => ListBatok.fromJson(x))),
+            : List<ListBatok>.from(
+                json["list_batok"]!.map((x) => ListBatok.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -65,10 +67,12 @@ class BatokData {
         "list_persentase": listPersentase == null
             ? []
             : List<dynamic>.from(listPersentase!.map((x) => x.toJson())),
-        "list_sumber_batok":
-            listSumberBatok == null ? [] : List<dynamic>.from(listSumberBatok!.map((x) => x)),
-        "list_batok":
-            listBatok == null ? [] : List<dynamic>.from(listBatok!.map((x) => x.toJson())),
+        "list_sumber_batok": listSumberBatok == null
+            ? []
+            : List<dynamic>.from(listSumberBatok!.map((x) => x)),
+        "list_batok": listBatok == null
+            ? []
+            : List<dynamic>.from(listBatok!.map((x) => x.toJson())),
       };
 }
 
@@ -77,7 +81,7 @@ class ListBatok {
   String? jenisMasukan;
   String? tanggal;
   String? sumberBatok;
-  int? jumlahBatok;
+  double? jumlahBatok;
   String? keterangan;
   String? createdAt;
   String? updatedAt;
@@ -100,13 +104,16 @@ class ListBatok {
         jenisMasukan: json["jenis_masukan"],
         tanggal: json["tanggal"],
         sumberBatok: json["sumber_batok"],
-        jumlahBatok: json["jumlah_batok"],
+        jumlahBatok: (json["jumlah_batok"] is int)
+            ? (json["jumlah_batok"] as int).toDouble()
+            : json["jumlah_batok"] as double?,
         keterangan: json["keterangan"],
         createdAt: json["created_at"],
         updatedAt: json["updated_at"],
         listData: json["list_data"] == null
             ? []
-            : List<ListData>.from(json["list_data"]!.map((x) => ListData.fromJson(x))),
+            : List<ListData>.from(
+                json["list_data"]!.map((x) => ListData.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -118,6 +125,8 @@ class ListBatok {
         "keterangan": keterangan,
         "created_at": createdAt,
         "updated_at": updatedAt,
-        "list_data": listData == null ? [] : List<dynamic>.from(listData!.map((x) => x.toJson())),
+        "list_data": listData == null
+            ? []
+            : List<dynamic>.from(listData!.map((x) => x.toJson())),
       };
 }

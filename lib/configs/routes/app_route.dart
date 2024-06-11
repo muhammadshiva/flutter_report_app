@@ -20,4 +20,8 @@ abstract class AppRoute {
   //* AYAK ROTARI
   static const String ayakRotariRoute = '/ayak_rotari';
   static const String ayakRotariQueryRoute = '/ayak_rotari_query';
+
+  //* DISKMILL
+  static const String diskmillRoute = '/diskmill';
+  static const String diskmillQueryRoute = '/diskmill_query';
 }
