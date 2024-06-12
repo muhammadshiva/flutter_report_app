@@ -15,6 +15,10 @@ import 'package:bas_app/features/batok/bindings/batok_binding.dart';
 import 'package:bas_app/features/batok/bindings/batok_query_binding.dart';
 import 'package:bas_app/features/batok/views/ui/batok_query_screen.dart';
 import 'package:bas_app/features/batok/views/ui/batok_screen.dart';
+import 'package:bas_app/features/briket/bindings/briket_binding.dart';
+import 'package:bas_app/features/briket/bindings/briket_query_binding.dart';
+import 'package:bas_app/features/briket/view/ui/briket_query_screen.dart';
+import 'package:bas_app/features/briket/view/ui/briket_screen.dart';
 import 'package:bas_app/features/diskmill/bindings/diskmill_binding.dart';
 import 'package:bas_app/features/diskmill/bindings/diskmill_query_binding.dart';
 import 'package:bas_app/features/diskmill/view/ui/diskmill_query_screen.dart';
@@ -161,6 +165,19 @@ abstract class AppPage {
       name: AppRoute.ovenQueryRoute,
       page: () => const OvenQueryScreen(),
       binding: OvenQueryBinding(),
+    ),
+
+    //* BRIKET
+    GetPage(
+      name: AppRoute.briketRoute,
+      page: () => const BriketScreen(),
+      binding: BriketBinding(),
+    ),
+
+    GetPage(
+      name: AppRoute.briketQueryRoute,
+      page: () => const BriketQueryScreen(),
+      binding: BriketQueryBinding(),
     ),
   ];
 }

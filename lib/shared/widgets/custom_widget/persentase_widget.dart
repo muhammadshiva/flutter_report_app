@@ -17,15 +17,20 @@ class PersentaseWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Wrap(
-          runSpacing: 10.w,
-          spacing: 10.w,
-          children: data
-              .map(
-                (e) => persentaseCard(e.jenisPersentase ?? '-', e.persentase ?? 0),
-              )
-              .toList(),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 25.w),
+          child: Wrap(
+            runSpacing: 10.w,
+            spacing: 10.w,
+            children: data
+                .map(
+                  (e) => persentaseCard(
+                      e.jenisPersentase ?? '-', e.persentase ?? 0),
+                )
+                .toList(),
+          ),
         ),
         10.verticalSpace,
         const Divider(

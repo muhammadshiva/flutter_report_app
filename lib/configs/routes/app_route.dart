@@ -32,4 +32,8 @@ abstract class AppRoute {
   //* OVEN
   static const String ovenRoute = '/oven';
   static const String ovenQueryRoute = '/oven_query';
+
+  //* BRIKET
+  static const String briketRoute = '/briket';
+  static const String briketQueryRoute = '/briket_query';
 }
