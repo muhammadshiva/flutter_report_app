@@ -9,4 +9,8 @@ class ApiAuthenticationConstant {
   static String signOut() {
     return 'logout';
   }
+
+  static String fetchMenu() {
+    return 'main_menu';
+  }
 }

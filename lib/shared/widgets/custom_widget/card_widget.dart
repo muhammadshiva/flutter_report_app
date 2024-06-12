@@ -23,9 +23,9 @@ class CardWidget extends StatelessWidget {
 
   final String title;
   final String jenisMasukan;
-  final String? grade;
   final String terakhirDitambahkan;
   final String ukuranPisau;
+  final String? grade;
   final List<ListData> data;
   void Function(BuildContext)? onPressedEdit;
   void Function(BuildContext)? onPressedDelete;
@@ -89,7 +89,7 @@ class CardWidget extends StatelessWidget {
                         ? 300.w
                         : ukuranPisau.isNotEmpty
                             ? 240.w
-                            : 230.w,
+                            : 220.w,
                     child: Wrap(
                       spacing: 15.w,
                       children: data
