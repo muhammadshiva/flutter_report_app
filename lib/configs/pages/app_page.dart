@@ -29,6 +29,10 @@ import 'package:bas_app/features/mixing/view/ui/mixing_query_screen.dart';
 import 'package:bas_app/features/mixing/view/ui/mixing_screen.dart';
 import 'package:bas_app/features/no_connection/bindings/no_connection_binding.dart';
 import 'package:bas_app/features/no_connection/views/ui/no_connection_screen.dart';
+import 'package:bas_app/features/oven/bindings/oven_binding.dart';
+import 'package:bas_app/features/oven/bindings/oven_query_binding.dart';
+import 'package:bas_app/features/oven/view/ui/oven_query_screen.dart';
+import 'package:bas_app/features/oven/view/ui/oven_screen.dart';
 import 'package:bas_app/features/sign_in/bindings/sign_in_binding.dart';
 import 'package:bas_app/features/sign_in/view/ui/sign_in_screen.dart';
 import 'package:bas_app/features/splash/bindings/splash_binding.dart';
@@ -144,6 +148,19 @@ abstract class AppPage {
       name: AppRoute.mixingQueryRoute,
       page: () => const MixingQueryScreen(),
       binding: MixingQueryBinding(),
+    ),
+
+    //* OVEN
+    GetPage(
+      name: AppRoute.ovenRoute,
+      page: () => const OvenScreen(),
+      binding: OvenBinding(),
+    ),
+
+    GetPage(
+      name: AppRoute.ovenQueryRoute,
+      page: () => const OvenQueryScreen(),
+      binding: OvenQueryBinding(),
     ),
   ];
 }

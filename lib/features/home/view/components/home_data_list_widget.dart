@@ -25,8 +25,8 @@ class HomeDataListWidget extends StatelessWidget {
                   (e) => controller.tabIndex.value == 1
                       ? e['id'] >= 1 && e['id'] <= 2
                       : controller.tabIndex.value == 2
-                          ? e['id'] >= 3 && e['id'] <= 8
-                          : e['id'] == 9,
+                          ? e['id'] >= 3 && e['id'] <= 7
+                          : e['id'] == 8,
                 )
                 .map(
                   (e) => HomeCardItemWidget(
@@ -42,7 +42,9 @@ class HomeDataListWidget extends StatelessWidget {
                                         ? AppRoute.ayakRotariRoute
                                         : e['id'] == 5
                                             ? AppRoute.diskmillRoute
-                                            : AppRoute.mixingRoute,
+                                            : e['id'] == 6
+                                                ? AppRoute.mixingRoute
+                                                : AppRoute.ovenRoute,
                       );
                     },
                     title: e['title'],

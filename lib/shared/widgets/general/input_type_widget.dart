@@ -63,7 +63,7 @@ class _InputTypeWidgetState extends State<InputTypeWidget> {
                 (value) => Stack(
                   children: [
                     Positioned(
-                      left: 130.w,
+                      left: 125.w,
                       top: 6.w,
                       child: selectedInputType != value
                           ? Icon(
@@ -74,9 +74,11 @@ class _InputTypeWidgetState extends State<InputTypeWidget> {
                           : Icon(
                               Icons.check_circle_rounded,
                               size: 14.w,
-                              color: selectedInputType == value && selectedInputType == 'Penambahan'
+                              color: selectedInputType == value &&
+                                      selectedInputType == 'Penambahan'
                                   ? Colors.green
-                                  : selectedInputType == value && selectedInputType == 'Pengurangan'
+                                  : selectedInputType == value &&
+                                          selectedInputType == 'Pengurangan'
                                       ? ColorStyle.r5
                                       : ColorStyle.grey2,
                             ),
@@ -86,7 +88,9 @@ class _InputTypeWidgetState extends State<InputTypeWidget> {
                       onTap: () {
                         setState(() {
                           selectedInputType = value;
-                          if (selectedInputType.isNotEmpty) widget.onChanged(value);
+                          if (selectedInputType.isNotEmpty) {
+                            widget.onChanged(value);
+                          }
                           if (selectedInputType.isNotEmpty) {
                             widget.errorText.value = '';
                           }
@@ -99,15 +103,19 @@ class _InputTypeWidgetState extends State<InputTypeWidget> {
                         ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(2.r),
-                          color: selectedInputType == value && selectedInputType == 'Penambahan'
+                          color: selectedInputType == value &&
+                                  selectedInputType == 'Penambahan'
                               ? Colors.green.withOpacity(0.11)
-                              : selectedInputType == value && selectedInputType == 'Pengurangan'
+                              : selectedInputType == value &&
+                                      selectedInputType == 'Pengurangan'
                                   ? ColorStyle.r5.withOpacity(0.11)
                                   : Colors.transparent,
                           border: Border.all(
-                            color: selectedInputType == value && selectedInputType == 'Penambahan'
+                            color: selectedInputType == value &&
+                                    selectedInputType == 'Penambahan'
                                 ? Colors.green
-                                : selectedInputType == value && selectedInputType == 'Pengurangan'
+                                : selectedInputType == value &&
+                                        selectedInputType == 'Pengurangan'
                                     ? ColorStyle.r5
                                     : ColorStyle.grey2,
                           ),
@@ -115,9 +123,11 @@ class _InputTypeWidgetState extends State<InputTypeWidget> {
                         child: Text(
                           value,
                           style: GoogleFonts.poppins().copyWith(
-                            color: selectedInputType == value && selectedInputType == 'Penambahan'
+                            color: selectedInputType == value &&
+                                    selectedInputType == 'Penambahan'
                                 ? Colors.green
-                                : selectedInputType == value && selectedInputType == 'Pengurangan'
+                                : selectedInputType == value &&
+                                        selectedInputType == 'Pengurangan'
                                     ? ColorStyle.r5
                                     : ColorStyle.grey2,
                             fontWeight: semiBold,

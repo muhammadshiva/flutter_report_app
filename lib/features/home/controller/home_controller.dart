@@ -76,15 +76,6 @@ class HomeController extends GetxController {
     },
     {
       "id": 7,
-      "title": "Proses Sortir",
-      "image": const AssetImage(GlobalAssetConstant.imgSortir),
-      "persentase": [
-        {"title": "Barang Keluar & Masuk", "subtitle": 65},
-        {"title": "Stok Awal & Akhir", "subtitle": 40},
-      ]
-    },
-    {
-      "id": 8,
       "title": "Proses Pengovenan",
       "image": const AssetImage(GlobalAssetConstant.imgSortir),
       "persentase": [
@@ -93,7 +84,7 @@ class HomeController extends GetxController {
       ]
     },
     {
-      "id": 9,
+      "id": 8,
       "title": "Stok Briket",
       "image": const AssetImage(GlobalAssetConstant.imgStokBriket),
       "persentase": [

@@ -28,4 +28,8 @@ abstract class AppRoute {
   //* MIXING
   static const String mixingRoute = '/mixing';
   static const String mixingQueryRoute = '/mixing_query';
+
+  //* OVEN
+  static const String ovenRoute = '/oven';
+  static const String ovenQueryRoute = '/oven_query';
 }
