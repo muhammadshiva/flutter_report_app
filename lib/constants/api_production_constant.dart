@@ -41,4 +41,8 @@ class ApiProductionConstant {
   static String deleteBahanBaku(int id) {
     return 'delete/bahan_baku/$id';
   }
+
+  static String exportBatok() {
+    return 'batok/export';
+  }
 }

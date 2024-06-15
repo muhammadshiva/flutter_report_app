@@ -29,7 +29,8 @@ class GlobalController extends GetxController {
     try {
       await checkConnection();
       if (isConnect.isTrue) {
-        SumberBatokFetchModel response = await GlobalRepository.getSumberBatok();
+        SumberBatokFetchModel response =
+            await GlobalRepository.getSumberBatok();
 
         if (response.status == 200) {
           listSumberBatok(response.data);

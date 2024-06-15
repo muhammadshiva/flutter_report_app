@@ -114,7 +114,8 @@ class BatokScreen extends StatelessWidget {
                           PanaraConfirmDialog.show(
                             context,
                             title: 'Hapus',
-                            message: 'Apakah anda yakin ingin menghapus data ini ?',
+                            message:
+                                'Apakah anda yakin ingin menghapus data ini ?',
                             confirmButtonText: 'Hapus',
                             cancelButtonText: 'Tidak',
                             onTapConfirm: () {
@@ -149,7 +150,9 @@ class BatokScreen extends StatelessWidget {
                     ),
                   );
                 },
-                onPressedExportData: () {},
+                onPressedExportData: () {
+                  controller.exportFile();
+                },
               ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

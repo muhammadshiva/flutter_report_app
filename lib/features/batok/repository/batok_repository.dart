@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bas_app/constants/api_production_constant.dart';
 import 'package:bas_app/features/batok/models/batok_delete_model.dart';
 import 'package:bas_app/features/batok/models/batok_fetch_model.dart';
@@ -9,7 +11,8 @@ import 'package:dio/dio.dart';
 class BatokRepository {
   BatokRepository._();
 
-  static final dio = DioService.dioCall(authorization: HiveService.box.get('token'));
+  static final dio =
+      DioService.dioCall(authorization: HiveService.box.get('token'));
 
   static Future<BatokFetchResponseModel> getBatok(String filter) async {
     try {
@@ -92,13 +95,32 @@ class BatokRepository {
     }
   }
 
-  static Future<BatokDeleteResponseModel> deleteBatok({required int idBatok}) async {
+  static Future<BatokDeleteResponseModel> deleteBatok(
+      {required int idBatok}) async {
     try {
-      var response = await dio.delete(ApiProductionConstant.deleteBatok(idBatok));
+      var response =
+          await dio.delete(ApiProductionConstant.deleteBatok(idBatok));
       return BatokDeleteResponseModel.fromJson(response.data);
     } on DioException catch (e) {
       var errorResponse = e.response?.data;
       return BatokDeleteResponseModel(message: errorResponse);
+    }
+  }
+
+  static Future<Response?> exportBatok() async {
+    try {
+      var response = await dio.get(
+        ApiProductionConstant.exportBatok(),
+        options: Options(
+          responseType: ResponseType.bytes,
+        ),
+      );
+
+      return response;
+    } on DioException catch (e) {
+      var errorResponse = e.response?.data;
+      log('ERROR EXPORT BATOK : $errorResponse');
+      return e.response;
     }
   }
 }

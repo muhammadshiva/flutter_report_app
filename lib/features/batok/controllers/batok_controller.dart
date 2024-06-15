@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:developer';
+import 'dart:io';
 
 import 'package:bas_app/configs/routes/app_route.dart';
 import 'package:bas_app/features/batok/models/batok_delete_model.dart';
@@ -7,9 +9,12 @@ import 'package:bas_app/features/batok/repository/batok_repository.dart';
 import 'package:bas_app/shared/controllers/global_controller.dart';
 import 'package:bas_app/shared/widgets/general/dialog_success_widget.dart';
 import 'package:bas_app/utils/services/loading_service.dart';
+import 'package:bas_app/utils/services/notification_service.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:path/path.dart' as path;
+import 'package:permission_handler/permission_handler.dart';
 
 class BatokController extends GetxController {
   static BatokController get to => Get.find();
@@ -94,6 +99,52 @@ class BatokController extends GetxController {
       }
     } on DioException catch (e, stackTrace) {
       debugPrint('$stackTrace');
+    }
+  }
+
+  Future<void> exportFile() async {
+    try {
+      await GlobalController.to.checkConnection();
+      LoadingService.show();
+
+      if (GlobalController.to.isConnect.isTrue) {
+        final response = await BatokRepository.exportBatok();
+
+        if (response?.statusCode == 200) {
+          if (await Permission.manageExternalStorage.request().isGranted) {
+            final downloadsDirectory = Directory('/storage/emulated/0/BasApp');
+
+            if (!await downloadsDirectory.exists()) {
+              await downloadsDirectory.create(recursive: true);
+            }
+
+            var filePath = path.join(downloadsDirectory.path, 'batok.xlsx');
+            var file = File(filePath);
+
+            int counter = 1;
+            while (await file.exists()) {
+              filePath =
+                  path.join(downloadsDirectory.path, 'batok($counter).xlsx');
+              file = File(filePath);
+              counter++;
+            }
+
+            await file.writeAsBytes(response?.data);
+
+            await NotificationService.showNotification(filePath);
+
+            log('FILE PATH DOWNLOAD : $filePath');
+            log('DOWNLOAD SUCCESS');
+
+            LoadingService.dismiss();
+          }
+        }
+      } else {
+        LoadingService.dismiss();
+        Get.toNamed(AppRoute.noConnectionRoute);
+      }
+    } on DioException catch (e) {
+      log('ERROR EXPORT FILE : $e');
     }
   }
 }
