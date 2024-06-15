@@ -9,6 +9,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 import 'configs/themes/theme.dart';
+import 'utils/services/notification_service.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -20,6 +21,8 @@ void main() async {
       const MainApp(),
     ),
   );
+
+  await NotificationService.initialize();
 }
 
 class MainApp extends StatelessWidget {
