@@ -24,28 +24,33 @@ class HomeDataListWidget extends StatelessWidget {
             return const Center(child: CircularProgressIndicator());
           }
 
-          return ListView(
-            padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 6.h),
-            children: controller.listMenuData
-                .where(
-                  (e) => controller.tabIndex.value == 1
-                      ? e.id! >= 1 && e.id! <= 2
-                      : controller.tabIndex.value == 2
-                          ? e.id! >= 3 && e.id! <= 7
-                          : e.id! == 8,
-                )
-                .map(
-                  (e) => HomeCardItemWidget(
-                    title: _getTitleById(e.id),
-                    date: GlobalController.to.formatDate(e.dateCreated ?? ''),
-                    data: e.total ?? 0,
-                    assetImage: _getImageById(e.id),
-                    onTap: () {
-                      Get.toNamed(_getRouteById(e.id));
-                    },
-                  ),
-                )
-                .toList(),
+          return RefreshIndicator(
+            onRefresh: () async {
+              controller.fetchMenu();
+            },
+            child: ListView(
+              padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 6.h),
+              children: controller.listMenuData
+                  .where(
+                    (e) => controller.tabIndex.value == 1
+                        ? e.id! >= 1 && e.id! <= 2
+                        : controller.tabIndex.value == 2
+                            ? e.id! >= 3 && e.id! <= 7
+                            : e.id! == 8,
+                  )
+                  .map(
+                    (e) => HomeCardItemWidget(
+                      title: _getTitleById(e.id),
+                      date: GlobalController.to.formatDate(e.dateCreated ?? ''),
+                      data: e.total ?? 0,
+                      assetImage: _getImageById(e.id),
+                      onTap: () {
+                        Get.toNamed(_getRouteById(e.id));
+                      },
+                    ),
+                  )
+                  .toList(),
+            ),
           );
         }),
       ),
