@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:bas_app/constants/api_production_constant.dart';
 import 'package:bas_app/features/briket/constants/briket_api_constant.dart';
 import 'package:bas_app/features/briket/models/briket_delete_model.dart';
 import 'package:bas_app/features/briket/models/briket_fetch_model.dart';
@@ -95,7 +98,7 @@ class BriketRepository {
     }
   }
 
-  static Future<BriketDeleteResponseModel> deleteOven(
+  static Future<BriketDeleteResponseModel> deleteBriket(
       {required int idBriket}) async {
     try {
       var response = await dio.delete(BriketApiConstant.deleteBriket(idBriket));
@@ -103,6 +106,23 @@ class BriketRepository {
     } on DioException catch (e) {
       var errorResponse = e.response?.data;
       return BriketDeleteResponseModel(message: errorResponse);
+    }
+  }
+
+  static Future<Response?> exportBriket() async {
+    try {
+      var response = await dio.get(
+        ApiProductionConstant.exportBriket(),
+        options: Options(
+          responseType: ResponseType.bytes,
+        ),
+      );
+
+      return response;
+    } on DioException catch (e) {
+      var errorResponse = e.response?.data;
+      log('ERROR EXPORT BRIKET : $errorResponse');
+      return e.response;
     }
   }
 }

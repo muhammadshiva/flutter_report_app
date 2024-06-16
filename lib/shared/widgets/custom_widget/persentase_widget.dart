@@ -22,8 +22,8 @@ class PersentaseWidget extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 25.w),
           child: Wrap(
-            runSpacing: 10.w,
-            spacing: 10.w,
+            runSpacing: 8.w,
+            spacing: 8.w,
             children: data
                 .map(
                   (e) => persentaseCard(

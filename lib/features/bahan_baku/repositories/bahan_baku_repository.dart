@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bas_app/constants/api_production_constant.dart';
 import 'package:bas_app/features/bahan_baku/models/bahan_baku_delete_model.dart';
 import 'package:bas_app/features/bahan_baku/models/bahan_baku_fetch_model.dart';
@@ -9,7 +11,8 @@ import 'package:dio/dio.dart';
 class BahanBakuRepository {
   BahanBakuRepository._();
 
-  static final dio = DioService.dioCall(authorization: HiveService.box.get('token'));
+  static final dio =
+      DioService.dioCall(authorization: HiveService.box.get('token'));
 
   static Future<BahanBakuFetchResponseModel> getBahanBaku(String filter) async {
     try {
@@ -96,13 +99,32 @@ class BahanBakuRepository {
     }
   }
 
-  static Future<BahanBakuDeleteResponseModel> deleteBahanBaku({required int idBahanBaku}) async {
+  static Future<BahanBakuDeleteResponseModel> deleteBahanBaku(
+      {required int idBahanBaku}) async {
     try {
-      var response = await dio.delete(ApiProductionConstant.deleteBahanBaku(idBahanBaku));
+      var response =
+          await dio.delete(ApiProductionConstant.deleteBahanBaku(idBahanBaku));
       return BahanBakuDeleteResponseModel.fromJson(response.data);
     } on DioException catch (e) {
       var errorResponse = e.response?.data;
       return BahanBakuDeleteResponseModel(message: errorResponse);
+    }
+  }
+
+  static Future<Response?> exportBahanBaku() async {
+    try {
+      var response = await dio.get(
+        ApiProductionConstant.exportBahanBaku(),
+        options: Options(
+          responseType: ResponseType.bytes,
+        ),
+      );
+
+      return response;
+    } on DioException catch (e) {
+      var errorResponse = e.response?.data;
+      log('ERROR EXPORT BAHAN BAKU : $errorResponse');
+      return e.response;
     }
   }
 }

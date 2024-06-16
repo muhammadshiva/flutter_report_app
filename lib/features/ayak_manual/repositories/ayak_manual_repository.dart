@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:bas_app/constants/api_production_constant.dart';
 import 'package:bas_app/features/ayak_manual/constants/ayak_manual_api_constant.dart';
 import 'package:bas_app/features/ayak_manual/models/ayak_manual_delete_model.dart';
 import 'package:bas_app/features/ayak_manual/models/ayak_manual_fetch_model.dart';
@@ -9,9 +12,11 @@ import 'package:dio/dio.dart';
 class AyakManualRepository {
   AyakManualRepository._();
 
-  static final dio = DioService.dioCall(authorization: HiveService.box.get('token'));
+  static final dio =
+      DioService.dioCall(authorization: HiveService.box.get('token'));
 
-  static Future<AyakManualFetchResponseModel> getAyakManual(String filter) async {
+  static Future<AyakManualFetchResponseModel> getAyakManual(
+      String filter) async {
     try {
       var response = await dio.get(
         AyakManualApiConstant.getAyakManual(filter),
@@ -86,13 +91,32 @@ class AyakManualRepository {
     }
   }
 
-  static Future<AyakManualDeleteResponseModel> deleteAyakManual({required int idAyakManual}) async {
+  static Future<AyakManualDeleteResponseModel> deleteAyakManual(
+      {required int idAyakManual}) async {
     try {
-      var response = await dio.delete(AyakManualApiConstant.deleteAyakManual(idAyakManual));
+      var response = await dio
+          .delete(AyakManualApiConstant.deleteAyakManual(idAyakManual));
       return AyakManualDeleteResponseModel.fromJson(response.data);
     } on DioException catch (e) {
       var errorResponse = e.response?.data;
       return AyakManualDeleteResponseModel(message: errorResponse);
+    }
+  }
+
+  static Future<Response?> exportAyakManual() async {
+    try {
+      var response = await dio.get(
+        ApiProductionConstant.exportAyakManual(),
+        options: Options(
+          responseType: ResponseType.bytes,
+        ),
+      );
+
+      return response;
+    } on DioException catch (e) {
+      var errorResponse = e.response?.data;
+      log('ERROR EXPORT AYAK MANUAL : $errorResponse');
+      return e.response;
     }
   }
 }

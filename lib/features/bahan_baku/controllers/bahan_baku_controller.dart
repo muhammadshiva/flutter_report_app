@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:developer';
+import 'dart:io';
 
 import 'package:bas_app/configs/routes/app_route.dart';
 import 'package:bas_app/features/bahan_baku/models/bahan_baku_delete_model.dart';
@@ -7,9 +9,12 @@ import 'package:bas_app/features/bahan_baku/repositories/bahan_baku_repository.d
 import 'package:bas_app/shared/controllers/global_controller.dart';
 import 'package:bas_app/shared/widgets/general/dialog_success_widget.dart';
 import 'package:bas_app/utils/services/loading_service.dart';
+import 'package:bas_app/utils/services/notification_service.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:path/path.dart' as path;
+import 'package:permission_handler/permission_handler.dart';
 
 class BahanBakuController extends GetxController {
   static BahanBakuController get to => Get.find();
@@ -17,7 +22,8 @@ class BahanBakuController extends GetxController {
   //* Main Value
   BahanBakuData bahanBakuData = BahanBakuData();
   RxList<String> dropdownSumberBatok = RxList([]);
-  RxList<String> dropdownBahanBaku = ['Semua', 'Stok Arang', 'Stok Aci', 'Stok Cairan'].obs;
+  RxList<String> dropdownBahanBaku =
+      ['Semua', 'Stok Arang', 'Stok Aci', 'Stok Cairan'].obs;
   RxBool isLoading = false.obs;
   RxInt totalData = 0.obs;
 
@@ -33,7 +39,8 @@ class BahanBakuController extends GetxController {
       if (GlobalController.to.isConnect.isTrue) {
         isLoading.value = true;
 
-        BahanBakuFetchResponseModel response = await BahanBakuRepository.getBahanBaku(
+        BahanBakuFetchResponseModel response =
+            await BahanBakuRepository.getBahanBaku(
           filter ?? '',
         );
 
@@ -67,7 +74,8 @@ class BahanBakuController extends GetxController {
       LoadingService.show();
 
       if (GlobalController.to.isConnect.isTrue) {
-        BahanBakuDeleteResponseModel response = await BahanBakuRepository.deleteBahanBaku(
+        BahanBakuDeleteResponseModel response =
+            await BahanBakuRepository.deleteBahanBaku(
           idBahanBaku: idBahanBaku,
         );
 
@@ -95,6 +103,57 @@ class BahanBakuController extends GetxController {
       }
     } on DioException catch (e, stackTrace) {
       debugPrint('$stackTrace');
+    }
+  }
+
+  Future<void> exportFile() async {
+    try {
+      await GlobalController.to.checkConnection();
+      LoadingService.show();
+
+      if (GlobalController.to.isConnect.isTrue) {
+        final response = await BahanBakuRepository.exportBahanBaku();
+
+        if (response?.statusCode == 200) {
+          if (await Permission.manageExternalStorage.request().isGranted) {
+            final downloadsDirectory = Directory('/storage/emulated/0/BasApp');
+
+            if (!await downloadsDirectory.exists()) {
+              await downloadsDirectory.create(recursive: true);
+            }
+
+            var filePath =
+                path.join(downloadsDirectory.path, 'bahan_baku.xlsx');
+            var file = File(filePath);
+
+            int counter = 1;
+            while (await file.exists()) {
+              filePath = path.join(
+                  downloadsDirectory.path, 'bahan_baku($counter).xlsx');
+              file = File(filePath);
+              counter++;
+            }
+
+            await file.writeAsBytes(response?.data);
+
+            await NotificationService.showNotification(
+              notifId: 2,
+              fileName: 'Bahan Baku Data',
+              filePath: filePath,
+            );
+
+            log('FILE PATH DOWNLOAD : $filePath');
+            log('DOWNLOAD SUCCESS');
+
+            LoadingService.dismiss();
+          }
+        }
+      } else {
+        LoadingService.dismiss();
+        Get.toNamed(AppRoute.noConnectionRoute);
+      }
+    } on DioException catch (e) {
+      log('ERROR EXPORT FILE : $e');
     }
   }
 }

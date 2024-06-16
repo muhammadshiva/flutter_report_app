@@ -142,7 +142,9 @@ class DiskmillScreen extends StatelessWidget {
                     ),
                   );
                 },
-                onPressedExportData: () {},
+                onPressedExportData: () {
+                  controller.exportFile();
+                },
               ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

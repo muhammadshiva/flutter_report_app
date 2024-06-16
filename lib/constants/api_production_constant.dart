@@ -45,4 +45,32 @@ class ApiProductionConstant {
   static String exportBatok() {
     return 'batok/export';
   }
+
+  static String exportBahanBaku() {
+    return 'bahan_baku/export';
+  }
+
+  static String exportAyakManual() {
+    return 'ayak_manual/export';
+  }
+
+  static String exportAyakRotari() {
+    return 'ayak_rotari/export';
+  }
+
+  static String exportDiskmill() {
+    return 'diskmill/export';
+  }
+
+  static String exportMixing() {
+    return 'mixing/export';
+  }
+
+  static String exportOven() {
+    return 'oven/export';
+  }
+
+  static String exportBriket() {
+    return 'briket/export';
+  }
 }

@@ -142,7 +142,9 @@ class MixingScreen extends StatelessWidget {
                     ),
                   );
                 },
-                onPressedExportData: () {},
+                onPressedExportData: () {
+                  controller.exportFile();
+                },
               ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

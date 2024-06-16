@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:bas_app/constants/api_production_constant.dart';
 import 'package:bas_app/features/mixing/constants/mixing_api_constant.dart';
 import 'package:bas_app/features/mixing/models/mixing_delete_model.dart';
 import 'package:bas_app/features/mixing/models/mixing_fetch_model.dart';
@@ -111,6 +114,23 @@ class MixingRepository {
     } on DioException catch (e) {
       var errorResponse = e.response?.data;
       return MixingDeleteResponseModel(message: errorResponse);
+    }
+  }
+
+  static Future<Response?> exportMixing() async {
+    try {
+      var response = await dio.get(
+        ApiProductionConstant.exportMixing(),
+        options: Options(
+          responseType: ResponseType.bytes,
+        ),
+      );
+
+      return response;
+    } on DioException catch (e) {
+      var errorResponse = e.response?.data;
+      log('ERROR EXPORT MIXING : $errorResponse');
+      return e.response;
     }
   }
 }

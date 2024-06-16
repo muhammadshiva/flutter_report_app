@@ -148,7 +148,9 @@ class BriketScreen extends StatelessWidget {
                     ),
                   );
                 },
-                onPressedExportData: () {},
+                onPressedExportData: () {
+                  controller.exportFile();
+                },
               ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

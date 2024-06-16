@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:bas_app/constants/api_production_constant.dart';
 import 'package:bas_app/features/oven/constants/oven_api_constant.dart';
 import 'package:bas_app/features/oven/models/oven_delete_model.dart';
 import 'package:bas_app/features/oven/models/oven_fetch_model.dart';
@@ -109,6 +112,23 @@ class OvenRepository {
     } on DioException catch (e) {
       var errorResponse = e.response?.data;
       return OvenDeleteResponseModel(message: errorResponse);
+    }
+  }
+
+  static Future<Response?> exportOven() async {
+    try {
+      var response = await dio.get(
+        ApiProductionConstant.exportOven(),
+        options: Options(
+          responseType: ResponseType.bytes,
+        ),
+      );
+
+      return response;
+    } on DioException catch (e) {
+      var errorResponse = e.response?.data;
+      log('ERROR EXPORT OVEN : $errorResponse');
+      return e.response;
     }
   }
 }

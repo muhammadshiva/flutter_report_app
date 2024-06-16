@@ -112,12 +112,14 @@ class BahanBakuScreen extends StatelessWidget {
                           PanaraConfirmDialog.show(
                             context,
                             title: 'Hapus',
-                            message: 'Apakah anda yakin ingin menghapus data ini ?',
+                            message:
+                                'Apakah anda yakin ingin menghapus data ini ?',
                             confirmButtonText: 'Hapus',
                             cancelButtonText: 'Tidak',
                             onTapConfirm: () {
                               Get.back();
-                              controller.deleteBahanBaku(idBahanBaku: data.id ?? 0);
+                              controller.deleteBahanBaku(
+                                  idBahanBaku: data.id ?? 0);
                             },
                             onTapCancel: () => Get.back(),
                             panaraDialogType: PanaraDialogType.error,
@@ -147,7 +149,9 @@ class BahanBakuScreen extends StatelessWidget {
                     ),
                   );
                 },
-                onPressedExportData: () {},
+                onPressedExportData: () {
+                  controller.exportFile();
+                },
               ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

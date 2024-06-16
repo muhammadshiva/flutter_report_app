@@ -35,7 +35,11 @@ class NotificationService {
     }
   }
 
-  static Future<void> showNotification(String filePath) async {
+  static Future<void> showNotification({
+    required int notifId,
+    required String filePath,
+    required String fileName,
+  }) async {
     const AndroidNotificationDetails androidPlatformChannelSpecifics =
         AndroidNotificationDetails(
       'download_channel',
@@ -48,8 +52,8 @@ class NotificationService {
     const NotificationDetails platformChannelSpecifics =
         NotificationDetails(android: androidPlatformChannelSpecifics);
     await flutterLocalNotificationsPlugin.show(
-      0,
-      'Download Complete',
+      notifId,
+      'Download $fileName Complete',
       'Tap to open the file',
       platformChannelSpecifics,
       payload: filePath,

@@ -1,4 +1,6 @@
 import 'dart:async';
+import 'dart:developer';
+import 'dart:io';
 
 import 'package:bas_app/configs/routes/app_route.dart';
 import 'package:bas_app/features/ayak_rotari/models/ayak_rotari_delete_model.dart';
@@ -7,9 +9,12 @@ import 'package:bas_app/features/ayak_rotari/repositories/ayak_rotari_repository
 import 'package:bas_app/shared/controllers/global_controller.dart';
 import 'package:bas_app/shared/widgets/general/dialog_success_widget.dart';
 import 'package:bas_app/utils/services/loading_service.dart';
+import 'package:bas_app/utils/services/notification_service.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:path/path.dart' as path;
+import 'package:permission_handler/permission_handler.dart';
 
 class AyakRotariController extends GetxController {
   static AyakRotariController get to => Get.find();
@@ -97,6 +102,57 @@ class AyakRotariController extends GetxController {
       }
     } on DioException catch (e, stackTrace) {
       debugPrint('$stackTrace');
+    }
+  }
+
+  Future<void> exportFile() async {
+    try {
+      await GlobalController.to.checkConnection();
+      LoadingService.show();
+
+      if (GlobalController.to.isConnect.isTrue) {
+        final response = await AyakRotariRepository.exportAyakRotari();
+
+        if (response?.statusCode == 200) {
+          if (await Permission.manageExternalStorage.request().isGranted) {
+            final downloadsDirectory = Directory('/storage/emulated/0/BasApp');
+
+            if (!await downloadsDirectory.exists()) {
+              await downloadsDirectory.create(recursive: true);
+            }
+
+            var filePath =
+                path.join(downloadsDirectory.path, 'ayak_rotari.xlsx');
+            var file = File(filePath);
+
+            int counter = 1;
+            while (await file.exists()) {
+              filePath = path.join(
+                  downloadsDirectory.path, 'ayak_rotari($counter).xlsx');
+              file = File(filePath);
+              counter++;
+            }
+
+            await file.writeAsBytes(response?.data);
+
+            await NotificationService.showNotification(
+              notifId: 4,
+              fileName: 'Ayak Rotari Data',
+              filePath: filePath,
+            );
+
+            log('FILE PATH DOWNLOAD : $filePath');
+            log('DOWNLOAD SUCCESS');
+
+            LoadingService.dismiss();
+          }
+        }
+      } else {
+        LoadingService.dismiss();
+        Get.toNamed(AppRoute.noConnectionRoute);
+      }
+    } on DioException catch (e) {
+      log('ERROR EXPORT FILE : $e');
     }
   }
 }

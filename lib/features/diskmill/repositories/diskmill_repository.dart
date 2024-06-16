@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:bas_app/constants/api_production_constant.dart';
 import 'package:bas_app/features/diskmill/constants/diskmill_api_constant.dart';
 import 'package:bas_app/features/diskmill/models/diskmill_delete_model.dart';
 import 'package:bas_app/features/diskmill/models/diskmill_fetch_model.dart';
@@ -106,6 +109,23 @@ class DiskmillRepository {
     } on DioException catch (e) {
       var errorResponse = e.response?.data;
       return DiskmillDeleteResponseModel(message: errorResponse);
+    }
+  }
+
+  static Future<Response?> exportDiskmill() async {
+    try {
+      var response = await dio.get(
+        ApiProductionConstant.exportDiskmill(),
+        options: Options(
+          responseType: ResponseType.bytes,
+        ),
+      );
+
+      return response;
+    } on DioException catch (e) {
+      var errorResponse = e.response?.data;
+      log('ERROR EXPORT DISKMILL : $errorResponse');
+      return e.response;
     }
   }
 }

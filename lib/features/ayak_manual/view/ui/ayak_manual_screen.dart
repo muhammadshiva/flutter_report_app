@@ -84,7 +84,8 @@ class AyakManualScreen extends StatelessWidget {
                     onRefresh: () => controller.getAyakManual(),
                     itemCount: controller.totalData,
                     itemBuilder: (value, index) {
-                      var data = controller.ayakManualData.listAyakManual![index];
+                      var data =
+                          controller.ayakManualData.listAyakManual![index];
 
                       //* CARD DATA
                       return CardWidget(
@@ -105,12 +106,14 @@ class AyakManualScreen extends StatelessWidget {
                           PanaraConfirmDialog.show(
                             context,
                             title: 'Hapus',
-                            message: 'Apakah anda yakin ingin menghapus data ini ?',
+                            message:
+                                'Apakah anda yakin ingin menghapus data ini ?',
                             confirmButtonText: 'Hapus',
                             cancelButtonText: 'Tidak',
                             onTapConfirm: () {
                               Get.back();
-                              controller.deleteAyakManual(idAyakManual: data.id ?? 0);
+                              controller.deleteAyakManual(
+                                  idAyakManual: data.id ?? 0);
                             },
                             onTapCancel: () => Get.back(),
                             panaraDialogType: PanaraDialogType.error,
@@ -140,7 +143,9 @@ class AyakManualScreen extends StatelessWidget {
                     ),
                   );
                 },
-                onPressedExportData: () {},
+                onPressedExportData: () {
+                  controller.exportFile();
+                },
               ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

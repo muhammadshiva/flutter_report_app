@@ -131,7 +131,11 @@ class BatokController extends GetxController {
 
             await file.writeAsBytes(response?.data);
 
-            await NotificationService.showNotification(filePath);
+            await NotificationService.showNotification(
+              notifId: 1,
+              fileName: 'Batok Data',
+              filePath: filePath,
+            );
 
             log('FILE PATH DOWNLOAD : $filePath');
             log('DOWNLOAD SUCCESS');

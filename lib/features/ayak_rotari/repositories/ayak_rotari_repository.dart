@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:bas_app/constants/api_production_constant.dart';
 import 'package:bas_app/features/ayak_rotari/constants/ayak_rotari_api_constant.dart';
 import 'package:bas_app/features/ayak_rotari/models/ayak_rotari_delete_model.dart';
 import 'package:bas_app/features/ayak_rotari/models/ayak_rotari_fetch_model.dart';
@@ -110,6 +113,23 @@ class AyakRotariRepository {
     } on DioException catch (e) {
       var errorResponse = e.response?.data;
       return AyakRotariDeleteResponseModel(message: errorResponse);
+    }
+  }
+
+  static Future<Response?> exportAyakRotari() async {
+    try {
+      var response = await dio.get(
+        ApiProductionConstant.exportAyakRotari(),
+        options: Options(
+          responseType: ResponseType.bytes,
+        ),
+      );
+
+      return response;
+    } on DioException catch (e) {
+      var errorResponse = e.response?.data;
+      log('ERROR EXPORT AYAK ROTARI : $errorResponse');
+      return e.response;
     }
   }
 }
