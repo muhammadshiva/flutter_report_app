@@ -1,10 +1,8 @@
+import 'dart:developer';
 import 'dart:io';
 
-import 'package:bas_app/configs/routes/app_route.dart';
 import 'package:bas_app/shared/model/sumber_batok_fetch_model.dart';
 import 'package:bas_app/shared/repository/global_repository.dart';
-import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
@@ -26,22 +24,11 @@ class GlobalController extends GetxController {
   }
 
   Future<void> getSumberBatok() async {
-    try {
-      await checkConnection();
-      if (isConnect.isTrue) {
-        SumberBatokFetchModel response =
-            await GlobalRepository.getSumberBatok();
+    SumberBatokFetchModel response = await GlobalRepository.getSumberBatok();
 
-        if (response.status == 200) {
-          listSumberBatok(response.data);
-
-          print('LIST SUMBER BATOK : ${listSumberBatok.toString()}');
-        }
-      } else {
-        Get.toNamed(AppRoute.noConnectionRoute);
-      }
-    } on DioException catch (e) {
-      debugPrint('ERROR GET SUMBER BATOK : $e');
+    if (response.status == 200) {
+      listSumberBatok(response.data);
+      log('LIST SUMBER BATOK : ${listSumberBatok.toString()}');
     }
   }
 
@@ -66,7 +53,6 @@ class GlobalController extends GetxController {
 
   @override
   void onInit() {
-    getSumberBatok();
     super.onInit();
   }
 }
