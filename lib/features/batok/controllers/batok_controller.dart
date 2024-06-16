@@ -61,7 +61,7 @@ class BatokController extends GetxController {
         Get.toNamed(AppRoute.noConnectionRoute);
       }
     } on DioException catch (e) {
-      debugPrint('ERROR GET BATOK : $e');
+      log('ERROR GET BATOK : $e');
     }
   }
 
@@ -98,7 +98,7 @@ class BatokController extends GetxController {
         Get.toNamed(AppRoute.noConnectionRoute);
       }
     } on DioException catch (e, stackTrace) {
-      debugPrint('$stackTrace');
+      log('$stackTrace');
     }
   }
 

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:bas_app/configs/routes/app_route.dart';
 import 'package:bas_app/features/mixing/argument/mixing_argument.dart';
@@ -9,7 +10,6 @@ import 'package:bas_app/shared/controllers/global_controller.dart';
 import 'package:bas_app/shared/widgets/general/dialog_success_widget.dart';
 import 'package:bas_app/utils/services/loading_service.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class MixingQueryController extends GetxController {
@@ -179,8 +179,8 @@ class MixingQueryController extends GetxController {
         Get.toNamed(AppRoute.noConnectionRoute);
       }
     } on DioException catch (e, stackTrace) {
-      debugPrint('$stackTrace');
-      debugPrint('try $e');
+      log('$stackTrace');
+      log('try $e');
     }
   }
 

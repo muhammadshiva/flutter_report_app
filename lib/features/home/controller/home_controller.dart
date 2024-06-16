@@ -1,10 +1,11 @@
+import 'dart:developer';
+
 import 'package:bas_app/configs/routes/app_route.dart';
 import 'package:bas_app/features/home/model/menu_fetch_model.dart';
 import 'package:bas_app/features/home/repositories/home_repository.dart';
 import 'package:bas_app/shared/controllers/global_controller.dart';
 import 'package:bas_app/utils/services/hive_service.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
@@ -47,7 +48,7 @@ class HomeController extends GetxController {
         Get.toNamed(AppRoute.noConnectionRoute);
       }
     } on DioException catch (e) {
-      debugPrint('ERROR GET BATOK : $e');
+      log('ERROR GET BATOK : $e');
     }
   }
 

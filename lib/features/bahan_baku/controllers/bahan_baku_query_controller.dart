@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:bas_app/configs/routes/app_route.dart';
 import 'package:bas_app/features/bahan_baku/argument/bahan_baku_argument.dart';
@@ -20,7 +21,8 @@ class BahanBakuQueryController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isEdit = false.obs;
   RxList<String> dropdownSumberBatok = RxList([]);
-  RxList<String> dropdownStokBahanBaku = ['Stok Arang', 'Stok Aci', 'Stok Cairan'].obs;
+  RxList<String> dropdownStokBahanBaku =
+      ['Stok Arang', 'Stok Aci', 'Stok Cairan'].obs;
   RxInt idBahanBaku = 0.obs;
 
   //* Input String
@@ -112,7 +114,8 @@ class BahanBakuQueryController extends GetxController {
       if (GlobalController.to.isConnect.isTrue) {
         LoadingService.show();
 
-        BahanBakuPostResponseModel response = await BahanBakuRepository.postBahanBaku(
+        BahanBakuPostResponseModel response =
+            await BahanBakuRepository.postBahanBaku(
           idBahanBaku: idBahanBaku.value == 0 ? null : idBahanBaku.value,
           tanggal: tanggalTxt.value,
           jenisMasukan: jenisInputTxt.value,
@@ -136,7 +139,8 @@ class BahanBakuQueryController extends GetxController {
               timer: timer,
               onPressed: () {
                 timer.cancel();
-                Get.until((route) => Get.currentRoute == AppRoute.bahanBakuRoute);
+                Get.until(
+                    (route) => Get.currentRoute == AppRoute.bahanBakuRoute);
                 BahanBakuController.to.getBahanBaku();
               },
             );
@@ -158,8 +162,8 @@ class BahanBakuQueryController extends GetxController {
         Get.toNamed(AppRoute.noConnectionRoute);
       }
     } on DioException catch (e, stackTrace) {
-      debugPrint('$stackTrace');
-      debugPrint('try $e');
+      log('$stackTrace');
+      log('try $e');
     }
   }
 

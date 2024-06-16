@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:bas_app/configs/routes/app_route.dart';
 import 'package:bas_app/features/ayak_rotari/argument/ayak_rotari_argument.dart';
@@ -171,8 +172,8 @@ class AyakRotariQueryController extends GetxController {
         Get.toNamed(AppRoute.noConnectionRoute);
       }
     } on DioException catch (e, stackTrace) {
-      debugPrint('$stackTrace');
-      debugPrint('try $e');
+      log('$stackTrace');
+      log('try $e');
     }
   }
 

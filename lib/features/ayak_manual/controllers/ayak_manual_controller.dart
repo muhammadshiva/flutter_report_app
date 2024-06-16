@@ -45,7 +45,7 @@ class AyakManualController extends GetxController {
           ayakManualData = response.data ?? AyakManualData();
           totalData.value = response.data?.listAyakManual?.length ?? 0;
 
-          print('TOTAL DATA : ${totalData.value}');
+          log('TOTAL DATA : ${totalData.value}');
 
           if (dropdownSumberBatok.isEmpty) {
             dropdownSumberBatok.addAll(
@@ -63,7 +63,7 @@ class AyakManualController extends GetxController {
         }
       }
     } on DioException catch (e) {
-      debugPrint('ERROR GET BATOK : $e');
+      log('ERROR GET BATOK : $e');
     }
   }
 
@@ -101,7 +101,7 @@ class AyakManualController extends GetxController {
         Get.toNamed(AppRoute.noConnectionRoute);
       }
     } on DioException catch (e, stackTrace) {
-      debugPrint('$stackTrace');
+      log('$stackTrace');
     }
   }
 

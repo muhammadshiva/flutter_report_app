@@ -35,7 +35,6 @@ class _ButtonTimerWidgetState extends State<ButtonTimerWidget> {
 
   @override
   void initState() {
-    debugPrint('TIMER BUTTON INIT');
     startTimer();
     super.initState();
   }

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:bas_app/configs/routes/app_route.dart';
 import 'package:bas_app/features/ayak_manual/argument/ayak_manual_argument.dart';
@@ -160,8 +161,8 @@ class AyakManualQueryController extends GetxController {
         Get.toNamed(AppRoute.noConnectionRoute);
       }
     } on DioException catch (e, stackTrace) {
-      debugPrint('$stackTrace');
-      debugPrint('try $e');
+      log('$stackTrace');
+      log('try $e');
     }
   }
 

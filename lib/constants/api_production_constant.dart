@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class ApiProductionConstant {
   ApiProductionConstant._();
 
@@ -12,12 +10,10 @@ class ApiProductionConstant {
   }
 
   static String postBatok() {
-    debugPrint('STORE BATOK ENDPOINT');
     return 'store/batok';
   }
 
   static String updateBatok(int id) {
-    debugPrint('UPDATE BATOK ENDPOINT');
     return 'update/batok/$id';
   }
 

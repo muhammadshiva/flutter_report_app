@@ -63,7 +63,7 @@ class AyakRotariController extends GetxController {
         }
       }
     } on DioException catch (e) {
-      debugPrint('ERROR GET BATOK : $e');
+      log('ERROR GET BATOK : $e');
     }
   }
 
@@ -101,7 +101,7 @@ class AyakRotariController extends GetxController {
         Get.toNamed(AppRoute.noConnectionRoute);
       }
     } on DioException catch (e, stackTrace) {
-      debugPrint('$stackTrace');
+      log('$stackTrace');
     }
   }
 

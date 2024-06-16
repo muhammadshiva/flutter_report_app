@@ -11,7 +11,6 @@ import 'package:bas_app/shared/widgets/general/dialog_success_widget.dart';
 import 'package:bas_app/utils/services/loading_service.dart';
 import 'package:bas_app/utils/services/notification_service.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:path/path.dart' as path;
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -63,7 +62,7 @@ class DiskmillController extends GetxController {
         }
       }
     } on DioException catch (e) {
-      debugPrint('ERROR GET BATOK : $e');
+      log('ERROR GET BATOK : $e');
     }
   }
 
@@ -101,7 +100,7 @@ class DiskmillController extends GetxController {
         Get.toNamed(AppRoute.noConnectionRoute);
       }
     } on DioException catch (e, stackTrace) {
-      debugPrint('$stackTrace');
+      log('$stackTrace');
     }
   }
 
