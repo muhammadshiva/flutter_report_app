@@ -38,20 +38,20 @@ class MenuFetchResponseModel {
 class MenuData {
   int? id;
   String? title;
-  String? dateCreated;
+  String dateCreated;
   int? total;
 
   MenuData({
     this.id,
     this.title,
-    this.dateCreated,
+    this.dateCreated = '',
     this.total,
   });
 
   factory MenuData.fromJson(Map<String, dynamic> json) => MenuData(
         id: json["id"],
         title: json["title"],
-        dateCreated: json["date_created"],
+        dateCreated: json["date_created"] ?? '',
         total: json["total"],
       );
 

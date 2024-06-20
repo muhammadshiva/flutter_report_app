@@ -41,7 +41,9 @@ class HomeDataListWidget extends StatelessWidget {
                   .map(
                     (e) => HomeCardItemWidget(
                       title: _getTitleById(e.id),
-                      date: GlobalController.to.formatDate(e.dateCreated ?? ''),
+                      date: e.dateCreated.isEmpty
+                          ? '-'
+                          : GlobalController.to.formatDate(e.dateCreated),
                       data: e.total ?? 0,
                       assetImage: _getImageById(e.id),
                       onTap: () {

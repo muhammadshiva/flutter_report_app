@@ -8,7 +8,7 @@ class HomeCardItemWidget extends StatelessWidget {
   const HomeCardItemWidget({
     super.key,
     required this.title,
-    required this.date,
+    this.date = '',
     required this.data,
     required this.assetImage,
     this.onTap,
@@ -60,7 +60,7 @@ class HomeCardItemWidget extends StatelessWidget {
                   style: blackTextStyle.copyWith(fontSize: 12.sp),
                 ),
                 Text(
-                  'Terakhir ditambahkan pada $date',
+                  'Terakhir ditambahkan pada ${date.isEmpty ? '' : date}',
                   style: GoogleFonts.inter().copyWith(
                     fontSize: 9.sp,
                     color: ColorStyle.grey,
