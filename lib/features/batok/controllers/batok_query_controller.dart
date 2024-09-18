@@ -6,6 +6,7 @@ import 'package:bas_app/features/batok/argument/batok_argument.dart';
 import 'package:bas_app/features/batok/controllers/batok_controller.dart';
 import 'package:bas_app/features/batok/models/batok_post_model.dart';
 import 'package:bas_app/features/batok/repository/batok_repository.dart';
+import 'package:bas_app/features/home/controller/home_controller.dart';
 import 'package:bas_app/shared/controllers/global_controller.dart';
 import 'package:bas_app/shared/widgets/general/dialog_success_widget.dart';
 import 'package:bas_app/utils/services/loading_service.dart';
@@ -41,7 +42,7 @@ class BatokQueryController extends GetxController {
 
   @override
   void onInit() {
-    dropdownSumberBatok(GlobalController.to.listSumberBatok);
+    dropdownSumberBatok(HomeController.to.listSumberBatok);
 
     if (Get.arguments != null) {
       argument = Get.arguments as BatokArgument;

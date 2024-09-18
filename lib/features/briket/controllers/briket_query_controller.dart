@@ -6,6 +6,7 @@ import 'package:bas_app/features/briket/argument/briket_argument.dart';
 import 'package:bas_app/features/briket/controllers/briket_controller.dart';
 import 'package:bas_app/features/briket/models/briket_post_model.dart';
 import 'package:bas_app/features/briket/repositories/briket_repository.dart';
+import 'package:bas_app/features/home/controller/home_controller.dart';
 import 'package:bas_app/shared/controllers/global_controller.dart';
 import 'package:bas_app/shared/widgets/general/dialog_success_widget.dart';
 import 'package:bas_app/utils/services/loading_service.dart';
@@ -45,7 +46,7 @@ class BriketQueryController extends GetxController {
 
   @override
   void onInit() {
-    dropdownSumberBatok(GlobalController.to.listSumberBatok);
+    dropdownSumberBatok(HomeController.to.listSumberBatok);
 
     if (Get.arguments != null) {
       argument = Get.arguments as BriketArgument;

@@ -6,6 +6,7 @@ import 'package:bas_app/features/bahan_baku/argument/bahan_baku_argument.dart';
 import 'package:bas_app/features/bahan_baku/controllers/bahan_baku_controller.dart';
 import 'package:bas_app/features/bahan_baku/models/bahan_baku_post_model.dart';
 import 'package:bas_app/features/bahan_baku/repositories/bahan_baku_repository.dart';
+import 'package:bas_app/features/home/controller/home_controller.dart';
 import 'package:bas_app/shared/controllers/global_controller.dart';
 import 'package:bas_app/shared/widgets/general/dialog_success_widget.dart';
 import 'package:bas_app/utils/services/loading_service.dart';
@@ -45,7 +46,7 @@ class BahanBakuQueryController extends GetxController {
 
   @override
   void onInit() {
-    dropdownSumberBatok(GlobalController.to.listSumberBatok);
+    dropdownSumberBatok(HomeController.to.listSumberBatok);
 
     if (Get.arguments != null) {
       argument = Get.arguments as BahanBakuArgument;

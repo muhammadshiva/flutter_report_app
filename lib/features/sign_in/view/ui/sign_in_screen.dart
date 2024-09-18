@@ -5,6 +5,7 @@ import 'package:bas_app/shared/styles/color_style.dart';
 import 'package:bas_app/shared/styles/google_text_style.dart';
 import 'package:bas_app/shared/widgets/custom_button/button_widget.dart';
 import 'package:bas_app/shared/widgets/custom_text_field/text_field_widget_custom.dart';
+import 'package:bas_app/utils/services/hive_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -48,9 +49,11 @@ class SignInScreen extends StatelessWidget {
                 TextFieldWidget(
                   controller: controller.emailCtrl,
                   hint: 'Email',
-                  contentPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.w),
+                  contentPadding:
+                      EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.w),
                   prefixIcon: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 14.w),
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 8.w, vertical: 14.w),
                     child: SvgPicture.asset(
                       clipBehavior: Clip.none,
                       GlobalAssetConstant.icUser,
@@ -79,10 +82,12 @@ class SignInScreen extends StatelessWidget {
                     isPassword: controller.isShowPassword.isTrue ? false : true,
                     hint: 'Password',
                     hintStyle: greyTextStyle,
-                    contentPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.w),
+                    contentPadding:
+                        EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.w),
                     maxLines: 1,
                     prefixIcon: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 12.w),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 8.w, vertical: 12.w),
                       child: SvgPicture.asset(
                         clipBehavior: Clip.none,
                         GlobalAssetConstant.icLock,
@@ -115,7 +120,8 @@ class SignInScreen extends StatelessWidget {
                 ),
                 Obx(
                   () => Visibility(
-                    visible: controller.passwordErrorText.isEmpty ? false : true,
+                    visible:
+                        controller.passwordErrorText.isEmpty ? false : true,
                     child: Container(
                       margin: EdgeInsets.only(top: 10.w),
                       child: Text(
@@ -146,10 +152,13 @@ class SignInScreen extends StatelessWidget {
                   () => ButtonWidget(
                     height: 42.w,
                     text: 'Login',
-                    color: controller.isDisable.isTrue ? Colors.grey.shade200 : ColorStyle.primary,
+                    color: controller.isDisable.isTrue
+                        ? Colors.grey.shade200
+                        : ColorStyle.primary,
                     textStyle: whiteTextStyle.copyWith(fontSize: 14.sp),
-                    onPressed: () =>
-                        controller.isDisable.isTrue ? null : controller.validateForm(context),
+                    onPressed: () => controller.isDisable.isTrue
+                        ? null
+                        : controller.validateForm(context),
                   ),
                 ),
               ],

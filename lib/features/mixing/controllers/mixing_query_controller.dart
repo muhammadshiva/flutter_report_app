@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bas_app/configs/routes/app_route.dart';
+import 'package:bas_app/features/home/controller/home_controller.dart';
 import 'package:bas_app/features/mixing/argument/mixing_argument.dart';
 import 'package:bas_app/features/mixing/controllers/mixing_controller.dart';
 import 'package:bas_app/features/mixing/models/mixing_post_model.dart';
@@ -56,7 +57,7 @@ class MixingQueryController extends GetxController {
 
   @override
   void onInit() {
-    dropdownSumberBatok(GlobalController.to.listSumberBatok);
+    dropdownSumberBatok(HomeController.to.listSumberBatok);
 
     if (Get.arguments != null) {
       argument = Get.arguments as MixingArgument;

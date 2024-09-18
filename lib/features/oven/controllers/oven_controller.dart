@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:bas_app/configs/routes/app_route.dart';
+import 'package:bas_app/features/home/controller/home_controller.dart';
 import 'package:bas_app/features/oven/models/oven_delete_model.dart';
 import 'package:bas_app/features/oven/models/oven_fetch_model.dart';
 import 'package:bas_app/features/oven/repositories/oven_repository.dart';
@@ -49,7 +50,7 @@ class OvenController extends GetxController {
             dropdownSumberBatok.addAll(
               [
                 'Semua',
-                ...(GlobalController.to.listSumberBatok),
+                ...(HomeController.to.listSumberBatok),
               ],
             );
           }

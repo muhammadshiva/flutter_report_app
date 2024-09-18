@@ -27,6 +27,7 @@ class HomeDataListWidget extends StatelessWidget {
           return RefreshIndicator(
             onRefresh: () async {
               controller.fetchMenu();
+              controller.getSumberBatok();
             },
             child: ListView(
               padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 6.h),

@@ -7,20 +7,6 @@ import 'package:dio/dio.dart';
 class GlobalRepository {
   GlobalRepository._();
 
-  static final dio = DioService.dioCall(authorization: HiveService.box.get('token'));
-
-  static Future<SumberBatokFetchModel> getSumberBatok() async {
-    try {
-      var response = await dio.get(
-        ApiProductionConstant.getSumberBatok(),
-      );
-      return SumberBatokFetchModel.fromJson(response.data);
-    } on DioException catch (e) {
-      var errorResponse = e.response?.data;
-      return SumberBatokFetchModel(
-        status: errorResponse['status'],
-        message: errorResponse['message'],
-      );
-    }
-  }
+  static final dio =
+      DioService.dioCall(authorization: HiveService.box.get('token'));
 }

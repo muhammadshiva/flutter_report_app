@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bas_app/configs/routes/app_route.dart';
+import 'package:bas_app/features/home/controller/home_controller.dart';
 import 'package:bas_app/features/oven/argument/oven_argument.dart';
 import 'package:bas_app/features/oven/controllers/oven_controller.dart';
 import 'package:bas_app/features/oven/models/oven_post_model.dart';
@@ -57,7 +58,7 @@ class OvenQueryController extends GetxController {
   late OvenArgument argument;
   @override
   void onInit() {
-    dropdownSumberBatok(GlobalController.to.listSumberBatok);
+    dropdownSumberBatok(HomeController.to.listSumberBatok);
 
     if (Get.arguments != null) {
       argument = Get.arguments as OvenArgument;

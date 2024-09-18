@@ -25,10 +25,10 @@ class HiveService {
     await box.put("isLogin", isLogin);
   }
 
-  static Future deleteAuth() async {
-    await box.put("email", null);
-    await box.put("password", null);
-    await box.put("token", null);
-    await box.put("isLogin", false);
+  static Future<void> deleteAuth() async {
+    await box.delete("email");
+    await box.delete("password");
+    await box.delete("token");
+    await box.delete("isLogin");
   }
 }

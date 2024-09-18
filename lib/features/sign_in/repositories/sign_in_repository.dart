@@ -8,8 +8,6 @@ class SignInRepository {
 
   static final Dio dio = DioService.dioCall();
 
-  /// Function to hit Sign In API
-  ///
   static Future<SignInResponseModel> signIn(
       {required String email, required String password}) async {
     try {
@@ -30,20 +28,8 @@ class SignInRepository {
         status: errorResponse['status'],
         message: errorResponse['message'],
       );
+    } catch (e) {
+      return SignInResponseModel(message: e.toString());
     }
   }
 }
-
-//* BACKUP
-// } catch (e) {
-//   if (e is DioException) {
-//     // Dio error handling
-//     var errorResponse = e.response?.data;
-//     return SignInResponseModel(
-//       status: errorResponse['status'],
-//       message: errorResponse['message'],
-//     );
-//   } else {
-//     return SignInResponseModel(message: e.toString());
-//   }
-// }

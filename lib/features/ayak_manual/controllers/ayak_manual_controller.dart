@@ -6,6 +6,7 @@ import 'package:bas_app/configs/routes/app_route.dart';
 import 'package:bas_app/features/ayak_manual/models/ayak_manual_delete_model.dart';
 import 'package:bas_app/features/ayak_manual/models/ayak_manual_fetch_model.dart';
 import 'package:bas_app/features/ayak_manual/repositories/ayak_manual_repository.dart';
+import 'package:bas_app/features/home/controller/home_controller.dart';
 import 'package:bas_app/shared/controllers/global_controller.dart';
 import 'package:bas_app/shared/widgets/general/dialog_success_widget.dart';
 import 'package:bas_app/utils/services/loading_service.dart';
@@ -50,7 +51,7 @@ class AyakManualController extends GetxController {
             dropdownSumberBatok.addAll(
               [
                 'Semua',
-                ...(GlobalController.to.listSumberBatok),
+                ...(HomeController.to.listSumberBatok),
               ],
             );
           }

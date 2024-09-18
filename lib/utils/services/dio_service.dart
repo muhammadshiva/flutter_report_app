@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:bas_app/constants/api_base_url_constant.dart';
+import 'package:bas_app/utils/services/hive_service.dart';
 import 'package:dio/dio.dart';
 
 class DioService {
@@ -18,14 +19,13 @@ class DioService {
     int timeout = timeOutInMiliSeconds,
     String? authorization,
   }) {
+    print('AUTHORIZATION : $authorization');
+
     var headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
+      'Authorization': 'Bearer $authorization'
     };
-
-    if (authorization != null) {
-      headers['Authorization'] = "Bearer $authorization";
-    }
 
     var dio = Dio(
       BaseOptions(
@@ -38,7 +38,6 @@ class DioService {
     );
 
     dio.interceptors.add(_authInterceptor());
-
     return dio;
   }
 

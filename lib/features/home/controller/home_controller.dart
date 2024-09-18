@@ -1,17 +1,23 @@
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:bas_app/configs/routes/app_route.dart';
 import 'package:bas_app/features/home/model/menu_fetch_model.dart';
 import 'package:bas_app/features/home/repositories/home_repository.dart';
 import 'package:bas_app/shared/controllers/global_controller.dart';
+import 'package:bas_app/shared/model/sumber_batok_fetch_model.dart';
 import 'package:bas_app/utils/services/hive_service.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:restart_app/restart_app.dart';
 
 class HomeController extends GetxController {
   static HomeController get to => Get.find();
 
   RxList<MenuData> listMenuData = RxList([]);
+  RxList<String> listSumberBatok = RxList([]);
   RxBool isLoading = false.obs;
   var tabIndex = 1.obs;
 
@@ -24,6 +30,7 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     fetchMenu();
+    getSumberBatok();
     super.onInit();
   }
 
@@ -34,7 +41,6 @@ class HomeController extends GetxController {
         isLoading.value = true;
 
         MenuFetchResponseModel response = await HomeRepository.fetchMenu();
-        await GlobalController.to.getSumberBatok();
 
         if (response.status == 200) {
           listMenuData(response.data);
@@ -42,18 +48,48 @@ class HomeController extends GetxController {
           isLoading.value = false;
         } else {
           isLoading.value = false;
-          Get.toNamed(AppRoute.noConnectionRoute);
+          Get.snackbar(
+            'Peringatan'.tr,
+            response.message ?? 'Terjadi kesalahan',
+            backgroundColor: Colors.red.shade300,
+            colorText: Colors.white,
+            duration: const Duration(seconds: 2),
+          );
         }
       } else {
         Get.toNamed(AppRoute.noConnectionRoute);
       }
     } on DioException catch (e) {
       log('ERROR GET BATOK : $e');
+    } catch (e) {
+      log('ERROR GET BATOK : $e');
+    }
+  }
+
+  Future<void> getSumberBatok() async {
+    try {
+      SumberBatokFetchModel response = await HomeRepository.getSumberBatok();
+
+      if (response.status == 200) {
+        listSumberBatok(response.data);
+        log('LIST SUMBER BATOK : ${listSumberBatok.toString()}');
+      } else {
+        Get.snackbar(
+          'Peringatan'.tr,
+          response.message ?? 'Terjadi kesalahan',
+          backgroundColor: Colors.red.shade300,
+          colorText: Colors.white,
+          duration: const Duration(seconds: 2),
+        );
+      }
+    } on DioException catch (e) {
+      log('ERROR GET SUMBER BATOK : $e');
+    } catch (e) {
+      log('ERROR GET SUMBER BATOK : $e');
     }
   }
 
   void logout() async {
-    HomeRepository.logout();
     await HiveService.deleteAuth();
     Get.offAllNamed(AppRoute.signInRoute);
   }

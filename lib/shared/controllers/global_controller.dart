@@ -10,7 +10,6 @@ class GlobalController extends GetxController {
   static GlobalController get to => Get.find();
 
   var isConnect = false.obs;
-  RxList<String> listSumberBatok = RxList([]);
 
   Future<void> checkConnection() async {
     try {
@@ -20,15 +19,6 @@ class GlobalController extends GetxController {
       }
     } on SocketException catch (_) {
       isConnect.value = false;
-    }
-  }
-
-  Future<void> getSumberBatok() async {
-    SumberBatokFetchModel response = await GlobalRepository.getSumberBatok();
-
-    if (response.status == 200) {
-      listSumberBatok(response.data);
-      log('LIST SUMBER BATOK : ${listSumberBatok.toString()}');
     }
   }
 
