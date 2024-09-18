@@ -19,8 +19,6 @@ class DioService {
     int timeout = timeOutInMiliSeconds,
     String? authorization,
   }) {
-    print('AUTHORIZATION : $authorization');
-
     var headers = {
       'Content-Type': 'application/json',
       'Accept': 'application/json',

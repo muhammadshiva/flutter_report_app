@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bas_app/configs/routes/app_route.dart';
-import 'package:bas_app/shared/controllers/global_controller.dart';
 import 'package:bas_app/utils/services/hive_service.dart';
 import 'package:get/get.dart';
 

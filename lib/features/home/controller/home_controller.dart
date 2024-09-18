@@ -10,8 +10,6 @@ import 'package:bas_app/utils/services/hive_service.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:restart_app/restart_app.dart';
 
 class HomeController extends GetxController {
   static HomeController get to => Get.find();

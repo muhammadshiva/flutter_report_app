@@ -5,7 +5,6 @@ import 'package:bas_app/shared/styles/color_style.dart';
 import 'package:bas_app/shared/styles/google_text_style.dart';
 import 'package:bas_app/shared/widgets/custom_button/button_widget.dart';
 import 'package:bas_app/shared/widgets/custom_text_field/text_field_widget_custom.dart';
-import 'package:bas_app/utils/services/hive_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -161,6 +160,7 @@ class SignInScreen extends StatelessWidget {
                         : controller.validateForm(context),
                   ),
                 ),
+                20.verticalSpace,
               ],
             ),
           ),

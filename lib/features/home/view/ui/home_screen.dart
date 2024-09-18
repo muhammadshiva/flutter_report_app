@@ -3,12 +3,10 @@ import 'package:bas_app/features/home/controller/home_controller.dart';
 import 'package:bas_app/features/home/view/components/home_data_list_widget.dart';
 import 'package:bas_app/features/home/view/components/home_tab_widget.dart';
 import 'package:bas_app/shared/styles/google_text_style.dart';
-import 'package:bas_app/utils/services/hive_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:panara_dialogs/panara_dialogs.dart';
-import 'package:restart_app/restart_app.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
