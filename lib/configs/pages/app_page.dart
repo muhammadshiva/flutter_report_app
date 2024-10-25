@@ -1,4 +1,6 @@
 import 'package:bas_app/configs/routes/app_route.dart';
+import 'package:bas_app/features/admin/bindings/admin_binding.dart';
+import 'package:bas_app/features/admin/view/ui/admin_screen.dart';
 import 'package:bas_app/features/ayak_manual/bindings/ayak_manual_binding.dart';
 import 'package:bas_app/features/ayak_manual/bindings/ayak_manual_query_binding.dart';
 import 'package:bas_app/features/ayak_manual/view/ui/ayak_manual_query_screen.dart';
@@ -41,6 +43,10 @@ import 'package:bas_app/features/sign_in/bindings/sign_in_binding.dart';
 import 'package:bas_app/features/sign_in/view/ui/sign_in_screen.dart';
 import 'package:bas_app/features/splash/bindings/splash_binding.dart';
 import 'package:bas_app/features/splash/view/ui/splash_screen.dart';
+import 'package:bas_app/features/user/bindings/user_binding.dart';
+import 'package:bas_app/features/user/view/ui/user_screen.dart';
+import 'package:bas_app/features/user_query/bindings/user_query_binding.dart';
+import 'package:bas_app/features/user_query/view/ui/user_query_screen.dart';
 import 'package:get/get.dart';
 
 abstract class AppPage {
@@ -178,6 +184,26 @@ abstract class AppPage {
       name: AppRoute.briketQueryRoute,
       page: () => const BriketQueryScreen(),
       binding: BriketQueryBinding(),
+    ),
+
+    //* USER
+    GetPage(
+      name: AppRoute.userRoute,
+      page: () => const UserScreen(),
+      binding: UserBinding(),
+    ),
+
+    GetPage(
+      name: AppRoute.userQueryRoute,
+      page: () => const UserQueryScreen(),
+      binding: UserQueryBinding(),
+    ),
+
+    //* ADMIN
+    GetPage(
+      name: AppRoute.adminRoute,
+      page: () => const AdminScreen(),
+      binding: AdminBinding(),
     ),
   ];
 }

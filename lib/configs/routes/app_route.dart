@@ -36,4 +36,11 @@ abstract class AppRoute {
   //* BRIKET
   static const String briketRoute = '/briket';
   static const String briketQueryRoute = '/briket_query';
+
+  //* USER
+  static const String userRoute = '/user';
+
+  //* ADMIN
+  static const String adminRoute = '/admin';
+static const String userQueryRoute = '/user_query';
 }
