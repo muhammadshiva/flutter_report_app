@@ -40,6 +40,7 @@ class BahanBakuScreen extends StatelessWidget {
             () => controller.isLoading.isFalse
                 ? PersentaseWidget(
                     data: controller.bahanBakuData.listPersentase ?? [],
+                    type: 'Bahan Baku',
                   )
                 : const ShimmerPersentaseWidget(),
           ),

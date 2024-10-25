@@ -22,7 +22,7 @@ class BahanBakuQueryController extends GetxController {
   RxBool isEdit = false.obs;
   RxList<String> dropdownSumberBatok = RxList([]);
   RxList<String> dropdownStokBahanBaku =
-      ['Stok Arang', 'Stok Aci', 'Stok Cairan'].obs;
+      ['Stok Aci', 'Stok Cairan', 'Stok Arang Kayu'].obs;
   RxInt idBahanBaku = 0.obs;
 
   //* Input String
@@ -56,6 +56,16 @@ class BahanBakuQueryController extends GetxController {
     }
 
     super.onInit();
+  }
+
+  void addSumberBatok() {
+    if (!dropdownSumberBatok.contains('-')) {
+      dropdownSumberBatok.add('-');
+    }
+  }
+
+  void reduceSumberBatok() {
+    dropdownSumberBatok.removeWhere((element) => element == '-');
   }
 
   void validateForm() {

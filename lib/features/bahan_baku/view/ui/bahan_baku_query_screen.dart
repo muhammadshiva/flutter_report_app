@@ -25,7 +25,8 @@ class BahanBakuQueryScreen extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBarCustom(
-          title: '${controller.isEdit.isTrue ? 'Edit' : 'Input'} Data Bahan Baku',
+          title:
+              '${controller.isEdit.isTrue ? 'Edit' : 'Input'} Data Bahan Baku',
           onBack: () {
             Get.back();
             controller.clearForm();
@@ -57,24 +58,38 @@ class BahanBakuQueryScreen extends StatelessWidget {
                         errorText: controller.tanggalError,
                       ),
                       20.verticalSpace,
-                      DropdownWidget(
-                        hinText: 'Pilih Sumber Batok',
-                        initialValue: controller.sumberBatokTxt.value,
-                        listItem: controller.dropdownSumberBatok,
-                        onChanged: (value) {
-                          controller.sumberBatokTxt.value = value ?? '';
-                        },
-                        errorText: controller.sumberBatokError,
+                      GetBuilder<BahanBakuQueryController>(
+                        builder: (controller) => DropdownWidget(
+                          hinText: 'Pilih Stok',
+                          initialValue: controller.stokBahanBakuTxt.value,
+                          listItem: controller.dropdownStokBahanBaku,
+                          onChanged: (value) {
+                            controller.stokBahanBakuTxt.value = value ?? '';
+
+                            if (value == 'Stok Aci' || value == 'Stok Cairan') {
+                              controller.addSumberBatok();
+                            } else {
+                              controller.reduceSumberBatok();
+                            }
+
+                            controller.update();
+                          },
+                          errorText: controller.stokBahanBakuError,
+                        ),
                       ),
                       20.verticalSpace,
-                      DropdownWidget(
-                        hinText: 'Pilih Stok',
-                        initialValue: controller.stokBahanBakuTxt.value,
-                        listItem: controller.dropdownStokBahanBaku,
-                        onChanged: (value) {
-                          controller.stokBahanBakuTxt.value = value ?? '';
-                        },
-                        errorText: controller.stokBahanBakuError,
+                      GetBuilder<BahanBakuQueryController>(
+                        builder: (controller) => DropdownWidget(
+                          hinText: 'Pilih Sumber Batok',
+                          initialValue: controller.sumberBatokTxt.value,
+                          listItem: controller.dropdownSumberBatok,
+                          onChanged: (value) {
+                            controller.sumberBatokTxt.value = value ?? '';
+
+                            controller.update();
+                          },
+                          errorText: controller.sumberBatokError,
+                        ),
                       ),
                       20.verticalSpace,
                       Obx(
@@ -83,13 +98,17 @@ class BahanBakuQueryScreen extends StatelessWidget {
                             : Container(
                                 margin: EdgeInsets.only(bottom: 20.w),
                                 child: TextFieldLabelWidget(
-                                  title: controller.stokBahanBakuTxt.value.replaceAll('Stok ', ''),
-                                  unit: controller.stokBahanBakuTxt.value == 'Stok Cairan'
+                                  title: controller.stokBahanBakuTxt.value
+                                      .replaceAll('Stok ', ''),
+                                  unit: controller.stokBahanBakuTxt.value ==
+                                          'Stok Cairan'
                                       ? 'L'
                                       : 'Kg',
-                                  initialValue: controller.jumlahBahanBakuTxt.value,
+                                  initialValue:
+                                      controller.jumlahBahanBakuTxt.value,
                                   onChanged: (value) {
-                                    controller.jumlahBahanBakuTxt.value = value ?? '';
+                                    controller.jumlahBahanBakuTxt.value =
+                                        value ?? '';
                                   },
                                   errorText: controller.jumlahBahanBakuError,
                                 ),
