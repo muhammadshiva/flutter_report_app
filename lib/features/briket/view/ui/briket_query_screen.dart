@@ -23,7 +23,7 @@ class BriketQueryScreen extends StatelessWidget {
       onPopInvoked: (didPop) {},
       child: Scaffold(
         appBar: AppBarCustom(
-          title: '${controller.isEdit.isTrue ? 'Edit' : 'Input'} Data Oven',
+          title: '${controller.isEdit.isTrue ? 'Edit' : 'Input'} Data Briket',
           onBack: () {
             Get.back();
           },
@@ -53,16 +53,16 @@ class BriketQueryScreen extends StatelessWidget {
                         },
                         errorText: controller.tanggalError,
                       ),
-                      20.verticalSpace,
-                      DropdownWidget(
-                        hinText: 'Pilih Sumber Batok',
-                        initialValue: controller.sumberBatokTxt.value,
-                        listItem: controller.dropdownSumberBatok,
-                        onChanged: (value) {
-                          controller.sumberBatokTxt.value = value ?? '';
-                        },
-                        errorText: controller.sumberBatokError,
-                      ),
+                      // 20.verticalSpace,
+                      // DropdownWidget(
+                      //   hinText: 'Pilih Sumber Batok',
+                      //   initialValue: controller.sumberBatokTxt.value,
+                      //   listItem: controller.dropdownSumberBatok,
+                      //   onChanged: (value) {
+                      //     controller.sumberBatokTxt.value = value ?? '';
+                      //   },
+                      //   errorText: controller.sumberBatokError,
+                      // ),
                       20.verticalSpace,
                       Text(
                         'Jenis Briket',

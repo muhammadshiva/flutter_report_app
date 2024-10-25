@@ -118,7 +118,7 @@ class TextFieldWidget extends StatelessWidget {
                   ? null
                   : errorText,
           errorStyle: redTextStyle.copyWith(
-            fontSize: errorFontSize ?? 14.sp,
+            fontSize: errorFontSize ?? 12.sp,
           ),
           floatingLabelBehavior: floatingLabelBehavior,
           hintText: hint,
@@ -127,7 +127,9 @@ class TextFieldWidget extends StatelessWidget {
           labelStyle: labelStyle ??
               blackTextStyle.copyWith(
                 fontSize: 13.sp,
-                color: errorText?.isNotEmpty == true ? ColorStyle.r5 : ColorStyle.primary,
+                color: errorText?.isNotEmpty == true
+                    ? ColorStyle.r5
+                    : ColorStyle.primary,
               ),
           hintStyle: hintStyle ??
               greyTextStyle.copyWith(
@@ -138,21 +140,23 @@ class TextFieldWidget extends StatelessWidget {
           suffixIcon: suffixIcon,
           prefix: prefix,
           border: OutlineInputBorder(
-            borderSide: BorderSide(color: borderColor ?? const Color(0xffBBBDC7)),
+            borderSide:
+                BorderSide(color: borderColor ?? const Color(0xffBBBDC7)),
             borderRadius: BorderRadius.all(
               Radius.circular(borderRadius ?? 8.r),
             ),
           ),
           enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: borderColor ?? const Color(0xffBBBDC7)),
+            borderSide:
+                BorderSide(color: borderColor ?? const Color(0xffBBBDC7)),
             borderRadius: BorderRadius.all(
               Radius.circular(borderRadius ?? 8.r),
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
-              color:
-                  focusedBorderColor ?? (readOnly ? const Color(0xffBBBDC7) : ColorStyle.primary),
+              color: focusedBorderColor ??
+                  (readOnly ? const Color(0xffBBBDC7) : ColorStyle.primary),
             ),
             borderRadius: BorderRadius.all(
               Radius.circular(borderRadius ?? 8.r),
@@ -171,7 +175,8 @@ class TextFieldWidget extends StatelessWidget {
             ),
           ),
           disabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: borderColor ?? const Color(0xffBBBDC7)),
+            borderSide:
+                BorderSide(color: borderColor ?? const Color(0xffBBBDC7)),
             borderRadius: BorderRadius.all(
               Radius.circular(borderRadius ?? 8.r),
             ),

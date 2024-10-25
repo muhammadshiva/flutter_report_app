@@ -7,9 +7,11 @@ class TabWidget extends StatefulWidget {
   const TabWidget({
     super.key,
     required this.onTabChanged,
+    this.showPercentage = true,
   });
 
   final Function(int, String) onTabChanged;
+  final bool? showPercentage;
 
   @override
   State<TabWidget> createState() => _TabWidgetState();
@@ -62,7 +64,9 @@ class _TabWidgetState extends State<TabWidget> {
                       width: 100.w,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15.r),
-                        color: tabIndex == e['id'] ? ColorStyle.primary : ColorStyle.white,
+                        color: tabIndex == e['id']
+                            ? ColorStyle.primary
+                            : ColorStyle.white,
                         border: Border.all(
                           color: ColorStyle.primary,
                         ),
@@ -72,7 +76,9 @@ class _TabWidgetState extends State<TabWidget> {
                         style: whiteTextStyle.copyWith(
                           fontSize: 10.sp,
                           fontWeight: semiBold,
-                          color: tabIndex == e['id'] ? ColorStyle.white : ColorStyle.primary,
+                          color: tabIndex == e['id']
+                              ? ColorStyle.white
+                              : ColorStyle.primary,
                         ),
                       ),
                     ),
@@ -80,22 +86,26 @@ class _TabWidgetState extends State<TabWidget> {
                 )
                 .toList(),
           ),
-          20.verticalSpace,
-          Text(
-            'Persentase Perbandingan Sisa',
-            style: blackTextStyle.copyWith(
-              fontWeight: medium,
-              fontSize: 14.sp,
-            ),
-          ),
-          Text(
-            showFilter,
-            style: greyTextStyle.copyWith(
-              fontSize: 12.sp,
-              fontWeight: medium,
-              color: ColorStyle.grey2,
-            ),
-          ),
+          widget.showPercentage == true ? 20.verticalSpace : 0.verticalSpace,
+          widget.showPercentage == true
+              ? Text(
+                  'Total Akumulasi',
+                  style: blackTextStyle.copyWith(
+                    fontWeight: medium,
+                    fontSize: 14.sp,
+                  ),
+                )
+              : Container(),
+          widget.showPercentage == true
+              ? Text(
+                  showFilter,
+                  style: greyTextStyle.copyWith(
+                    fontSize: 12.sp,
+                    fontWeight: medium,
+                    color: ColorStyle.grey2,
+                  ),
+                )
+              : Container(),
         ],
       ),
     );

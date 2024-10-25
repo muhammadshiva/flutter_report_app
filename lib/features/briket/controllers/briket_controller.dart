@@ -20,7 +20,7 @@ class BriketController extends GetxController {
   static BriketController get to => Get.find();
 
   BriketData briketData = BriketData();
-  RxList<String> dropdownSumberBatok = RxList([]);
+  // RxList<String> dropdownSumberBatok = RxList([]);
   RxBool isLoading = false.obs;
   RxInt totalData = 0.obs;
 
@@ -46,14 +46,14 @@ class BriketController extends GetxController {
 
           print('TOTAL DATA : ${totalData.value}');
 
-          if (dropdownSumberBatok.isEmpty) {
-            dropdownSumberBatok.addAll(
-              [
-                'Semua',
-                ...(HomeController.to.listSumberBatok),
-              ],
-            );
-          }
+          // if (dropdownSumberBatok.isEmpty) {
+          //   dropdownSumberBatok.addAll(
+          //     [
+          //       'Semua',
+          //       ...(HomeController.to.listSumberBatok),
+          //     ],
+          //   );
+          // }
 
           isLoading.value = false;
         } else {

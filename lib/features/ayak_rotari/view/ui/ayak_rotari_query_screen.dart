@@ -21,7 +21,7 @@ class AyakRotariQueryScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBarCustom(
         title:
-            '${controller.isEdit.isTrue ? 'Edit' : 'Input'} Data Ayak Manual',
+            '${controller.isEdit.isTrue ? 'Edit' : 'Input'} Data Ayak Rotari',
         onBack: () {
           Get.back();
           // controller.clearForm();

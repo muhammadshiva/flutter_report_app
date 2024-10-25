@@ -32,7 +32,7 @@ class PersentaseBatokWidget<T> extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Persentase Perbandingan Sisa',
+                'Total Akumulasi',
                 style: blackTextStyle.copyWith(
                   fontWeight: medium,
                   fontSize: 14.sp,

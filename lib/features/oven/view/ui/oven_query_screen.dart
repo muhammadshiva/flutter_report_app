@@ -53,16 +53,17 @@ class OvenQueryScreen extends StatelessWidget {
                         },
                         errorText: controller.tanggalError,
                       ),
-                      20.verticalSpace,
-                      DropdownWidget(
-                        hinText: 'Pilih Sumber Batok',
-                        initialValue: controller.sumberBatokTxt.value,
-                        listItem: controller.dropdownSumberBatok,
-                        onChanged: (value) {
-                          controller.sumberBatokTxt.value = value ?? '';
-                        },
-                        errorText: controller.sumberBatokError,
-                      ),
+                      //! DELETE FIELD
+                      // 20.verticalSpace,
+                      // DropdownWidget(
+                      //   hinText: 'Pilih Sumber Batok',
+                      //   initialValue: controller.sumberBatokTxt.value,
+                      //   listItem: controller.dropdownSumberBatok,
+                      //   onChanged: (value) {
+                      //     controller.sumberBatokTxt.value = value ?? '';
+                      //   },
+                      //   errorText: controller.sumberBatokError,
+                      // ),
                       20.verticalSpace,
                       Text(
                         'Jenis Briket',
@@ -148,16 +149,17 @@ class OvenQueryScreen extends StatelessWidget {
                         errorText: controller.pengovenanError,
                         unit: 'Kg',
                       ),
-                      20.verticalSpace,
-                      TextFieldLabelWidget(
-                        title: 'Pendinginan',
-                        initialValue: controller.pendinginanTxt.value,
-                        onChanged: (value) {
-                          controller.pendinginanTxt.value = value ?? '';
-                        },
-                        errorText: controller.pengovenanError,
-                        unit: 'Kg',
-                      ),
+                      //! DELETED FIELD
+                      // 20.verticalSpace,
+                      // TextFieldLabelWidget(
+                      //   title: 'Pendinginan',
+                      //   initialValue: controller.pendinginanTxt.value,
+                      //   onChanged: (value) {
+                      //     controller.pendinginanTxt.value = value ?? '';
+                      //   },
+                      //   errorText: controller.pengovenanError,
+                      //   unit: 'Kg',
+                      // ),
                       20.verticalSpace,
                       TextFieldNoteWidget(
                         initialValue: controller.keteranganTxt.value,

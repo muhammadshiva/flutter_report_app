@@ -42,6 +42,7 @@ class BatokScreen extends StatelessWidget {
             () => controller.isLoading.isFalse
                 ? PersentaseWidget(
                     data: controller.batokData.listPersentase ?? [],
+                    type: 'Batok',
                   )
                 : const ShimmerPersentaseWidget(),
           ),

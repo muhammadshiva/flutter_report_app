@@ -20,7 +20,7 @@ class OvenQueryController extends GetxController {
   RxString selectedDropdown = ''.obs;
   RxBool isLoading = false.obs;
   RxBool isEdit = false.obs;
-  RxList<String> dropdownSumberBatok = RxList([]);
+  // RxList<String> dropdownSumberBatok = RxList([]);
   RxList<String> grades = ['Grade A', 'Grade B', 'Grade C'].obs;
   RxString selectedInputType = ''.obs;
   RxInt idOven = 0.obs;
@@ -40,10 +40,10 @@ class OvenQueryController extends GetxController {
   RxString jenisMasukanTxt = ''.obs;
   RxString tanggalTxt = ''.obs;
   RxString tanggalTxtInit = ''.obs;
-  RxString sumberBatokTxt = ''.obs;
+  // RxString sumberBatokTxt = ''.obs;
   RxString jenisBriketTxt = ''.obs;
   RxString pengovenanTxt = ''.obs;
-  RxString pendinginanTxt = ''.obs;
+  // RxString pendinginanTxt = ''.obs;
   RxString keteranganTxt = ''.obs;
 
   //* Error Input String
@@ -52,13 +52,13 @@ class OvenQueryController extends GetxController {
   RxString sumberBatokError = ''.obs;
   RxString jenisBriketError = ''.obs;
   RxString pengovenanError = ''.obs;
-  RxString pendinginanError = ''.obs;
+  // RxString pendinginanError = ''.obs;
   RxString keteranganError = ''.obs;
 
   late OvenArgument argument;
   @override
   void onInit() {
-    dropdownSumberBatok(HomeController.to.listSumberBatok);
+    // dropdownSumberBatok(HomeController.to.listSumberBatok);
 
     if (Get.arguments != null) {
       argument = Get.arguments as OvenArgument;
@@ -87,12 +87,12 @@ class OvenQueryController extends GetxController {
       tanggalError.value = '';
     }
 
-    if (sumberBatokTxt.value.isEmpty) {
-      sumberBatokError.value = 'Tidak boleh kosong';
-      isValid = false;
-    } else {
-      sumberBatokError.value = '';
-    }
+    // if (sumberBatokTxt.value.isEmpty) {
+    //   sumberBatokError.value = 'Tidak boleh kosong';
+    //   isValid = false;
+    // } else {
+    //   sumberBatokError.value = '';
+    // }
 
     if (jenisBriketTxt.value.isEmpty) {
       jenisBriketError.value = 'Tidak boleh kosong';
@@ -108,12 +108,12 @@ class OvenQueryController extends GetxController {
       pengovenanError.value = '';
     }
 
-    if (pendinginanTxt.value.isEmpty) {
-      pendinginanError.value = 'Tidak boleh kosong';
-      isValid = false;
-    } else {
-      pendinginanError.value = '';
-    }
+    // if (pendinginanTxt.value.isEmpty) {
+    //   pendinginanError.value = 'Tidak boleh kosong';
+    //   isValid = false;
+    // } else {
+    //   pendinginanError.value = '';
+    // }
 
     if (keteranganTxt.value.isEmpty) {
       keteranganError.value = 'Tidak boleh kosong';
@@ -138,10 +138,10 @@ class OvenQueryController extends GetxController {
           jenisMasukan: jenisMasukanTxt.value,
           idOven: idOven.value == 0 ? null : idOven.value,
           tanggal: tanggalTxt.value,
-          sumberBatok: sumberBatokTxt.value,
+          // sumberBatok: sumberBatokTxt.value,
           jenisBriket: jenisBriketTxt.value,
           pengovenan: double.parse(pengovenanTxt.value),
-          pendinginan: double.parse(pendinginanTxt.value),
+          // pendinginan: double.parse(pendinginanTxt.value),
           keterangan: keteranganTxt.value,
         );
 
@@ -194,11 +194,11 @@ class OvenQueryController extends GetxController {
     tanggalTxtInit.value = GlobalController.to.formatDate(
       argument.listOven?.tanggal ?? '2024-01-01',
     );
-    sumberBatokTxt.value = argument.listOven?.sumberBatok ?? '';
+    // sumberBatokTxt.value = argument.listOven?.sumberBatok ?? '';
     jenisBriketTxt.value = argument.listOven?.jenisBriket ?? '';
     selectedInputType.value = argument.listOven?.jenisBriket ?? '';
     pengovenanTxt.value = argument.listOven?.pengovenan.toString() ?? '';
-    pendinginanTxt.value = argument.listOven?.pendinginan.toString() ?? '';
+    // pendinginanTxt.value = argument.listOven?.pendinginan.toString() ?? '';
     keteranganTxt.value = argument.listOven?.keterangan ?? '';
   }
 }

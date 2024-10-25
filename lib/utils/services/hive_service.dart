@@ -22,6 +22,10 @@ class HiveService {
       await box.put("token", signInData.token);
     }
 
+    if (signInData.position != null) {
+      await box.put("position", signInData.position);
+    }
+
     await box.put("isLogin", isLogin);
   }
 
@@ -30,5 +34,6 @@ class HiveService {
     await box.delete("password");
     await box.delete("token");
     await box.delete("isLogin");
+    await box.delete("position");
   }
 }

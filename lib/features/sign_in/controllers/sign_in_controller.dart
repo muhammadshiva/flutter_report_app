@@ -61,7 +61,12 @@ class SignInController extends GetxController {
 
         if (response.status == 200) {
           await HiveService.setAuth(response.data!, isLogin: true);
-          Get.offAllNamed(AppRoute.homeRoute);
+
+          if (response.data?.position == 'Admin') {
+            Get.offAllNamed(AppRoute.adminRoute);
+          } else {
+            Get.offAllNamed(AppRoute.homeRoute);
+          }
         } else {
           LoadingService.dismiss();
           Get.snackbar(

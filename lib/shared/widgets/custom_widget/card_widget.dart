@@ -105,7 +105,7 @@ class CardWidget extends StatelessWidget {
                                     ),
                                   ),
                                   TextSpan(
-                                    text: ' ${e.jumlah?.toDouble() ?? 0}',
+                                    text: ' ${e.jumlah?.toDouble() ?? 0} Kg',
                                     style: TextStyle(
                                       color: ColorStyle.bb3,
                                       fontWeight: medium,
@@ -121,7 +121,7 @@ class CardWidget extends StatelessWidget {
                   ),
                   5.verticalSpace,
                   Text(
-                    'Terakhir ditambahkan pada ${GlobalController.to.formatDate(terakhirDitambahkan)}',
+                    'Terakhir ditambahkan pada \n${GlobalController.to.formatDate(terakhirDitambahkan)}',
                     style: blackTextStyle.copyWith(
                       color: const Color(0xffA3A3A3),
                       fontSize: 10.sp,

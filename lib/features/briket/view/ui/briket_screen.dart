@@ -40,26 +40,27 @@ class BriketScreen extends StatelessWidget {
             () => controller.isLoading.isFalse
                 ? PersentaseWidget(
                     data: controller.briketData.listPersentase ?? [],
+                    type: 'Briket',
                   )
                 : const ShimmerPersentaseWidget(),
           ),
 
           //* FILTER
-          Obx(
-            () => controller.dropdownSumberBatok.isNotEmpty
-                ? MainDropdownFilter(
-                    onChanged: (value) {
-                      if (value != 'Semua') {
-                        controller.getBriket(filter: value);
-                      } else {
-                        controller.getBriket();
-                      }
-                    },
-                    items: controller.dropdownSumberBatok,
-                    dataLength: controller.totalData,
-                  )
-                : const SizedBox(),
-          ),
+          // Obx(
+          //   () => controller.dropdownSumberBatok.isNotEmpty
+          //       ? MainDropdownFilter(
+          //           onChanged: (value) {
+          //             if (value != 'Semua') {
+          //               controller.getBriket(filter: value);
+          //             } else {
+          //               controller.getBriket();
+          //             }
+          //           },
+          //           items: controller.dropdownSumberBatok,
+          //           dataLength: controller.totalData,
+          //         )
+          //       : const SizedBox(),
+          // ),
 
           //* LIST DATA
           Obx(
@@ -94,7 +95,7 @@ class BriketScreen extends StatelessWidget {
 
                       //* CARD DATA
                       return CardWidget(
-                        title: data.sumberBatok ?? '',
+                        title: data.jenisBriket ?? '',
                         jenisMasukan: data.jenisMasukan ?? '',
                         terakhirDitambahkan: data.tanggal ?? '',
                         data: data.listData ?? [],

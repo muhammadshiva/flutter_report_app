@@ -18,7 +18,11 @@ class SplashController extends GetxController {
 
     if (isLogin) {
       Timer(const Duration(seconds: 2), () {
-        Get.offAllNamed(AppRoute.homeRoute);
+        if (HiveService.box.get('position') == 'Admin') {
+          Get.offAllNamed(AppRoute.adminRoute);
+        } else {
+          Get.offAllNamed(AppRoute.homeRoute);
+        }
       });
       return;
     }

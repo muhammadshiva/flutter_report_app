@@ -5,14 +5,17 @@ import 'package:bas_app/shared/styles/color_style.dart';
 import 'package:bas_app/shared/styles/google_text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 
 class PersentaseWidget extends StatelessWidget {
   PersentaseWidget({
     super.key,
     required this.data,
+    this.type,
   });
 
   List<ListPersentase> data;
+  String? type;
 
   @override
   Widget build(BuildContext context) {
@@ -42,6 +45,8 @@ class PersentaseWidget extends StatelessWidget {
   }
 
   Widget persentaseCard(String title, double persentase) {
+    String formattedValue = NumberFormat('#,###', 'id_ID').format(persentase);
+
     return Container(
       height: 57.h,
       width: 150.w,
@@ -65,7 +70,7 @@ class PersentaseWidget extends StatelessWidget {
           ),
           const Spacer(),
           Text(
-            '$persentase %',
+            '$formattedValue ${type == 'Briket' || type == 'Batok' || type == 'Bahan Baku' ? 'Kg' : '%'}',
             style: blackTextStyle.copyWith(
               fontSize: 15.sp,
               fontWeight: semiBold,

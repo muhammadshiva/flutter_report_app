@@ -20,8 +20,7 @@ class DiskmillQueryScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBarCustom(
-        title:
-            '${controller.isEdit.isTrue ? 'Edit' : 'Input'} Data Ayak Manual',
+        title: '${controller.isEdit.isTrue ? 'Edit' : 'Input'} Data Diskmill',
         onBack: () {
           Get.back();
         },

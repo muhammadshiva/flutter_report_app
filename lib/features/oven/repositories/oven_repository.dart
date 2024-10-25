@@ -46,20 +46,20 @@ class OvenRepository {
     int? idOven,
     required String jenisMasukan,
     required String tanggal,
-    required String sumberBatok,
+    // required String sumberBatok,
     required String jenisBriket,
     required double pengovenan,
-    required double pendinginan,
+    // required double pendinginan,
     required String keterangan,
   }) async {
     try {
       var formData = FormData.fromMap({
         "jenis_masukan": jenisMasukan,
         "tanggal": tanggal,
-        "sumber_batok": sumberBatok,
+        // "sumber_batok": sumberBatok,
         "jenis_briket": jenisBriket,
         "pengovenan": pengovenan,
-        "pendinginan": pendinginan,
+        // "pendinginan": pendinginan,
         "keterangan": keterangan,
       });
 

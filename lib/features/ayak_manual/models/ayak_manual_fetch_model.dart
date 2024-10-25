@@ -42,15 +42,22 @@ class AyakManualData {
         tanggalDitambahkan: json["tanggal_ditambahkan"],
         listAyakManual: json["list_ayak_manual"] == null
             ? []
-            : List<ListAyakManual>.from(json["list_ayak_manual"]!
-                .map((x) => ListAyakManual.fromJson(x))),
+            : List<ListAyakManual>.from(
+                json["list_ayak_manual"]!.map(
+                  (x) => ListAyakManual.fromJson(x),
+                ),
+              ),
       );
 
   Map<String, dynamic> toJson() => {
         "tanggal_ditambahkan": tanggalDitambahkan,
         "list_ayak_manual": listAyakManual == null
             ? []
-            : List<dynamic>.from(listAyakManual!.map((x) => x.toJson())),
+            : List<dynamic>.from(
+                listAyakManual!.map(
+                  (x) => x.toJson(),
+                ),
+              ),
       };
 }
 

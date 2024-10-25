@@ -94,7 +94,7 @@ class OvenScreen extends StatelessWidget {
 
                       //* CARD DATA
                       return CardWidget(
-                        title: data.sumberBatok ?? '',
+                        title: data.jenisBriket ?? '',
                         jenisMasukan: data.jenisMasukan ?? '',
                         terakhirDitambahkan: data.tanggal ?? '',
                         data: data.listData ?? [],

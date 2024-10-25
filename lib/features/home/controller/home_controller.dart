@@ -17,6 +17,8 @@ class HomeController extends GetxController {
   RxList<MenuData> listMenuData = RxList([]);
   RxList<String> listSumberBatok = RxList([]);
   RxBool isLoading = false.obs;
+  RxString position = ''.obs;
+  RxString selectedAdminMenu = ''.obs;
   var tabIndex = 1.obs;
 
   List<Map<String, dynamic>> tabData = [
@@ -27,6 +29,8 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
+    position.value = HiveService.box.get('position');
+
     fetchMenu();
     getSumberBatok();
     super.onInit();

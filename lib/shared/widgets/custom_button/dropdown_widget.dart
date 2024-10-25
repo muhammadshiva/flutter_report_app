@@ -12,6 +12,7 @@ class DropdownWidget extends StatefulWidget {
     required this.errorText,
     this.initialValue,
     required this.hinText,
+    this.onTap,
   });
 
   final List<String> listItem;
@@ -19,6 +20,7 @@ class DropdownWidget extends StatefulWidget {
   final RxString errorText;
   final String? initialValue;
   final String hinText;
+  final void Function()? onTap;
 
   @override
   State<DropdownWidget> createState() => _DropdownWidgetState();
@@ -42,7 +44,8 @@ class _DropdownWidgetState extends State<DropdownWidget> {
       children: [
         DropdownButtonFormField<String>(
           decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(vertical: 15.h, horizontal: 15.w),
+            contentPadding:
+                EdgeInsets.symmetric(vertical: 15.h, horizontal: 15.w),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(6.r),
               borderSide: const BorderSide(
@@ -81,6 +84,7 @@ class _DropdownWidgetState extends State<DropdownWidget> {
               }
             });
           },
+          onTap: () {},
           items: widget.listItem.map<DropdownMenuItem<String>>(
             (String value) {
               return DropdownMenuItem<String>(

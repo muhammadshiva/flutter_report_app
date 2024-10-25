@@ -25,7 +25,7 @@ class HomeCardItemWidget extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-        height: 100.h,
+        height: 105.h,
         padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 14.h),
         margin: EdgeInsets.only(bottom: 15.h),
         decoration: BoxDecoration(
@@ -60,13 +60,14 @@ class HomeCardItemWidget extends StatelessWidget {
                   style: blackTextStyle.copyWith(fontSize: 12.sp),
                 ),
                 Text(
-                  'Terakhir ditambahkan pada ${date.isEmpty ? '' : date}',
+                  'Terakhir ditambahkan pada \n${date.isEmpty ? '' : date}',
                   style: GoogleFonts.inter().copyWith(
                     fontSize: 9.sp,
                     color: ColorStyle.grey,
                     fontWeight: semiBold,
                   ),
                 ),
+                5.verticalSpace,
                 const Spacer(),
                 Container(
                   alignment: Alignment.center,
