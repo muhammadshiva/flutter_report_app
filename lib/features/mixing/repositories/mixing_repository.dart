@@ -45,21 +45,23 @@ class MixingRepository {
   static Future<MixingPostResponseModel> postMixing({
     int? idMixing,
     required String tanggal,
-    required String sumberBatok,
     required String ukuranPisau,
-    required double jumlahArang,
     required double jumlahAci,
     required double jumlahCairan,
+    required double jumlahArangSulawesi,
+    required double jumlahArangSumatera,
+    required double jumlahArangKayu,
     required String keterangan,
   }) async {
     try {
       var formData = FormData.fromMap({
         "tanggal": tanggal,
-        "sumber_batok": sumberBatok,
         "ukuran_pisau": ukuranPisau,
-        "jumlah_arang": jumlahArang,
         "jumlah_aci": jumlahAci,
         "jumlah_cairan": jumlahCairan,
+        "jumlah_arang_sulawesi": jumlahArangSulawesi,
+        "jumlah_arang_sumatera": jumlahArangSumatera,
+        "jumlah_arang_kayu": jumlahArangKayu,
         "keterangan": keterangan,
       });
 

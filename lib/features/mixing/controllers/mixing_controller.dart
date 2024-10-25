@@ -20,7 +20,6 @@ class MixingController extends GetxController {
   static MixingController get to => Get.find();
 
   MixingData mixingData = MixingData();
-  RxList<String> dropdownSumberBatok = RxList([]);
   RxBool isLoading = false.obs;
   RxInt totalData = 0.obs;
 
@@ -46,15 +45,6 @@ class MixingController extends GetxController {
 
           print('TOTAL DATA : ${totalData.value}');
 
-          if (dropdownSumberBatok.isEmpty) {
-            dropdownSumberBatok.addAll(
-              [
-                'Semua',
-                ...(HomeController.to.listSumberBatok),
-              ],
-            );
-          }
-
           isLoading.value = false;
         } else {
           isLoading.value = false;
@@ -62,7 +52,9 @@ class MixingController extends GetxController {
         }
       }
     } on DioException catch (e) {
-      log('ERROR GET BATOK : $e');
+      log('ERROR GET MIXING : $e');
+    } catch (e) {
+      log('ERROR GET MIXING : $e');
     }
   }
 

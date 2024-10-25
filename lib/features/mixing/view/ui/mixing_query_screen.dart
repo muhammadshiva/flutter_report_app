@@ -4,6 +4,7 @@ import 'package:bas_app/shared/styles/google_text_style.dart';
 import 'package:bas_app/shared/widgets/custom_button/button_widget.dart';
 import 'package:bas_app/shared/widgets/custom_button/dropdown_widget.dart';
 import 'package:bas_app/shared/widgets/custom_text_field/date_widget.dart';
+import 'package:bas_app/shared/widgets/custom_text_field/text_field_labe_top_widget.dart';
 import 'package:bas_app/shared/widgets/custom_text_field/text_field_label_widget.dart';
 import 'package:bas_app/shared/widgets/custom_text_field/text_field_note_widget.dart';
 import 'package:bas_app/shared/widgets/general/app_bar_custom.dart';
@@ -20,8 +21,7 @@ class MixingQueryScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBarCustom(
-        title:
-            '${controller.isEdit.isTrue ? 'Edit' : 'Input'} Data Ayak Manual',
+        title: '${controller.isEdit.isTrue ? 'Edit' : 'Input'} Data Mixing',
         onBack: () {
           Get.back();
         },
@@ -43,16 +43,16 @@ class MixingQueryScreen extends StatelessWidget {
                       },
                       errorText: controller.tanggalError,
                     ),
-                    20.verticalSpace,
-                    DropdownWidget(
-                      hinText: 'Pilih Sumber Batok',
-                      initialValue: controller.sumberBatokTxt.value,
-                      listItem: controller.dropdownSumberBatok,
-                      onChanged: (value) {
-                        controller.sumberBatokTxt.value = value ?? '';
-                      },
-                      errorText: controller.sumberBatokError,
-                    ),
+                    // 20.verticalSpace,
+                    // DropdownWidget(
+                    //   hinText: 'Pilih Sumber Batok',
+                    //   initialValue: controller.sumberBatokTxt.value,
+                    //   listItem: controller.dropdownSumberBatok,
+                    //   onChanged: (value) {
+                    //     controller.sumberBatokTxt.value = value ?? '';
+                    //   },
+                    //   errorText: controller.sumberBatokError,
+                    // ),
                     20.verticalSpace,
                     DropdownWidget(
                       hinText: 'Pilih Ukuran Pisau',
@@ -74,16 +74,6 @@ class MixingQueryScreen extends StatelessWidget {
                     ),
                     20.verticalSpace,
                     TextFieldLabelWidget(
-                      title: 'Arang',
-                      unit: 'Kg',
-                      initialValue: controller.jumlahArangTxt.value,
-                      onChanged: (value) {
-                        controller.jumlahArangTxt.value = value ?? '';
-                      },
-                      errorText: controller.jumlahArangError,
-                    ),
-                    20.verticalSpace,
-                    TextFieldLabelWidget(
                       title: 'Aci',
                       unit: 'Kg',
                       initialValue: controller.jumlahAciTxt.value,
@@ -101,6 +91,45 @@ class MixingQueryScreen extends StatelessWidget {
                         controller.jumlahCairanTxt.value = value ?? '';
                       },
                       errorText: controller.jumlahCairanError,
+                    ),
+                    20.verticalSpace,
+                    Text(
+                      'Arang Dimasukkan',
+                      style: blackTextStyle.copyWith(
+                        fontWeight: semiBold,
+                        fontSize: 14.sp,
+                        color: ColorStyle.black2,
+                      ),
+                    ),
+                    20.verticalSpace,
+                    TextFieldLabelWidget(
+                      title: 'Arang\nSulawesi',
+                      unit: 'Kg',
+                      initialValue: controller.jumlahArangSulawesiTxt.value,
+                      onChanged: (value) {
+                        controller.jumlahArangSulawesiTxt.value = value ?? '';
+                      },
+                      errorText: controller.jumlahArangSulawesiError,
+                    ),
+                    20.verticalSpace,
+                    TextFieldLabelWidget(
+                      title: 'Arang\nSumatera',
+                      unit: 'Kg',
+                      initialValue: controller.jumlahArangSumateraTxt.value,
+                      onChanged: (value) {
+                        controller.jumlahArangSumateraTxt.value = value ?? '';
+                      },
+                      errorText: controller.jumlahArangSumateraError,
+                    ),
+                    20.verticalSpace,
+                    TextFieldLabelWidget(
+                      title: 'Arang Kayu',
+                      unit: 'Kg',
+                      initialValue: controller.jumlahArangKayuTxt.value,
+                      onChanged: (value) {
+                        controller.jumlahArangKayuTxt.value = value ?? '';
+                      },
+                      errorText: controller.jumlahArangKayuError,
                     ),
                     20.verticalSpace,
                     TextFieldNoteWidget(

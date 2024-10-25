@@ -8,7 +8,6 @@ import 'package:bas_app/shared/widgets/custom_widget/card_widget.dart';
 import 'package:bas_app/shared/widgets/custom_widget/list_widget.dart';
 import 'package:bas_app/shared/widgets/custom_widget/tab_widget.dart';
 import 'package:bas_app/shared/widgets/general/app_bar_custom.dart';
-import 'package:bas_app/shared/widgets/general/main_dropdown_widget.dart';
 import 'package:bas_app/shared/widgets/general/shimmer_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -31,6 +30,7 @@ class MixingScreen extends StatelessWidget {
             onTabChanged: (index, value) {
               controller.getMixing(filter: value);
             },
+            showPercentage: false,
           ),
 
           const Divider(
@@ -39,21 +39,21 @@ class MixingScreen extends StatelessWidget {
           ),
 
           //* FILTER
-          Obx(
-            () => controller.dropdownSumberBatok.isNotEmpty
-                ? MainDropdownFilter(
-                    onChanged: (value) {
-                      if (value != 'Semua') {
-                        controller.getMixing(filter: value);
-                      } else {
-                        controller.getMixing();
-                      }
-                    },
-                    items: controller.dropdownSumberBatok,
-                    dataLength: controller.totalData,
-                  )
-                : const SizedBox(),
-          ),
+          // Obx(
+          //   () => controller.dropdownSumberBatok.isNotEmpty
+          //       ? MainDropdownFilter(
+          //           onChanged: (value) {
+          //             if (value != 'Semua') {
+          //               controller.getMixing(filter: value);
+          //             } else {
+          //               controller.getMixing();
+          //             }
+          //           },
+          //           items: controller.dropdownSumberBatok,
+          //           dataLength: controller.totalData,
+          //         )
+          //       : const SizedBox(),
+          // ),
 
           //* LIST DATA
           Obx(
@@ -88,10 +88,10 @@ class MixingScreen extends StatelessWidget {
 
                       //* CARD DATA
                       return CardWidget(
-                        title: data.sumberBatok ?? '',
+                        title: 'Pisau ${data.ukuranPisau}',
                         terakhirDitambahkan: data.tanggal ?? '',
                         data: data.listData ?? [],
-                        ukuranPisau: data.ukuranPisau.toString(),
+                        ukuranPisau: '',
                         onPressedEdit: (value) {
                           Get.toNamed(
                             AppRoute.mixingQueryRoute,

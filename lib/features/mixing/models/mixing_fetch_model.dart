@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:bas_app/shared/model/list_data_model.dart';
 
 class MixingFetchResponseModel {
@@ -15,7 +17,7 @@ class MixingFetchResponseModel {
       MixingFetchResponseModel(
         status: json["status"],
         message: json["message"],
-        data: json["data"] == null ? null : MixingData.fromJson(json["data"]),
+        data: MixingData.fromJson(json["data"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -42,7 +44,10 @@ class MixingData {
         listMixing: json["list_mixing"] == null
             ? []
             : List<ListMixing>.from(
-                json["list_mixing"]!.map((x) => ListMixing.fromJson(x))),
+                json["list_mixing"]!.map(
+                  (x) => ListMixing.fromJson(x),
+                ),
+              ),
       );
 
   Map<String, dynamic> toJson() => {
@@ -50,18 +55,23 @@ class MixingData {
         "tanggal_ditambahkan": tanggalDitambahkan,
         "list_mixing": listMixing == null
             ? []
-            : List<dynamic>.from(listMixing!.map((x) => x.toJson())),
+            : List<dynamic>.from(
+                listMixing!.map(
+                  (x) => x.toJson(),
+                ),
+              ),
       };
 }
 
 class ListMixing {
   int? id;
   String? tanggal;
-  String? sumberBatok;
-  double? ukuranPisau;
-  double? jumlahArang;
+  String? ukuranPisau;
   double? jumlahAci;
   double? jumlahCairan;
+  double? jumlahArangSulawesi;
+  double? jumlahArangSumatera;
+  double? jumlahArangKayu;
   String? keterangan;
   String? createdAt;
   String? updatedAt;
@@ -70,11 +80,12 @@ class ListMixing {
   ListMixing({
     this.id,
     this.tanggal,
-    this.sumberBatok,
     this.ukuranPisau,
-    this.jumlahArang,
     this.jumlahAci,
     this.jumlahCairan,
+    this.jumlahArangSulawesi,
+    this.jumlahArangSumatera,
+    this.jumlahArangKayu,
     this.keterangan,
     this.createdAt,
     this.updatedAt,
@@ -84,41 +95,44 @@ class ListMixing {
   factory ListMixing.fromJson(Map<String, dynamic> json) => ListMixing(
         id: json["id"],
         tanggal: json["tanggal"],
-        sumberBatok: json["sumber_batok"],
-        ukuranPisau: (json["ukuran_pisau"] is int)
-            ? (json["ukuran_pisau"] as int).toDouble()
-            : json["ukuran_pisau"] as double?,
-        jumlahArang: (json["jumlah_arang"] is int)
-            ? (json["jumlah_arang"] as int).toDouble()
-            : json["jumlah_arang"] as double?,
+        ukuranPisau: json["ukuran_pisau"],
         jumlahAci: (json["jumlah_aci"] is int)
             ? (json["jumlah_aci"] as int).toDouble()
             : json["jumlah_aci"] as double?,
         jumlahCairan: (json["jumlah_cairan"] is int)
             ? (json["jumlah_cairan"] as int).toDouble()
             : json["jumlah_cairan"] as double?,
+        jumlahArangSulawesi: (json["jumlah_arang_sulawesi"] is int)
+            ? (json["jumlah_arang_sulawesi"] as int).toDouble()
+            : json["jumlah_arang_sulawesi"] as double?,
+        jumlahArangSumatera: (json["jumlah_arang_sumatera"] is int)
+            ? (json["jumlah_arang_sumatera"] as int).toDouble()
+            : json["jumlah_arang_sumatera"] as double?,
+        jumlahArangKayu: (json["jumlah_arang_kayu"] is int)
+            ? (json["jumlah_arang_kayu"] as int).toDouble()
+            : json["jumlah_arang_kayu"] as double?,
         keterangan: json["keterangan"],
         createdAt: json["created_at"],
         updatedAt: json["updated_at"],
-        listData: json["list_data"] == null
-            ? []
-            : List<ListData>.from(
-                json["list_data"]!.map((x) => ListData.fromJson(x))),
+        listData: List<ListData>.from(
+          json["list_data"].map(
+            (x) => ListData.fromJson(x),
+          ),
+        ),
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
         "tanggal": tanggal,
-        "sumber_batok": sumberBatok,
         "ukuran_pisau": ukuranPisau,
-        "jumlah_arang": jumlahArang,
         "jumlah_aci": jumlahAci,
         "jumlah_cairan": jumlahCairan,
+        "jumlah_arang_sulawesi": jumlahArangSulawesi,
+        "jumlah_arang_sumatera": jumlahArangSumatera,
+        "jumlah_arang_kayu": jumlahArangKayu,
         "keterangan": keterangan,
         "created_at": createdAt,
         "updated_at": updatedAt,
-        "list_data": listData == null
-            ? []
-            : List<dynamic>.from(listData!.map((x) => x.toJson())),
+        "list_data": List<dynamic>.from(listData?.map((x) => x.toJson()) ?? []),
       };
 }

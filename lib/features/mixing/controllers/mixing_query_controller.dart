@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bas_app/configs/routes/app_route.dart';
-import 'package:bas_app/features/home/controller/home_controller.dart';
 import 'package:bas_app/features/mixing/argument/mixing_argument.dart';
 import 'package:bas_app/features/mixing/controllers/mixing_controller.dart';
 import 'package:bas_app/features/mixing/models/mixing_post_model.dart';
@@ -37,18 +36,24 @@ class MixingQueryController extends GetxController {
   //* Input String
   RxString tanggalTxt = ''.obs;
   RxString tanggalTxtInit = ''.obs;
-  RxString sumberBatokTxt = ''.obs;
+  // RxString sumberBatokTxt = ''.obs;
   RxString ukuranPisauTxt = ''.obs;
-  RxString jumlahArangTxt = ''.obs;
+  RxString jumlahArangSulawesiTxt = ''.obs;
+  RxString jumlahArangSumateraTxt = ''.obs;
+  RxString jumlahArangKayuTxt = ''.obs;
+
   RxString jumlahAciTxt = ''.obs;
   RxString jumlahCairanTxt = ''.obs;
   RxString keteranganTxt = ''.obs;
 
   //* Error Input String
   RxString tanggalError = ''.obs;
-  RxString sumberBatokError = ''.obs;
+  // RxString sumberBatokError = ''.obs;
   RxString ukuranPisauError = ''.obs;
-  RxString jumlahArangError = ''.obs;
+  RxString jumlahArangSulawesiError = ''.obs;
+  RxString jumlahArangSumateraError = ''.obs;
+  RxString jumlahArangKayuError = ''.obs;
+
   RxString jumlahAciError = ''.obs;
   RxString jumlahCairanError = ''.obs;
   RxString keteranganError = ''.obs;
@@ -57,7 +62,7 @@ class MixingQueryController extends GetxController {
 
   @override
   void onInit() {
-    dropdownSumberBatok(HomeController.to.listSumberBatok);
+    // dropdownSumberBatok(HomeController.to.listSumberBatok);
 
     if (Get.arguments != null) {
       argument = Get.arguments as MixingArgument;
@@ -79,12 +84,12 @@ class MixingQueryController extends GetxController {
       tanggalError.value = '';
     }
 
-    if (sumberBatokTxt.value.isEmpty) {
-      sumberBatokError.value = 'Tidak boleh kosong';
-      isValid = false;
-    } else {
-      sumberBatokError.value = '';
-    }
+    // if (sumberBatokTxt.value.isEmpty) {
+    //   sumberBatokError.value = 'Tidak boleh kosong';
+    //   isValid = false;
+    // } else {
+    //   sumberBatokError.value = '';
+    // }
 
     if (ukuranPisauTxt.value.isEmpty) {
       ukuranPisauError.value = 'Tidak boleh kosong';
@@ -93,11 +98,25 @@ class MixingQueryController extends GetxController {
       ukuranPisauError.value = '';
     }
 
-    if (jumlahArangTxt.value.isEmpty) {
-      jumlahArangError.value = 'Tidak boleh kosong';
+    if (jumlahArangSulawesiTxt.value.isEmpty) {
+      jumlahArangSulawesiError.value = 'Tidak boleh kosong';
       isValid = false;
     } else {
-      jumlahArangError.value = '';
+      jumlahArangSulawesiError.value = '';
+    }
+
+    if (jumlahArangSumateraTxt.value.isEmpty) {
+      jumlahArangSumateraError.value = 'Tidak boleh kosong';
+      isValid = false;
+    } else {
+      jumlahArangSulawesiError.value = '';
+    }
+
+    if (jumlahArangKayuTxt.value.isEmpty) {
+      jumlahArangKayuError.value = 'Tidak boleh kosong';
+      isValid = false;
+    } else {
+      jumlahArangSulawesiError.value = '';
     }
 
     if (jumlahAciTxt.value.isEmpty) {
@@ -136,9 +155,10 @@ class MixingQueryController extends GetxController {
         MixingPostResponseModel response = await MixingRepository.postMixing(
           idMixing: idMixing.value == 0 ? null : idMixing.value,
           tanggal: tanggalTxt.value,
-          sumberBatok: sumberBatokTxt.value,
           ukuranPisau: ukuranPisauTxt.value,
-          jumlahArang: double.parse(jumlahArangTxt.value),
+          jumlahArangSulawesi: double.parse(jumlahArangSulawesiTxt.value),
+          jumlahArangSumatera: double.parse(jumlahArangSumateraTxt.value),
+          jumlahArangKayu: double.parse(jumlahArangKayuTxt.value),
           jumlahAci: double.parse(jumlahAciTxt.value),
           jumlahCairan: double.parse(jumlahCairanTxt.value),
           keterangan: keteranganTxt.value,
@@ -192,9 +212,14 @@ class MixingQueryController extends GetxController {
     tanggalTxtInit.value = GlobalController.to.formatDate(
       argument.listMixing?.tanggal ?? '2024-01-01',
     );
-    sumberBatokTxt.value = argument.listMixing?.sumberBatok ?? '';
+    // sumberBatokTxt.value = argument.listMixing?.sumberBatok ?? '';
     ukuranPisauTxt.value = argument.listMixing?.ukuranPisau.toString() ?? '';
-    jumlahArangTxt.value = argument.listMixing?.jumlahArang.toString() ?? '';
+    jumlahArangSulawesiTxt.value =
+        argument.listMixing?.jumlahArangSulawesi.toString() ?? '';
+    jumlahArangSumateraTxt.value =
+        argument.listMixing?.jumlahArangSumatera.toString() ?? '';
+    jumlahArangKayuTxt.value =
+        argument.listMixing?.jumlahArangKayu.toString() ?? '';
     jumlahAciTxt.value = argument.listMixing?.jumlahAci.toString() ?? '';
     jumlahCairanTxt.value = argument.listMixing?.jumlahCairan.toString() ?? '';
     keteranganTxt.value = argument.listMixing?.keterangan ?? '';

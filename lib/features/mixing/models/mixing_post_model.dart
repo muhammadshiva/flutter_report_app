@@ -13,7 +13,7 @@ class MixingPostResponseModel {
       MixingPostResponseModel(
         status: json["status"],
         message: json["message"],
-        data: json["data"] == null ? null : Data.fromJson(json["data"]),
+        data: Data.fromJson(json["data"]),
       );
 
   Map<String, dynamic> toJson() => {
@@ -25,10 +25,11 @@ class MixingPostResponseModel {
 
 class Data {
   int? id;
-  DateTime? tanggal;
-  String? sumberBatok;
+  String? tanggal;
   double? ukuranPisau;
-  double? jumlahArang;
+  double? jumlahArangSulawesi;
+  double? jumlahArangSumatera;
+  double? jumlahArangKayu;
   double? jumlahAci;
   double? jumlahCairan;
   String? keterangan;
@@ -36,9 +37,10 @@ class Data {
   Data({
     this.id,
     this.tanggal,
-    this.sumberBatok,
     this.ukuranPisau,
-    this.jumlahArang,
+    this.jumlahArangSulawesi,
+    this.jumlahArangSumatera,
+    this.jumlahArangKayu,
     this.jumlahAci,
     this.jumlahCairan,
     this.keterangan,
@@ -46,31 +48,23 @@ class Data {
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
         id: json["id"],
-        tanggal:
-            json["tanggal"] == null ? null : DateTime.parse(json["tanggal"]),
-        sumberBatok: json["sumber_batok"],
-        ukuranPisau: json["ukuran_pisau"] != null
-            ? double.tryParse(json["ukuran_pisau"].toString())
-            : null,
-        jumlahArang: json["jumlah_arang"] != null
-            ? double.tryParse(json["jumlah_arang"].toString())
-            : null,
-        jumlahAci: json["jumlah_aci"] != null
-            ? double.tryParse(json["jumlah_aci"].toString())
-            : null,
-        jumlahCairan: json["jumlah_cairan"] != null
-            ? double.tryParse(json["jumlah_cairan"].toString())
-            : null,
+        tanggal: json["tanggal"],
+        ukuranPisau: json["ukuran_pisau"].toDouble(),
+        jumlahArangSulawesi: json["jumlah_arang_sulawesi"],
+        jumlahArangSumatera: json["jumlah_arang_sumatera"],
+        jumlahArangKayu: json["jumlah_arang_kayu"],
+        jumlahAci: json["jumlah_aci"],
+        jumlahCairan: json["jumlah_cairan"],
         keterangan: json["keterangan"],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "tanggal":
-            "${tanggal!.year.toString().padLeft(4, '0')}-${tanggal!.month.toString().padLeft(2, '0')}-${tanggal!.day.toString().padLeft(2, '0')}",
-        "sumber_batok": sumberBatok,
+        "tanggal": tanggal,
         "ukuran_pisau": ukuranPisau,
-        "jumlah_arang": jumlahArang,
+        "jumlah_arang_sulawesi": jumlahArangSulawesi,
+        "jumlah_arang_sumatera": jumlahArangSumatera,
+        "jumlah_arang_kayu": jumlahArangKayu,
         "jumlah_aci": jumlahAci,
         "jumlah_cairan": jumlahCairan,
         "keterangan": keterangan,
